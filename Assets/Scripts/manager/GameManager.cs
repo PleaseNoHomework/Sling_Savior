@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public Boss bossPrefab;              // Boss 프리팹 참조
     public Transform bossSpawnPoint;     // Boss 스폰 위치
 
+    public int currentWave = 1;
+
     void Awake()
     {
         if (instance == null)
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         wave1.OnWave1Completed -= StartWave2; // 이벤트 구독 해제
         wave1.gameObject.SetActive(false);    // Wave1 비활성화
 
+        currentWave++;
         Debug.Log("Wave 2 시작");
         wave2.OnWave2Completed += StartBossWave; // Wave2 완료 시 보스 웨이브 시작
         wave2.gameObject.SetActive(true);        // Wave2 활성화
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         wave2.OnWave2Completed -= StartBossWave; // 이벤트 구독 해제
         wave2.gameObject.SetActive(false);       // Wave2 비활성화
 
+        currentWave++;
         Debug.Log("Boss Stage 시작");
         Boss bossInstance = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
         bossInstance.OnBossDestroyed += OnGameCompleted; // 보스 파괴 시 게임 완료 처리
