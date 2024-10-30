@@ -152,7 +152,7 @@ MonoBehaviour:
     type: 3}
   powerUpUI: {fileID: 5922212919099802554, guid: d456c9a438ed17e48b5391cdcc574098,
     type: 3}
-  waveUI: {fileID: 0}
+  waveUI: {fileID: 1279468252}
   UIFlag: 0
   getPowerUp: 0
 --- !u!4 &268669768
@@ -948,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380cea77fc9da84489466195140e5652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveText: {fileID: 898893173}
 --- !u!1 &1367967268
 GameObject:
   m_ObjectHideFlags: 0
