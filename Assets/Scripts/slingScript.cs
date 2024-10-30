@@ -25,12 +25,15 @@ public class slingScript : MonoBehaviour
             if (slingManager.instance.shootFlag == 0 && ready == 1)
             {
                 Debug.Log("mouse up! " + Input.mousePosition) ;
-                slingManager.instance.shootFlag = 1;
-                Vector3 balldirec = -(mouseUpPos - mouseDownPos).normalized;
-                balldirec.z = balldirec.y;
-                if (balldirec.z < 0) balldirec.z = 0;
-                balldirec.y = 0;
-                slingManager.instance.ballDirection = balldirec;
+                if (Vector3.Magnitude((mouseDownPos - mouseUpPos)) > 100f) {                 
+                    Vector3 balldirec = -(mouseUpPos - mouseDownPos).normalized;
+                    balldirec.z = balldirec.y;
+                    if (balldirec.z < 0) balldirec.z = 0;
+                    balldirec.y = 0;
+                    slingManager.instance.ballDirection = balldirec;
+                    slingManager.instance.shootFlag = 1;
+                }
+
                 ready = 0;
             }
         }
