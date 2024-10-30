@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs; // 생성할 적 프리팹 리스트
-    public float speed; // 보스의 좌우 이동 속도
-    public float moveRange = 10f; // 좌우 이동 범위
-    public float spawnRate = 2f; // 적 생성 간격
+    public List<GameObject> enemyPrefabs; // 소환할 적 프리팹 리스트
+    public int hp;
+    public float speed;
+    public float moveRange;         // 좌우 이동 범위
+    public float spawnRate;          // 적 소환 주기
 
     private Vector3 startPosition;
-    private bool movingRight = true;
+    private bool movingRight = true;      // 이동 방향 (좌/우)
 
     void Start()
     {
-        startPosition = transform.position; // 보스의 초기 위치를 저장
-        InvokeRepeating("SpawnEnemy", 0f, spawnRate); // 적 생성 주기 설정
+        startPosition = transform.position;            // 보스의 초기 위치를 저장
+        InvokeRepeating("SpawnEnemy", spawnRate, spawnRate); // 일정 간격으로 적을 소환
     }
 
     void Update()
     {
-        Move();
-    }
-
-    void Move()
-    {
-        // 좌우로 이동
+        // 좌우로 이동 (World 좌표계를 기준으로 이동)
         if (movingRight)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
 
-            // 오른쪽 이동 제한
+            // 오른쪽 한계 도달 시 방향 전환
             if (transform.position.x >= startPosition.x + moveRange)
             {
                 movingRight = false;
@@ -38,9 +34,9 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
 
-            // 왼쪽 이동 제한
+            // 왼쪽 한계 도달 시 방향 전환
             if (transform.position.x <= startPosition.x - moveRange)
             {
                 movingRight = true;
@@ -50,17 +46,39 @@ public class Boss : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (enemyPrefabs.Count > 0) // 적 프리팹이 있는지 확인
+        if (enemyPrefabs.Count > 0) // 적 프리팹이 존재할 때만 소환
         {
-            // 적 프리팹을 무작위로 선택하여 생성
-            GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-            Vector3 spawnPosition = new Vector3(
-                transform.position.x,
-                transform.position.y,
-                transform.position.z - 2f // 보스 위치 앞에서 생성
-            );
+            int enemyTypesToSpawn = Random.Range(1, 4); // 한번에 소환할 적 종류 수 (1~3개 랜덤)
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            for (int i = 0; i < enemyTypesToSpawn; i++)
+            {
+                // 적 프리팹을 무작위로 선택하여 소환
+                GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+
+                // 보스의 위치에서 적 소환
+                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet")) // 플레이어의 탄환과 충돌 시
+        {
+            Bullet bullet = other.GetComponent<Bullet>(); // 탄환의 데미지 가져오기
+            if (bullet != null)
+            {
+                TakeDamage(bullet.damage);
+            }
         }
     }
 }
