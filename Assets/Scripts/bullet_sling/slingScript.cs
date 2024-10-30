@@ -16,7 +16,6 @@ public class slingScript : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && slingManager.instance.shootFlag == 0)
         {
-            Debug.Log("mouse down! " + Input.mousePosition);
             mouseDownPos = Input.mousePosition;
             ready = 1;
         }
@@ -24,7 +23,6 @@ public class slingScript : MonoBehaviour
             mouseUpPos = Input.mousePosition;
             if (slingManager.instance.shootFlag == 0 && ready == 1)
             {
-                Debug.Log("mouse up! " + Input.mousePosition) ;
                 if (Vector3.Magnitude((mouseDownPos - mouseUpPos)) > 100f) {                 
                     Vector3 balldirec = -(mouseUpPos - mouseDownPos).normalized;
                     balldirec.z = balldirec.y;

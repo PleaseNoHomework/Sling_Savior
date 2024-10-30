@@ -13,7 +13,7 @@ public class ballScript : MonoBehaviour
     private int directionFlag;
     private float damage;
     private float spawnTime;
-
+    private BoxCollider coll;
 
     void Move()
     {
@@ -35,6 +35,8 @@ public class ballScript : MonoBehaviour
                 if (mousePos.z < 0) mousePos.z = 0;
                 Vector3 slingPos = startPos - mousePos;
                 if (slingPos.z < -10) slingPos.z = -10;
+                if (slingPos.x < -5) slingPos.x = -5;
+                else if (slingPos.x > 5) slingPos.x = 5;
                 transform.position = slingPos;
 
 
@@ -53,6 +55,8 @@ public class ballScript : MonoBehaviour
         ballDirection = Vector3.zero;
         directionFlag = 0;
         spawnTime = 0f;
+        coll = GetComponent<BoxCollider>();
+        coll.enabled = false;
     }
 
     // Update is called once per frame
@@ -62,8 +66,8 @@ public class ballScript : MonoBehaviour
         if (slingManager.instance.shootFlag == 1 && directionFlag == 0)
         {
             ballDirection = slingManager.instance.ballDirection;
-            Debug.Log("shtto : " + ballDirection * speed);
             directionFlag = 1;
+            coll.enabled = true;
         }
         transform.Translate(ballDirection * speed * Time.deltaTime);
 

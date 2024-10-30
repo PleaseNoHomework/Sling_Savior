@@ -361,11 +361,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5090488311395432567}
-  - component: {fileID: 4339473315830284769}
   - component: {fileID: 5797045524921837385}
+  - component: {fileID: 4339473315830284769}
+  - component: {fileID: 7197004048993152848}
   m_Layer: 0
   m_Name: SlimeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,6 +388,23 @@ Transform:
   - {fileID: 3318275097381996549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5797045524921837385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876875707750390345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813b9f733d76a2a488bf46a0ba42493b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  speed: 1
+  zigzagFrequency: 2
+  zigzagAmplitude: 2
+  stun: 2
 --- !u!95 &4339473315830284769
 Animator:
   serializedVersion: 7
@@ -409,23 +427,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5797045524921837385
-MonoBehaviour:
+--- !u!135 &7197004048993152848
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4876875707750390345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813b9f733d76a2a488bf46a0ba42493b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 300
-  speed: 2
-  zigzagFrequency: 2
-  zigzagAmplitude: 2
-  stun: 2
+  serializedVersion: 3
+  m_Radius: 0.46942583
+  m_Center: {x: 0, y: 0.47491774, z: 0}
 --- !u!1 &6408881965814664235
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AccelerationEnemy : MonoBehaviour
+public class ZigzagEnemy : MonoBehaviour
 {
     public int hp;
     public float speed;
-    public float acceleration;
+    public float zigzagFrequency; // 주파수
+    public float zigzagAmplitude; // 진폭
     public float stun;
     private bool isStunned = false;
 
@@ -18,8 +19,8 @@ public class AccelerationEnemy : MonoBehaviour
     {
         if (!isStunned)
         {
-            speed += acceleration * Time.deltaTime;
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            float zigzag = Mathf.Sin(Time.time * zigzagFrequency) * zigzagAmplitude; // 사인곡선 형태로 좌우 이동, 진폭으로 이동폭 조절
+            transform.Translate(new Vector3(zigzag, 0, -1) * speed * Time.deltaTime);
         }
     }
 
@@ -32,7 +33,21 @@ public class AccelerationEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Base"))
+        {
+            HPManager.instance.baseHP--;
+            Destroy(gameObject);
+        }
 
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(GameManager.instance.bulletDamage);
+            Debug.Log("Damage! " + GameManager.instance.bulletDamage);
+        }
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet")) // "Bullet" 태그를 확인

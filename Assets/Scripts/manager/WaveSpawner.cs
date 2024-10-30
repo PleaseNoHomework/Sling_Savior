@@ -43,7 +43,7 @@ public class WaveSpawner : MonoBehaviour
                 Vector3 randomPosition = new Vector3(
                     transform.position.x + Random.Range(-5f, 5f),
                     transform.position.y,
-                    transform.position.z + Random.Range(-10f, 10f)
+                    10f
                 );
 
                 // 적 생성

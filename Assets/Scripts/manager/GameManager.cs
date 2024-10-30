@@ -5,10 +5,13 @@ using UnityEngine.UI; // 필요시 UI 텍스트 업데이트를 위한 사용
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public WaveSpawner wave1;
     public WaveSpawner wave2;
     public GameObject bossPrefab;
     public Transform bossSpawnPoint;
+
+    public int bulletDamage;
 
     private int currentWave = 1;
     private int activeEnemies = 0;
@@ -16,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        bulletDamage = 100;
+        if (instance == null) instance = this;
         StartCoroutine(StartNextWave());
     }
 
@@ -45,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (currentWave == 2)
         {
             Debug.Log("Wave 2 시작");
-            if (wave1 != null)
+            if (wave2 != null)
             {
                 wave2.gameObject.SetActive(true);
                 wave2.OnEnemySpawned += IncrementEnemyCount;
@@ -55,9 +60,9 @@ public class GameManager : MonoBehaviour
                 yield return new WaitUntil(() => wave2.isFirstSpawnComplete);
                 yield return new WaitUntil(() => activeEnemies <= 0);
 
-                wave1.OnEnemySpawned -= IncrementEnemyCount;
+                wave2.OnEnemySpawned -= IncrementEnemyCount;
                 wave2.OnEnemyDestroyed -= DecrementEnemyCount;
-                wave1.gameObject.SetActive(false);
+                wave2.gameObject.SetActive(false);
                 Debug.Log("Wave 2 클리어");
                 currentWave++;
             }
