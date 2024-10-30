@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: pierce
   m_EditorClassIdentifier: 
   skillNo: 2
+  maxSkill: 0
   skillName: Pierce
-  description: Pierce's bullet
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  description: Bullet Pierce
+  icon: {fileID: 21300000, guid: ab278dd5b046d994697e936ea8da2b2d, type: 3}
   skillType: 2
   isActive: 0

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: stun
   m_EditorClassIdentifier: 
   skillNo: 1
+  maxSkill: 0
   skillName: Stun
   description: Active/stun All enemy
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 3c6c0a9113a3f3444bb8bbfd857d4cbd, type: 3}
   skillType: 0
   isActive: 0

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: atk
   m_EditorClassIdentifier: 
   skillNo: 1
+  maxSkill: 0
   skillName: AtkUP!
   description: Player's atk is stronger
-  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: c5f7ad7990242924d940bd34e8007904, type: 3}
   skillType: 1
   isActive: 0
