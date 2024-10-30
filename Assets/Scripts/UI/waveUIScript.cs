@@ -7,28 +7,39 @@ public class waveUIScript : MonoBehaviour
     public TextMeshProUGUI waveText;
     private Image ima;
     private float time;
+    private int waveFlag = 0;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
+        waveFlag = 1;
         waveText.text = "Wave Clear!!";
     }
 
     // Update is called once per frame
     void Update()
     {
-        makeText(GameManager.instance.currentWave, time);
-        time += Time.deltaTime;
-
+        if(GameManager.instance.finishFlag == 1)
+        {
+            gameObject.SetActive(true);
+            makeText(GameManager.instance.currentWave);
+            time += Time.deltaTime;
+        }
 
     }
 
-    void makeText(int currentWave, float time)
+    void makeText(int currentWave)
     {
         switch(currentWave)
         {
             case 1:
                 waveText.text = "Wave1";
+                if (time > 3f)
+                {
+                    gameObject.SetActive(false);
+                    GameManager.instance.finishFlag = 0;
+                    time = 0;
+                }
                 break;
             case 2:
                 if (time > 0f) waveText.text = "Wave Clear!";
@@ -38,8 +49,9 @@ public class waveUIScript : MonoBehaviour
                 }
                 else if (time > 6f)
                 {
-                    UIManager.instance.ClearUI();
-                    //gameObject.SetActive(false);
+                    gameObject.SetActive(false);
+                    GameManager.instance.finishFlag = 0;
+                    time = 0;
                 }
                 break;
             case 3:
@@ -50,12 +62,14 @@ public class waveUIScript : MonoBehaviour
                 }
                 else if (time > 6f)
                 {
-                    UIManager.instance.ClearUI();
-                    //gameObject.SetActive(false);
+                    gameObject.SetActive(false);
+                    GameManager.instance.finishFlag = 0;
+                    time = 0;
                 }
                 break;
+                
         }
-
+        
     }
     
 }

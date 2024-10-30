@@ -10,7 +10,7 @@ TagManager:
   - Wall
   - Base
   - Item
-  - FireceBullet
+  - PierceBullet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +24,7 @@ TagManager:
   - Base
   - Bullet
   - Enemy
-  - 
+  - Item
   - 
   - 
   - 

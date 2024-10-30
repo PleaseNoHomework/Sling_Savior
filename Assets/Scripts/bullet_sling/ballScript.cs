@@ -94,10 +94,11 @@ public class ballScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Item"))
         {
             UIManager.instance.UIFlag = 1;
-                   }
+                   }*/
 
         if (collision.gameObject.CompareTag("Enemy"))
         {

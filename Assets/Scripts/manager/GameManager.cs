@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Wave2Spawner wave2;           // Wave2Spawner 참조
     public Boss bossPrefab;              // Boss 프리팹 참조
     public Transform bossSpawnPoint;     // Boss 스폰 위치
-
+    public int finishFlag = 0;
     public int currentWave = 1;
 
     void Awake()
@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        finishFlag = 1;
         StartWave1(); // 게임 시작 시 첫 번째 웨이브 시작
     }
 
     void StartWave1()
     {
+
         Debug.Log("Wave 1 시작");
+        finishFlag = 1;
         wave1.OnWave1Completed += StartWave2; // Wave1 완료 시 StartWave2 호출
         wave1.gameObject.SetActive(true);     // Wave1 활성화
     }
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
     void StartWave2()
     {
         Debug.Log("Wave 1 클리어");
-
+        finishFlag = 1;
         // Wave1 종료 설정
         wave1.OnWave1Completed -= StartWave2; // 이벤트 구독 해제
         wave1.gameObject.SetActive(false);    // Wave1 비활성화
