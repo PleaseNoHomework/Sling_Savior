@@ -4,7 +4,7 @@ using static ForwardEnemy;
 
 public class ForwardEnemy : MonoBehaviour
 {
-    public int hp = 300;
+    public int hp = 100;
     public float speed;
     public float stun;
     private bool isStunned = false;

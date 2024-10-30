@@ -35,5 +35,16 @@ public class slingManager : MonoBehaviour
         }
     }
 
+    public void specialUp(int skillNo)
+    {
+        switch(skillNo)
+        {
+            case 1: //multiple shot?
+                break;
+            case 2: //pierce shot
+                break;
+        }
+    }
+
 
 }

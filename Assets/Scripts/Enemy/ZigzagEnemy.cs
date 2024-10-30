@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZigzagEnemy : MonoBehaviour
 {
-    public int hp = 300;
+    public int hp = 100;
     public float speed;
     public float zigzagFrequency; // 주파수
     public float zigzagAmplitude; // 진폭
@@ -45,8 +45,8 @@ public class ZigzagEnemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            TakeDamage(GameManager.instance.bulletDamage);
-            Debug.Log("Damage! " + GameManager.instance.bulletDamage);
+            TakeDamage(slingManager.instance.damage);
+            Debug.Log("Damage! " + slingManager.instance.damage);
         }
 
     }
