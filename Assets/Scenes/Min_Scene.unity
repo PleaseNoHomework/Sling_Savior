@@ -2076,14 +2076,13 @@ GameObject:
   - component: {fileID: 643476388}
   - component: {fileID: 643476387}
   - component: {fileID: 643476386}
-  - component: {fileID: 643476390}
   m_Layer: 5
   m_Name: SkillCanva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &643476386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2167,23 +2166,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &643476390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643476385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb424cf0a3bc534d95d164e6c69f07b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionPanel: {fileID: 2084850150}
-  skillButtons:
-  - {fileID: 1698854606}
-  - {fileID: 1152753224}
-  - {fileID: 308563080}
 --- !u!1 &677237230
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,6 +3626,7 @@ GameObject:
   - component: {fileID: 1089466304}
   - component: {fileID: 1089466303}
   - component: {fileID: 1089466305}
+  - component: {fileID: 1089466306}
   m_Layer: 0
   m_Name: skillManager
   m_TagString: Untagged
@@ -3663,13 +3646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09326a40cb4965540974c4b4ee00077e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSkills:
-  - {fileID: 11400000, guid: 3177e2421a63c164db25b4c11723867d, type: 2}
-  - {fileID: 11400000, guid: 6cb10e0c4c0fd224e875dd792c7501ac, type: 2}
-  - {fileID: 11400000, guid: 8a4ad2233effb614cadc95d17affb108, type: 2}
-  - {fileID: 11400000, guid: 25f650411b3e71845bd1157cb08479a9, type: 2}
-  availableSkills: []
-  acquiredSkills: []
 --- !u!4 &1089466304
 Transform:
   m_ObjectHideFlags: 0
@@ -3701,7 +3677,32 @@ MonoBehaviour:
   wave2: {fileID: 0}
   bossPrefab: {fileID: 0}
   bossSpawnPoint: {fileID: 0}
+  finishFlag: 0
   currentWave: 1
+--- !u!114 &1089466306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089466302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3838198a75058f54c8dfc2f57a8548e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSelectionPanel: {fileID: 643476385}
+  skillButtons:
+  - {fileID: 1698854606}
+  - {fileID: 1152753224}
+  - {fileID: 308563080}
+  allSkills:
+  - {fileID: 11400000, guid: 25f650411b3e71845bd1157cb08479a9, type: 2}
+  - {fileID: 11400000, guid: 3177e2421a63c164db25b4c11723867d, type: 2}
+  - {fileID: 11400000, guid: 6cb10e0c4c0fd224e875dd792c7501ac, type: 2}
+  - {fileID: 11400000, guid: 8a4ad2233effb614cadc95d17affb108, type: 2}
+  availableSkills: []
+  acquiredSkills: []
 --- !u!1001 &1143514021
 PrefabInstance:
   m_ObjectHideFlags: 0
