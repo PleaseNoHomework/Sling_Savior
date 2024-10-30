@@ -88,4 +88,18 @@ public class Boss : MonoBehaviour
             }
         }
     }
+
+    // 혹시 OnTrigger가 문제일까봐 OnCollision도 추가해둘게요
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Bullet")) // Bullet 태그의 발사체와 충돌 시
+    //    {
+    //        Bullet bullet = collision.gameObject.GetComponent<Bullet>(); // 발사체의 데미지 가져오기
+    //        if (bullet != null)
+    //        {
+    //            TakeDamage(bullet.damage);
+    //            Destroy(collision.gameObject); // 발사체 파괴
+    //        }
+    //    }
+    //}
 }
