@@ -43,8 +43,8 @@ public class ForwardEnemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            TakeDamage(GameManager.instance.bulletDamage);
-            Debug.Log("Damage! " + GameManager.instance.bulletDamage);
+            TakeDamage(slingManager.instance.damage);
+            Debug.Log("Damage! " + slingManager.instance.damage);
         }
 
     }

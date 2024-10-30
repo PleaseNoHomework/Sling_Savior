@@ -53,7 +53,7 @@ public class slingScript : MonoBehaviour
         if (slingManager.instance.shootFlag == 1)
         {
             shootTime += Time.deltaTime;
-            if(shootTime > 1f)
+            if(shootTime > slingManager.instance.shootCoolTime)
             {
                 shootTime = 0;
                 slingManager.instance.shootFlag = 0;

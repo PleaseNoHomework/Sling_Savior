@@ -5,6 +5,9 @@ using UnityEngine;
 public class slingManager : MonoBehaviour
 {
     public static slingManager instance;
+    public float shootCoolTime;
+    public int damage;
+
     public Vector3 ballDirection;
     public int shootFlag = 0;
     // Start is called before the first frame update
@@ -13,11 +16,24 @@ public class slingManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
-
+        damage = 100;
+        shootCoolTime = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void passiveUp(int skillNo)
     {
+        switch(skillNo)
+        {
+            case 1: //damage Up
+                damage += 100;
+                Debug.Log("damage Up");
+                break;
+            case 2:
+                shootCoolTime *= 0.8f;
+                Debug.Log("shootCoolTime down");
+                break;
+        }
     }
+
+
 }

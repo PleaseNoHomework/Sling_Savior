@@ -11,8 +11,7 @@ public class ballScript : MonoBehaviour
     private int mouseFlag = 0;
     public float speed;
     private int directionFlag;
-    private float damage;
-    private float spawnTime;
+    public float spawnTime;
     private BoxCollider coll;
 
     void Move()
@@ -21,7 +20,7 @@ public class ballScript : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                startPos = gameObject.transform.position;
+                startPos = transform.position;
                 mouseDownPos = Input.mousePosition;
                 mouseFlag = 1;
             }
@@ -52,6 +51,7 @@ public class ballScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform.position;
         ballDirection = Vector3.zero;
         directionFlag = 0;
         spawnTime = 0f;
@@ -76,6 +76,18 @@ public class ballScript : MonoBehaviour
             spawnTime += Time.deltaTime;
             if (spawnTime > 5f) Destroy(gameObject);
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            slingManager.instance.passiveUp(1);
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            slingManager.instance.passiveUp(2);
+        }
+
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
