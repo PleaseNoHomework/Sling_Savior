@@ -17,17 +17,9 @@ public class waveUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        makeText(GameManager.instance.currentWave);
+        makeText(GameManager.instance.currentWave, time);
         time += Time.deltaTime;
-        if (time > 3f)
-        {
-            waveText.text = "Next Wave";
-        }
-        if (time > 6f)
-        {
-            UIManager.instance.ClearUI();
-            //gameObject.SetActive(false);
-        }
+
 
     }
 
@@ -36,12 +28,31 @@ public class waveUIScript : MonoBehaviour
         switch(currentWave)
         {
             case 1:
+                waveText.text = "Wave1";
                 break;
             case 2:
-
+                if (time > 0f) waveText.text = "Wave Clear!";
+                else if (time > 3f)
+                {
+                    waveText.text = "Wave2";
+                }
+                else if (time > 6f)
+                {
+                    UIManager.instance.ClearUI();
+                    //gameObject.SetActive(false);
+                }
                 break;
             case 3:
-                waveText.text = "Final Stage";
+                if (time > 0f) waveText.text = "Wave Clear!";
+                else if (time > 3f)
+                {
+                    waveText.text = "Boss Wave";
+                }
+                else if (time > 6f)
+                {
+                    UIManager.instance.ClearUI();
+                    //gameObject.SetActive(false);
+                }
                 break;
         }
 

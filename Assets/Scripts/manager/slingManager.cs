@@ -10,6 +10,15 @@ public class slingManager : MonoBehaviour
 
     public Vector3 ballDirection;
     public int shootFlag = 0;
+
+    public SkillData AtkUp;
+    public SkillData RateUp;
+    public SkillData Multiple;
+    public SkillData Pierce;
+
+    public int choiceFlag = 0;
+    public SkillData skill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +28,23 @@ public class slingManager : MonoBehaviour
         damage = 100;
         shootCoolTime = 1f;
     }
+
+    private void Update()
+    {
+        if (choiceFlag == 1)
+        {
+            switch (skill.skillType)
+            {
+                case SkillType.Passive:
+                    passiveUp(skill.skillNo);
+                    break;
+                case SkillType.Special:
+                    specialUp(skill.skillNo);
+                    break;
+            }
+        }
+    }
+
 
     public void passiveUp(int skillNo)
     {
