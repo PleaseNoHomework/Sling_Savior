@@ -10,18 +10,17 @@ public class AccelerationEnemy : MonoBehaviour
     public float stun;
     private bool isStunned = false;
 
+    // 적이 파괴될 때 GameManager에 알리기 위한 이벤트
+    public delegate void DestroyEvent();
+    public event DestroyEvent OnDestroyed;
+
     void Update()
     {
         if (!isStunned)
         {
-            Move();
+            speed += acceleration * Time.deltaTime;
+            transform.Translate(Vector3.back * speed * Time.deltaTime);
         }
-    }
-
-    void Move()
-    {
-        speed += acceleration * Time.deltaTime;
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -29,6 +28,7 @@ public class AccelerationEnemy : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
+            OnDestroyed?.Invoke(); // 적이 파괴될 때 이벤트 호출
             Destroy(gameObject);
         }
     }

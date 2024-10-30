@@ -7,7 +7,14 @@ public class WaveSpawner : MonoBehaviour
     public List<GameObject> enemyPrefabs;
     public float startTime; // 시작 시간
     public float endTime;   // 종료 시간
-    public float spawnRate; // 웨이브 간격 (웨이브 사이의 대기 시간)
+    public float spawnRate; // 웨이브 간격
+
+    // GameManager에 알리기 위한 이벤트
+    public delegate void EnemyEvent();
+    public event EnemyEvent OnEnemySpawned;
+    public event EnemyEvent OnEnemyDestroyed;
+
+    public bool isFirstSpawnComplete = false;
 
     void Start()
     {
@@ -40,7 +47,33 @@ public class WaveSpawner : MonoBehaviour
                 );
 
                 // 적 생성
-                Instantiate(enemyPrefab, randomPosition, transform.rotation);
+                GameObject enemyInstance = Instantiate(enemyPrefab, randomPosition, transform.rotation);
+                OnEnemySpawned?.Invoke(); // 적 생성시 이벤트 호출
+
+                // 적이 파괴될 때 GameManager에 알리기 위해 이벤트 연결
+                var enemyComponent = enemyInstance.GetComponent<ForwardEnemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.OnDestroyed += () => OnEnemyDestroyed?.Invoke();
+                }
+
+                var zigzagComponent = enemyInstance.GetComponent<ZigzagEnemy>();
+                if (zigzagComponent != null)
+                {
+                    zigzagComponent.OnDestroyed += () => OnEnemyDestroyed?.Invoke();
+                }
+
+                var acceleratingComponent = enemyInstance.GetComponent<AccelerationEnemy>();
+                if (acceleratingComponent != null)
+                {
+                    acceleratingComponent.OnDestroyed += () => OnEnemyDestroyed?.Invoke();
+                }
+
+                // 첫 번째 적 생성 시 플래그 설정
+                if (!isFirstSpawnComplete)
+                {
+                    isFirstSpawnComplete = true;
+                }
             }
 
             // 다음 웨이브 간격 대기

@@ -11,18 +11,17 @@ public class ZigzagEnemy : MonoBehaviour
     public float stun;
     private bool isStunned = false;
 
+    // 적이 파괴될 때 GameManager에 알리기 위한 이벤트
+    public delegate void DestroyEvent();
+    public event DestroyEvent OnDestroyed;
+
     void Update()
     {
         if (!isStunned)
         {
-            Move();
+            float zigzag = Mathf.Sin(Time.time * zigzagFrequency) * zigzagAmplitude; // 사인곡선 형태로 좌우 이동, 진폭으로 이동폭 조절
+            transform.Translate(new Vector3(zigzag, 0, -1) * speed * Time.deltaTime);
         }
-    }
-
-    void Move()
-    {
-        float zigzag = Mathf.Sin(Time.time * zigzagFrequency) * zigzagAmplitude; // 사인곡선 형태로 좌우 이동, 진폭으로 이동폭 조절
-        transform.Translate(new Vector3(zigzag,0,-1) * speed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -30,6 +29,7 @@ public class ZigzagEnemy : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
+            OnDestroyed?.Invoke(); // 적이 파괴될 때 이벤트 호출
             Destroy(gameObject);
         }
     }
