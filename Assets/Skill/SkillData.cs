@@ -13,6 +13,8 @@ public enum SkillType
 [CreateAssetMenu(fileName = "New Skill", menuName = "Skills/Skill")]
 public class SkillData : ScriptableObject
 {
+    public int skillNo;
+    public int maxSkill;
     public string skillName;
     public string description;
     public Sprite icon;

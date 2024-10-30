@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab84a7a9141ba83498a73c564f6a2a07, type: 3}
   m_Name: pierce
   m_EditorClassIdentifier: 
+  skillNo: 2
   skillName: Pierce
   description: Pierce's bullet
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  skillType: 1
+  skillType: 2
   isActive: 0
