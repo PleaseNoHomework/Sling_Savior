@@ -92,14 +92,12 @@ public class ballScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Item"))
         {
-            Destroy(gameObject);
+            UIManager.instance.UIFlag = 1;
+            
         }
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
 

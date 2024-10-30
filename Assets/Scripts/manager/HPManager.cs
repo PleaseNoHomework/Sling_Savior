@@ -21,7 +21,7 @@ public class HPManager : MonoBehaviour
     {
        if (baseHP <= 0)
         {
-
+            SceneManage.instance.gameOverFlag = 1;
         }
     }
 }

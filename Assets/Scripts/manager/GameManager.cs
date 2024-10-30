@@ -10,10 +10,6 @@ public class GameManager : MonoBehaviour
     public Boss bossPrefab;              // Boss 프리팹 참조
     public Transform bossSpawnPoint;     // Boss 스폰 위치
 
-    public int bulletDamage = 100;       // 발사체 데미지 기본 값
-
-    private int currentWave = 1;
-
     void Awake()
     {
         if (instance == null)

@@ -29,9 +29,11 @@ public class Wave1Spawner : MonoBehaviour
             switch (spawnStep)
             {
                 case 0: // 첫 번째 스폰: Sand Spider (ForwardEnemy) 3마리
+                    Vector3 spawnPos = new Vector3(-4, 0, 10);
                     for (int i = 0; i < 3; i++)
                     {
-                        SpawnEnemy(sandSpiderEnemyPrefab);
+                        SpawnEnemy(sandSpiderEnemyPrefab, spawnPos);
+                        spawnPos.x += 4;
                     }
                     break;
 
@@ -43,15 +45,15 @@ public class Wave1Spawner : MonoBehaviour
                     break;
 
                 case 2: // 세 번째 스폰: Slime Enemy (ZigzagEnemy) 2마리(양 옆) + Turtle Shell Enemy 1마리(가운데, flag 1)
-                    SpawnEnemy(slimeEnemyPrefab, new Vector3(-2, 0, 10));
-                    SpawnEnemy(turtleShellEnemyPrefab, new Vector3(0, 0, 10), flag: 1); // flag = 1
-                    SpawnEnemy(slimeEnemyPrefab, new Vector3(2, 0, 10));
+                    SpawnEnemy(slimeEnemyPrefab, new Vector3(-4, 0, 10));
+                    SpawnEnemy(turtleShellEnemyPrefab, new Vector3(0, 0, 10), 1, 200); // flag = 1
+                    SpawnEnemy(slimeEnemyPrefab, new Vector3(4, 0, 10));
                     break;
 
                 case 3: // 네 번째 스폰: Sand Spider, Turtle Shell Enemy, Slime Enemy 각각 1마리
-                    SpawnEnemy(sandSpiderEnemyPrefab);
-                    SpawnEnemy(turtleShellEnemyPrefab);
-                    SpawnEnemy(slimeEnemyPrefab);
+                    SpawnEnemy(sandSpiderEnemyPrefab, new Vector3(-4, 0, 10));
+                    SpawnEnemy(turtleShellEnemyPrefab, new Vector3(0, 0, 10));
+                    SpawnEnemy(slimeEnemyPrefab, new Vector3(4, 0, 10));
                     break;
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
@@ -60,11 +62,12 @@ public class Wave1Spawner : MonoBehaviour
             }
 
             spawnStep++;
-            yield return new WaitForSeconds(spawnInterval); // 다음 스폰 간격 대기
+            if (spawnStep <= 3) yield return new WaitForSeconds(spawnInterval); // 다음 스폰 간격 대기
+            else yield return new WaitForSeconds(8f);
         }
     }
 
-    void SpawnEnemy(GameObject prefab, Vector3? position = null, int flag = 0, int hp = 300)
+    void SpawnEnemy(GameObject prefab, Vector3? position = null, int flag = 0, int hp = 100)
     {
         Vector3 spawnPosition = position ?? new Vector3(
             transform.position.x + Random.Range(-5f, 5f),
