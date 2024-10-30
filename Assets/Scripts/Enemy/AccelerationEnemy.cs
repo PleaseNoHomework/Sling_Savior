@@ -42,25 +42,12 @@ public class AccelerationEnemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
             TakeDamage(slingManager.instance.damage);
             Debug.Log("Damage! " + slingManager.instance.damage);
         }
 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bullet")) // "Bullet" 태그를 확인
-        {
-            Bullet bullet = other.GetComponent<Bullet>();
-            TakeDamage(bullet.damage);
-
-            if (other.CompareTag("a")) // "a" 태그로 스턴 탄환 확인
-            {
-                StartCoroutine(Stun());
-            }
-        }
     }
 
     IEnumerator Stun()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AtkRate
   m_EditorClassIdentifier: 
   skillNo: 2
-  maxSkill: 0
+  maxSkill: 3
   skillName: FastShot
   description: your attack rate get faster
   icon: {fileID: 21300000, guid: 7b846481a0de5b447b33d962453780c5, type: 3}

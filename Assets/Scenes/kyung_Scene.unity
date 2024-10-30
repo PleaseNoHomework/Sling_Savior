@@ -207,6 +207,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 144555245507384861, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
     type: 3}
   bossSpawnPoint: {fileID: 1367967269}
+  currentWave: 1
 --- !u!4 &279298535
 Transform:
   m_ObjectHideFlags: 0
@@ -1266,8 +1267,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootCoolTime: 0
   damage: 0
+  allSkills: []
   ballDirection: {x: 0, y: 0, z: 0}
   shootFlag: 0
+  choiceFlag: 0
+  skill: {fileID: 0}
 --- !u!4 &1689796279
 Transform:
   m_ObjectHideFlags: 0

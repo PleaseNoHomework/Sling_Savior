@@ -5,6 +5,7 @@ using UnityEngine;
 public class slingScript : MonoBehaviour
 {
     public GameObject ball;
+    public GameObject pierceBall;
     public Vector3 ballSpawnPoint;
     public float maxZ, minZ, maxX, minX;
     private float shootTime;
@@ -57,7 +58,13 @@ public class slingScript : MonoBehaviour
             {
                 shootTime = 0;
                 slingManager.instance.shootFlag = 0;
-                Instantiate(ball, ballSpawnPoint, Quaternion.identity);
+                if (slingManager.instance.pierceFlag == 0) 
+                    Instantiate(ball, ballSpawnPoint, Quaternion.identity);
+                else
+                {
+                    Instantiate(pierceBall, ballSpawnPoint, Quaternion.identity);
+                }
+                    
             }
         }
 

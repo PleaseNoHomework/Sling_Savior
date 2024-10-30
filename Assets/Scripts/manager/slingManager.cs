@@ -7,26 +7,25 @@ public class slingManager : MonoBehaviour
     public static slingManager instance;
     public float shootCoolTime;
     public int damage;
+    public int pierceFlag = 1;
+
+    public List<SkillData> allSkills;
 
     public Vector3 ballDirection;
     public int shootFlag = 0;
-
-    public SkillData AtkUp;
-    public SkillData RateUp;
-    public SkillData Multiple;
-    public SkillData Pierce;
-
     public int choiceFlag = 0;
     public SkillData skill;
 
     // Start is called before the first frame update
     void Start()
     {
+
         if (instance == null) {
             instance = this;
         }
         damage = 100;
         shootCoolTime = 1f;
+        pierceFlag = 1;
     }
 
     private void Update()
@@ -42,6 +41,20 @@ public class slingManager : MonoBehaviour
                     specialUp(skill.skillNo);
                     break;
             }
+
+            foreach (SkillData sk in allSkills)
+            {
+                if (sk.skillNo == skill.skillNo && sk.skillType == skill.skillType)
+                {
+                    if (sk.isActive == false) sk.isActive = true;
+                    else
+                    {
+                        if (sk.maxSkill > sk.nowSkill) sk.nowSkill++;
+                    }
+                }
+            }
+
+            choiceFlag = 0;
         }
     }
 
@@ -68,6 +81,8 @@ public class slingManager : MonoBehaviour
             case 1: //multiple shot?
                 break;
             case 2: //pierce shot
+                pierceFlag = 1;
+                Debug.Log("Complete");
                 break;
         }
     }
