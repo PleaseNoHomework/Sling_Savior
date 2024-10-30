@@ -18,9 +18,6 @@ public class UIManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         getPowerUp = 0;
-        defaultUI.gameObject.SetActive(true);
-        powerUpUI.gameObject.SetActive(false);
-        waveUI.gameObject.SetActive(false);
 
     }
 
@@ -47,12 +44,10 @@ public class UIManager : MonoBehaviour
 
     void showWaveUI() {
         waveUI.gameObject.SetActive(true);
+        UIFlag = 0;
     }
     public void ClearUI() {
-        defaultUI.gameObject.SetActive(true);
-        powerUpUI.gameObject.SetActive(false);
         waveUI.gameObject.SetActive(false);
-        UIFlag = 0;
     }
 
 }

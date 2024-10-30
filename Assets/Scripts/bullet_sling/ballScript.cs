@@ -95,8 +95,7 @@ public class ballScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             UIManager.instance.UIFlag = 1;
-            
-        }
+                   }
         Destroy(gameObject);
     }
 
