@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class AccelerationEnemy : MonoBehaviour
 {
-    public int hp;
+    public int hp = 300;
     public float speed;
     public float acceleration;
     public float stun;
     private bool isStunned = false;
+    public int flag = 0;
 
     // 적이 파괴될 때 GameManager에 알리기 위한 이벤트
     public delegate void DestroyEvent();
@@ -37,6 +38,7 @@ public class AccelerationEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             HPManager.instance.baseHP--;
+            OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
 

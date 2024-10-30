@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs; // 소환할 적 프리팹 리스트
-    public int hp;
+    public int hp = 1500;
     public float speed;
     public float moveRange;         // 좌우 이동 범위
     public float spawnRate;          // 적 소환 주기
@@ -13,9 +13,14 @@ public class Boss : MonoBehaviour
     private Vector3 startPosition;
     private bool movingRight = true;      // 이동 방향 (좌/우)
 
+    // GameManager에게 보스 파괴를 알리기 위한 델리게이트와 이벤트
+    public delegate void BossDestroyed();
+    public event BossDestroyed OnBossDestroyed;
+
     void Start()
     {
         startPosition = transform.position;            // 보스의 초기 위치를 저장
+        transform.rotation = Quaternion.Euler(0, 180, 0); // 보스가 반대를 보고있어서 회전
         InvokeRepeating("SpawnEnemy", spawnRate, spawnRate); // 일정 간격으로 적을 소환
     }
 
@@ -66,18 +71,20 @@ public class Boss : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
+            OnBossDestroyed?.Invoke(); // 보스 파괴 시 이벤트 호출
             Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet")) // 플레이어의 탄환과 충돌 시
+        if (other.CompareTag("Bullet")) // Bullet 태그의 발사체와 충돌 시
         {
-            Bullet bullet = other.GetComponent<Bullet>(); // 탄환의 데미지 가져오기
+            Bullet bullet = other.GetComponent<Bullet>(); // 발사체의 데미지 가져오기
             if (bullet != null)
             {
                 TakeDamage(bullet.damage);
+                Destroy(other.gameObject); // 발사체 파괴
             }
         }
     }

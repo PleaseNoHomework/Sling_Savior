@@ -215,11 +215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave1: {fileID: 2095240729}
-  wave2: {fileID: 2078118031}
-  bossPrefab: {fileID: 2115586094826912928, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
+  wave2: {fileID: 2078118033}
+  bossPrefab: {fileID: 144555245507384861, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
     type: 3}
-  bossSpawnPoint: {fileID: 0}
-  bulletDamage: 0
+  bossSpawnPoint: {fileID: 1367967269}
+  bulletDamage: 100
 --- !u!4 &279298535
 Transform:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &587777953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,11 +396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: []
-  startTime: 0
-  endTime: 0
-  spawnRate: 0
-  isFirstSpawnComplete: 0
+  sandSpiderEnemyPrefab: {fileID: 0}
+  slimeEnemyPrefab: {fileID: 0}
+  turtleShellEnemyPrefab: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  spawnInterval: 5
 --- !u!4 &587777954
 Transform:
   m_ObjectHideFlags: 0
@@ -682,6 +682,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1367967268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367967269}
+  m_Layer: 0
+  m_Name: bossSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1367967269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367967268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1371558035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -917,34 +948,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078118032}
-  - component: {fileID: 2078118031}
+  - component: {fileID: 2078118033}
   m_Layer: 0
   m_Name: Wave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2078118031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078118030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
-  - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
-  startTime: 4
-  endTime: 6
-  spawnRate: 1
-  isFirstSpawnComplete: 0
+  m_IsActive: 0
 --- !u!4 &2078118032
 Transform:
   m_ObjectHideFlags: 0
@@ -960,6 +971,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078118033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078118030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9240a5ff662b0143811ce903a8bd9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandSpiderEnemyPrefab: {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c,
+    type: 3}
+  slimeEnemyPrefab: {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33,
+    type: 3}
+  turtleShellEnemyPrefab: {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2,
+    type: 3}
+  itemPrefab: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
+    type: 3}
+  spawnInterval: 5
 --- !u!1 &2095240728
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2095240729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,14 +1021,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
-  - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
-  startTime: 1
-  endTime: 3
-  spawnRate: 1
-  isFirstSpawnComplete: 0
+  sandSpiderEnemyPrefab: {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c,
+    type: 3}
+  slimeEnemyPrefab: {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33,
+    type: 3}
+  turtleShellEnemyPrefab: {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2,
+    type: 3}
+  itemPrefab: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
+    type: 3}
+  spawnInterval: 5
 --- !u!4 &2095240730
 Transform:
   m_ObjectHideFlags: 0
@@ -1163,3 +1196,4 @@ SceneRoots:
   - {fileID: 268669768}
   - {fileID: 1407937039}
   - {fileID: 2140552491}
+  - {fileID: 1367967269}

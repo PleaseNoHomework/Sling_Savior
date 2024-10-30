@@ -1,102 +1,74 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // 필요시 UI 텍스트 업데이트를 위한 사용
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public WaveSpawner wave1;
-    public WaveSpawner wave2;
-    public GameObject bossPrefab;
-    public Transform bossSpawnPoint;
+    public static GameManager instance;  // 싱글톤 인스턴스
 
-    public int bulletDamage;
+    public Wave1Spawner wave1;           // Wave1Spawner 참조
+    public Wave2Spawner wave2;           // Wave2Spawner 참조
+    public Boss bossPrefab;              // Boss 프리팹 참조
+    public Transform bossSpawnPoint;     // Boss 스폰 위치
+
+    public int bulletDamage = 100;       // 발사체 데미지 기본 값
 
     private int currentWave = 1;
-    private int activeEnemies = 0;
-    private bool bossSpawned = false;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
-        bulletDamage = 100;
-        if (instance == null) instance = this;
-        StartCoroutine(StartNextWave());
+        StartWave1(); // 게임 시작 시 첫 번째 웨이브 시작
     }
 
-    IEnumerator StartNextWave()
+    void StartWave1()
     {
-        if (currentWave == 1)
-        {
-            Debug.Log("Wave 1 시작");
-            if(wave1 != null)
-            {
-                wave1.gameObject.SetActive(true);
-                wave1.OnEnemySpawned += IncrementEnemyCount;
-                wave1.OnEnemyDestroyed += DecrementEnemyCount;
-
-                // 첫 스폰이 완료될 때까지 대기
-                yield return new WaitUntil(() => wave1.isFirstSpawnComplete);
-                yield return new WaitUntil(() => activeEnemies <= 0);
-
-                wave1.OnEnemySpawned -= IncrementEnemyCount;
-                wave1.OnEnemyDestroyed -= DecrementEnemyCount;
-                wave1.gameObject.SetActive(false);
-                Debug.Log("Wave 1 클리어");
-                currentWave++;
-            }
-        }
-
-        if (currentWave == 2)
-        {
-            Debug.Log("Wave 2 시작");
-            if (wave2 != null)
-            {
-                wave2.gameObject.SetActive(true);
-                wave2.OnEnemySpawned += IncrementEnemyCount;
-                wave2.OnEnemyDestroyed += DecrementEnemyCount;
-
-                // 첫 스폰이 완료될 때까지 대기
-                yield return new WaitUntil(() => wave2.isFirstSpawnComplete);
-                yield return new WaitUntil(() => activeEnemies <= 0);
-
-                wave2.OnEnemySpawned -= IncrementEnemyCount;
-                wave2.OnEnemyDestroyed -= DecrementEnemyCount;
-                wave2.gameObject.SetActive(false);
-                Debug.Log("Wave 2 클리어");
-                currentWave++;
-            }
-        }
-
-        if (currentWave == 3 && !bossSpawned)
-        {
-            Debug.Log("Boss Stage 시작");
-            // 보스 소환
-            GameObject bossInstance = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.Euler(0, 0, 0));
-
-            // 보스 파괴 시 클리어 조건으로 연결
-            var bossEnemyComponent = bossInstance.GetComponent<ForwardEnemy>(); // 또는 보스의 스크립트
-            if (bossEnemyComponent != null)
-            {
-                bossEnemyComponent.OnDestroyed += () => DecrementEnemyCount(); // 보스 파괴 시 카운트 감소
-            }
-
-            bossSpawned = true;
-            IncrementEnemyCount(); // 보스를 하나의 적으로 카운트
-
-            // 보스가 파괴될 때까지 대기
-            yield return new WaitUntil(() => activeEnemies <= 0);
-            Debug.Log("Boss Stage 클리어");
-        }
+        Debug.Log("Wave 1 시작");
+        wave1.OnWave1Completed += StartWave2; // Wave1 완료 시 StartWave2 호출
+        wave1.gameObject.SetActive(true);     // Wave1 활성화
     }
 
-    private void IncrementEnemyCount()
+    void StartWave2()
     {
-        activeEnemies++;
+        Debug.Log("Wave 1 클리어");
+
+        // Wave1 종료 설정
+        wave1.OnWave1Completed -= StartWave2; // 이벤트 구독 해제
+        wave1.gameObject.SetActive(false);    // Wave1 비활성화
+
+        Debug.Log("Wave 2 시작");
+        wave2.OnWave2Completed += StartBossWave; // Wave2 완료 시 보스 웨이브 시작
+        wave2.gameObject.SetActive(true);        // Wave2 활성화
     }
 
-    private void DecrementEnemyCount()
+    void StartBossWave()
     {
-        activeEnemies--;
+        Debug.Log("Wave 2 클리어");
+
+        // Wave2 종료 설정
+        wave2.OnWave2Completed -= StartBossWave; // 이벤트 구독 해제
+        wave2.gameObject.SetActive(false);       // Wave2 비활성화
+
+        Debug.Log("Boss Stage 시작");
+        Boss bossInstance = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
+        bossInstance.OnBossDestroyed += OnGameCompleted; // 보스 파괴 시 게임 완료 처리
+    }
+
+    void OnGameCompleted()
+    {
+        Debug.Log("모든 웨이브 완료, 게임 종료!");
     }
 }

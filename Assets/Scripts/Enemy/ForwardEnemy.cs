@@ -4,10 +4,11 @@ using static ForwardEnemy;
 
 public class ForwardEnemy : MonoBehaviour
 {
-    public int hp;
+    public int hp = 300;
     public float speed;
     public float stun;
     private bool isStunned = false;
+    public int flag = 0;
 
     // 적이 파괴될 때 GameManager에 알리기 위한 이벤트
     public delegate void DestroyEvent();
@@ -36,6 +37,7 @@ public class ForwardEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             HPManager.instance.baseHP--;
+            OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
 

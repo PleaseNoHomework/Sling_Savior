@@ -1291,7 +1291,7 @@ MonoBehaviour:
   - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
   hp: 1500
   speed: 5
-  moveRange: 10
+  moveRange: 2
   spawnRate: 2
 --- !u!1 &2152376554723240044
 GameObject:

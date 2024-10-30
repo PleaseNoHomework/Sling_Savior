@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ZigzagEnemy : MonoBehaviour
 {
-    public int hp;
+    public int hp = 300;
     public float speed;
     public float zigzagFrequency; // 주파수
     public float zigzagAmplitude; // 진폭
     public float stun;
     private bool isStunned = false;
+    public int flag = 0;
 
     // 적이 파괴될 때 GameManager에 알리기 위한 이벤트
     public delegate void DestroyEvent();
@@ -38,6 +39,7 @@ public class ZigzagEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             HPManager.instance.baseHP--;
+            OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
