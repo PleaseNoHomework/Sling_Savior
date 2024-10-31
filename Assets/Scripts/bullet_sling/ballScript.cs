@@ -32,11 +32,11 @@ public class ballScript : MonoBehaviour
                 mousePos.z = mousePos.y;
                 mousePos.y = 0;
 
-                if (mousePos.z < 0) mousePos.z = 0;
+                if (mousePos.z < -50) mousePos.z = -50;
                 Vector3 slingPos = startPos - mousePos;
-                if (slingPos.z < -10) slingPos.z = -10;
-                if (slingPos.x < -5) slingPos.x = -5;
-                else if (slingPos.x > 5) slingPos.x = 5;
+                if (slingPos.z < -65) slingPos.z = -65;
+                if (slingPos.x < -40) slingPos.x = -40;
+                else if (slingPos.x > 40) slingPos.x = 40;
                 transform.position = slingPos;
 
 
