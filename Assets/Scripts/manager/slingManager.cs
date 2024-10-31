@@ -7,7 +7,7 @@ public class slingManager : MonoBehaviour
     public static slingManager instance;
     public float shootCoolTime;
     public int damage;
-    public int pierceFlag = 1;
+    public int pierceFlag = 0;
 
     public List<SkillData> allSkills;
 
@@ -25,7 +25,7 @@ public class slingManager : MonoBehaviour
         }
         damage = 100;
         shootCoolTime = 1f;
-        pierceFlag = 1;
+        //pierceFlag = 1;
     }
 
     private void Update()
