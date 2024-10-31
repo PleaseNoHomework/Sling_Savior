@@ -235,9 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09326a40cb4965540974c4b4ee00077e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSkills: []
-  availableSkills: []
-  acquiredSkills: []
 --- !u!114 &279298537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380cea77fc9da84489466195140e5652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1279468252}
   waveText: {fileID: 898893173}
 --- !u!1 &1367967268
 GameObject:

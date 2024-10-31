@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class waveUIScript : MonoBehaviour
 {
+    public Canvas canvas;
     public TextMeshProUGUI waveText;
     private Image ima;
     private float time;
@@ -11,57 +12,58 @@ public class waveUIScript : MonoBehaviour
     void Start()
     {
         time = 0;
-        waveText.text = "Wave Clear!!";
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.finishFlag == 1)
+        if (GameManager.finishFlag == 1)
         {
-            gameObject.SetActive(true);
-            makeText(GameManager.instance.currentWave);
             time += Time.deltaTime;
+            makeText(GameManager.instance.currentWave);
         }
-
+        else canvas.enabled = false;
     }
+
+
 
     void makeText(int currentWave)
     {
-        switch(currentWave)
+        canvas.enabled = true;
+        switch (currentWave)
         {
+            
             case 1:
                 waveText.text = "Wave1";
                 if (time > 3f)
                 {
-                    gameObject.SetActive(false);
-                    GameManager.instance.finishFlag = 0;
+                    GameManager.finishFlag = 0;
                     time = 0;
                 }
                 break;
             case 2:
-                if (time > 0f) waveText.text = "Wave Clear!";
-                else if (time > 3f)
+
+                if (time < 2f) waveText.text = "Wave Clear!";
+                else if (time > 2f && time <= 4f)
                 {
                     waveText.text = "Wave2";
                 }
-                else if (time > 6f)
+                else if (time > 4f)
                 {
-                    gameObject.SetActive(false);
-                    GameManager.instance.finishFlag = 0;
+                    GameManager.finishFlag = 0;
                     time = 0;
                 }
                 break;
             case 3:
-                if (time > 0f) waveText.text = "Wave Clear!";
-                else if (time > 3f)
+                if (time < 2f) waveText.text = "Wave Clear!";
+                else if (time < 4f && time >= 2f)
                 {
                     waveText.text = "Boss Wave";
                 }
-                else if (time > 6f)
+                else if (time > 4f)
                 {
-                    gameObject.SetActive(false);
-                    GameManager.instance.finishFlag = 0;
+                    GameManager.finishFlag = 0;
                     time = 0;
                 }
                 break;
