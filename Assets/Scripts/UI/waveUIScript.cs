@@ -7,12 +7,10 @@ public class waveUIScript : MonoBehaviour
     public TextMeshProUGUI waveText;
     private Image ima;
     private float time;
-    private int waveFlag = 0;
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
-        waveFlag = 1;
         waveText.text = "Wave Clear!!";
     }
 

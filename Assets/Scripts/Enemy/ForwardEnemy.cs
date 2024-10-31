@@ -44,7 +44,6 @@ public class ForwardEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
             TakeDamage(slingManager.instance.damage);
-            Debug.Log("Damage! " + slingManager.instance.damage);
         }
 
     }
