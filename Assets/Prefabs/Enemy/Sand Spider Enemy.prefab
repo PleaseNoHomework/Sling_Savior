@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76825b4c123d7a14e869b41a6748ddfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 300
+  hp: 200
   speed: 1
   stun: 2
   flag: 0
