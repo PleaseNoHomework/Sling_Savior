@@ -21,7 +21,7 @@ public class DefaultUIScript : MonoBehaviour
     {
         hpManager = HPManager.instance;
         gameManager = GameManager.instance;
-        skillManager = FindObjectOfType<SkillManager>();
+        skillManager = SkillManager.instance;
 
         // UI √ ±‚»≠
         UpdateHP();

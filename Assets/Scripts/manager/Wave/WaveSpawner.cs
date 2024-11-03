@@ -27,9 +27,8 @@ public class WaveSpawner : MonoBehaviour
         time += Time.deltaTime;
         if(time >= 2)
         {
-            spawnEnemy(spawnPoint, 0);
+            spawnEnemy(spawnPoint, 1);
             time = 0;
-            Debug.Log("Spawn!");
         }
     }
 }

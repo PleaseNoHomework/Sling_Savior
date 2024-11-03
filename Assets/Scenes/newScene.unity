@@ -2433,7 +2433,7 @@ MonoBehaviour:
   wave2: {fileID: 5456171895087795306, guid: 5dc023af788ac6e419fb394b075bf40c, type: 3}
   bossPrefab: {fileID: 0}
   bossSpawnPoint: {fileID: 0}
-  currentWave: 1
+  currentWave: 0
 --- !u!114 &768539726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,8 +2448,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
   - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
+  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
   itemPrefab: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 25}
 --- !u!1001 &772537812
@@ -2674,7 +2674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &797185452
 Transform:
   m_ObjectHideFlags: 0
@@ -7507,7 +7507,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071625604}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 209594430cb6a3045ba73a7a3a19cd8d, type: 3}
   m_Name: 

@@ -3054,8 +3054,10 @@ GameObject:
   - component: {fileID: 4135661827719425878}
   - component: {fileID: -8296111598318266013}
   - component: {fileID: 755784697287306629}
+  - component: {fileID: -2705477339349939809}
+  - component: {fileID: 8203969030494207537}
   m_Layer: 0
-  m_Name: Sand Spider Enemy
+  m_Name: 1_Spider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3091,7 +3093,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735275579975019659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76825b4c123d7a14e869b41a6748ddfa, type: 3}
   m_Name: 
@@ -3143,6 +3145,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.7973022, z: 1.9214995}
   m_Center: {x: 0, y: 0.7901387, z: 0.2879852}
+--- !u!114 &-2705477339349939809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735275579975019659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  enemyNo: 1
+  speed: 10
+  maxHP: 200
+  currentHP: 0
+  moveDirection: {x: 0, y: 0, z: -1}
+--- !u!114 &8203969030494207537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735275579975019659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf3501ee6d98be47a4c016d93b5d5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: -2705477339349939809}
 --- !u!1 &8034503482353954144
 GameObject:
   m_ObjectHideFlags: 0
