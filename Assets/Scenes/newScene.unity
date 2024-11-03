@@ -2395,6 +2395,7 @@ GameObject:
   - component: {fileID: 768539724}
   - component: {fileID: 768539725}
   - component: {fileID: 768539726}
+  - component: {fileID: 768539727}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -2424,12 +2425,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768539723}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84aa4a387b66693418ccda47aa378e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave1: {fileID: 554291624163758863, guid: f16b2edf10cbb0742bdd0f35b0321113, type: 3}
+  wave1: {fileID: 768539727}
   wave2: {fileID: 5456171895087795306, guid: 5dc023af788ac6e419fb394b075bf40c, type: 3}
   bossPrefab: {fileID: 0}
   bossSpawnPoint: {fileID: 0}
@@ -2448,10 +2449,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
+  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
   - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
   - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
   itemPrefab: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 25}
+--- !u!114 &768539727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768539723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wave: {fileID: 768539726}
+  itemPrefab: {fileID: 0}
+  spawnInterval: 5
 --- !u!1001 &772537812
 PrefabInstance:
   m_ObjectHideFlags: 0

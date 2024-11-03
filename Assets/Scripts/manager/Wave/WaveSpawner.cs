@@ -10,25 +10,28 @@ public class WaveSpawner : MonoBehaviour
     public Vector3 spawnPoint;
     private float time;
     
-    void spawnEnemy(Vector3 spawnPoint, int enemyNo)
+    public void spawnEnemy(Vector3 spawnPoint, int enemyNo)
     {
         Instantiate(enemy[enemyNo], spawnPoint, Quaternion.identity);
         
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void setHP(int enemyNo, int HP)
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        time += Time.deltaTime;
-        if(time >= 2)
+        foreach (GameObject en in enemy)
         {
-            spawnEnemy(spawnPoint, 1);
-            time = 0;
+            EnemyStatus ens = en.GetComponent<EnemyStatus>();
+            if (ens != null && ens.enemyNo == enemyNo)
+            {
+                ens.maxHP = HP;
+                ens.currentHP = HP;
+                return;
+            }
+            else
+            {
+                Debug.Log("not Found!");
+            }
         }
     }
+
 }

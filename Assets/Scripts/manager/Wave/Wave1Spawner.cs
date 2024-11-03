@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class Wave1Spawner : MonoBehaviour
 {
-    // 각각의 프리팹을 적 유형별로 설정
-    public GameObject sandSpiderEnemyPrefab;  // ForwardEnemy
-    public GameObject slimeEnemyPrefab;       // ZigzagEnemy
-    public GameObject turtleShellEnemyPrefab; // AccelerationEnemy
+    public WaveSpawner wave;
     public GameObject itemPrefab;             // 아이템 프리팹
 
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
     private int activeEnemies = 0;   // 현재 필드에 남아 있는 적의 수
+    private Vector3 defaultSpawnPoint = Vector3.zero;
 
     // GameManager에게 Wave1 종료를 알리기 위한 델리게이트와 이벤트
     public delegate void WaveCompleted();
@@ -19,45 +17,51 @@ public class Wave1Spawner : MonoBehaviour
 
     void Start()
     {
+        
         StartCoroutine(SpawnWave1());
     }
 
     IEnumerator SpawnWave1()
     {
+        Vector3 spawnPos = new Vector3(-10, 0, 10);
         while (spawnStep < 5)
         {
             switch (spawnStep)
             {
                 case 0: // 첫 번째 스폰: Sand Spider (ForwardEnemy) 3마리
-                    Vector3 spawnPos = new Vector3(-4, 0, 10);
+                    
                     for (int i = 0; i < 3; i++)
                     {
-                        SpawnEnemy(sandSpiderEnemyPrefab, spawnPos);
-                        spawnPos.x += 4;
+                        //SpawnEnemy(sandSpiderEnemyPrefab, spawnPos);
+                        wave.spawnEnemy(spawnPos, 1);
+                        spawnPos.x += 10;
                     }
                     break;
 
                 case 1: // 두 번째 스폰: Turtle Shell Enemy (AccelerationEnemy) 2마리
+                    spawnPos.x = -10;
                     for (int i = 0; i < 2; i++)
                     {
-                        SpawnEnemy(turtleShellEnemyPrefab);
+                        wave.spawnEnemy(defaultSpawnPoint, 2);
+                        spawnPos.x += 10;
                     }
                     break;
 
                 case 2: // 세 번째 스폰: Slime Enemy (ZigzagEnemy) 2마리(양 옆) + Turtle Shell Enemy 1마리(가운데, flag 1)
-                    SpawnEnemy(slimeEnemyPrefab, new Vector3(-4, 0, 10));
-                    SpawnEnemy(turtleShellEnemyPrefab, new Vector3(0, 0, 10), 1, 200); // flag = 1
-                    SpawnEnemy(slimeEnemyPrefab, new Vector3(4, 0, 10));
+                    wave.spawnEnemy(new Vector3(-10, 0, 10), 3);
+                    wave.spawnEnemy(new Vector3(0, 0, 10), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 10), 3);
                     break;
 
                 case 3: // 네 번째 스폰: Sand Spider, Turtle Shell Enemy, Slime Enemy 각각 1마리
-                    SpawnEnemy(sandSpiderEnemyPrefab, new Vector3(-4, 0, 10));
-                    SpawnEnemy(turtleShellEnemyPrefab, new Vector3(0, 0, 10));
-                    SpawnEnemy(slimeEnemyPrefab, new Vector3(4, 0, 10));
+                    wave.spawnEnemy(new Vector3(-10, 0, 10), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 10), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 10), 3);
                     break;
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
-                    SpawnEnemy(sandSpiderEnemyPrefab, hp: 500);
+                    wave.spawnEnemy(new Vector3(0, 0, 10), 0);
+                    wave.setHP(1, 300);
                     break;
             }
 
@@ -67,6 +71,7 @@ public class Wave1Spawner : MonoBehaviour
         }
     }
 
+    /*
     void SpawnEnemy(GameObject prefab, Vector3? position = null, int flag = 0, int hp = 100)
     {
         Vector3 spawnPosition = position ?? new Vector3(
@@ -110,7 +115,7 @@ public class Wave1Spawner : MonoBehaviour
         // 활성화된 적 수 증가
         activeEnemies++;
     }
-
+    */
     void HandleEnemyDestroyed(GameObject enemyInstance, int flag)
     {
         activeEnemies--;
