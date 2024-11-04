@@ -22,15 +22,9 @@ public class slime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (enemy._state)
+        if (enemy._state == EnemyStatus.State.Move)
         {
-            case EnemyStatus.State.Move:
-                slimeMove();
-                break;
-            case EnemyStatus.State.Attack:
-                break;
-            case EnemyStatus.State.Die:
-                break;
+            slimeMove();
         }
     }
 }

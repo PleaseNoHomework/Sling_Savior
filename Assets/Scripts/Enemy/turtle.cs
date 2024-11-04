@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class turtle : MonoBehaviour
 {
+    //벽에 돌진하여 폭발하는 에너미
+
     public EnemyStatus enemy;
     public float acc;
     public float nowSpeed;
@@ -21,15 +23,16 @@ public class turtle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (enemy._state)
+        turtleMove();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Base"))
         {
-            case EnemyStatus.State.Move:
-                turtleMove();
-                break;
-            case EnemyStatus.State.Attack:
-                break;
-            case EnemyStatus.State.Die:
-                break;
+            Debug.Log("Collision!");
+            Destroy(gameObject);
         }
     }
+
 }

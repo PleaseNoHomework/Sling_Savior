@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class spider : MonoBehaviour
 {
+    //벽에 가까이 붙으면 공격하는 에너미
     public EnemyStatus enemy;
     // Start is called before the first frame update
 
@@ -16,16 +17,18 @@ public class spider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (enemy._state)
+        if (enemy._state == EnemyStatus.State.Move)
         {
-            case EnemyStatus.State.Move:
-                spiderMove();
-                break;
-            case EnemyStatus.State.Attack:
-                break;
-            case EnemyStatus.State.Die:
-                break;
+            spiderMove();
         }
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Base"))
+        {
+            enemy._state = EnemyStatus.State.Die;
+        }
     }
 }

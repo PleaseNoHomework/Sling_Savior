@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;  // 싱글톤 인스턴스
+    public WaveSpawner wave;
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
     public Wave2Spawner wave2;           // Wave2Spawner 참조
@@ -39,21 +40,27 @@ public class WaveManager : MonoBehaviour
 
         Debug.Log("Wave 1 시작");
         finishFlag = 1;
-        wave1.OnWave1Completed += StartWave2; // Wave1 완료 시 StartWave2 호출
+        wave.WaveClear += StartWave2;
+        //wave1.OnWave1Completed += StartWave2; // Wave1 완료 시 StartWave2 호출
         wave1.gameObject.SetActive(true);     // Wave1 활성화
     }
 
     void StartWave2()
     {
-        Debug.Log("Wave 1 클리어");
-
         // Wave1 종료 설정
-        wave1.OnWave1Completed -= StartWave2; // 이벤트 구독 해제
+        //wave1.OnWave1Completed -= StartWave2; // 이벤트 구독 해제
+        //wave2.OnWave2Completed += StartBossWave; // Wave2 완료 시 보스 웨이브 시작
+
         wave1.gameObject.SetActive(false);    // Wave1 비활성화
+        wave.WaveClear -= StartWave2;
+        wave.WaveClear += StartBossWave;
+
+        
         currentWave++;
         finishFlag = 1;
         Debug.Log("Wave 2 시작");
-        wave2.OnWave2Completed += StartBossWave; // Wave2 완료 시 보스 웨이브 시작
+        
+        
         wave2.gameObject.SetActive(true);        // Wave2 활성화
     }
 

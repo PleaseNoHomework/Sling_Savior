@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static GameManager instance;  // 싱글톤 인스턴스
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform bossSpawnPoint;     // Boss 스폰 위치
     public static int finishFlag;
     public int currentWave = 1;
-
+    /*
     void Awake()
     {
         if (instance == null)
@@ -73,5 +74,5 @@ public class GameManager : MonoBehaviour
     void OnGameCompleted()
     {
         Debug.Log("모든 웨이브 완료, 게임 종료!");
-    }
+    }*/
 }
