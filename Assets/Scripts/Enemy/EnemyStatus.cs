@@ -63,10 +63,9 @@ public class EnemyStatus : MonoBehaviour
         {
             case EnemyStatus.State.Attack:
                 break;
-            case EnemyStatus.State.Die:
+            case EnemyStatus.State.Die: //죽을 때 OnDestroyed 이벤트 활성화, 여기에 죽는 모션 + 이펙트 추가해야 함
                 OnDestroyed?.Invoke();
-                WaveSpawner.instance.activeEnemies--;
-                Debug.Log("enemy slained, remaining : " + WaveSpawner.instance.activeEnemies);
+                WaveManager.instance.activeEnemies--;
                 Destroy(gameObject);
                 break;
             default:

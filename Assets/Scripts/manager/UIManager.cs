@@ -10,44 +10,30 @@ public class UIManager : MonoBehaviour
     public Canvas waveUI;
 
     public int UIFlag = 0;
-
+    public int powerUPFlag;
 
     public int getPowerUp;
     // Start is called before the first frame update
     void Start()
     {
         if (instance == null) instance = this;
-        getPowerUp = 0;
 
+        defaultUI.enabled = true;
+        powerUpUI.enabled = false;
+        waveUI.enabled = false;
+
+        getPowerUp = 0;
+        powerUPFlag = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        showUI(UIFlag);
     }
 
     void showUI(int flag)
     {
-        switch (flag)
-        {
-            case 1: //파워업 아이템 먹음
-                
-                break;
-            case 2:
-                showWaveUI();
-                break;
-            default:
-                break;
-        }
     }
 
-    void showWaveUI() {
-        waveUI.gameObject.SetActive(true);
-        UIFlag = 0;
-    }
-    public void ClearUI() {
-        waveUI.gameObject.SetActive(false);
-    }
 
 }

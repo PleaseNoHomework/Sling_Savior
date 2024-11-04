@@ -15,6 +15,7 @@ public class SkillManager : MonoBehaviour
     public List<SkillData> allSkills;           // 전체 스킬 목록
     public List<SkillData> availableSkills;     // 획득 가능한 스킬 목록
     public List<SkillData> acquiredSkills;      // 획득한 스킬 목록
+    public int flag = 0;
 
     private void Awake()
     {
@@ -34,16 +35,17 @@ public class SkillManager : MonoBehaviour
                 availableSkills.Add(skill);
             }
         }
-        skillSelectionPanel.SetActive(false); // 시작 시 스킬 선택 UI 비활성화
+        OpenSkillSelection();
     }
 
     private void Update()
     {
-        // S 키 입력 시 스킬 선택 UI 호출 및 게임 일시정지
-        if (Input.GetKeyDown(KeyCode.S) && !skillSelectionPanel.activeSelf)
+        /*
+        if (flag == 1)
         {
+            Debug.Log("up skill selection");
             OpenSkillSelection();
-        }
+        }*/
     }
 
     public void OpenSkillSelection()
@@ -53,7 +55,8 @@ public class SkillManager : MonoBehaviour
         skillSelectionPanel.SetActive(true);
 
         // 3개의 무작위 스킬 선택
-        List<SkillData> randomSkills = GetRandomSkills(3);
+        List<SkillData> randomSkills = GetRandomSkills(3); //잘 선택됨
+
 
         for (int i = 0; i < skillButtons.Length; i++)
         {
@@ -65,7 +68,7 @@ public class SkillManager : MonoBehaviour
                 skillButtons[i].transform.Find("SkillText").GetComponent<Text>().text = skill.skillName;
                 skillButtons[i].transform.Find("SkillDescription").GetComponent<Text>().text = skill.description;
                 skillButtons[i].transform.Find("SkillIcon").GetComponent<Image>().sprite = skill.icon;
-
+                Debug.Log(skill.skillName);
                 skillButtons[i].onClick.RemoveAllListeners();
                 skillButtons[i].onClick.AddListener(() => SelectSkill(skill));
             }

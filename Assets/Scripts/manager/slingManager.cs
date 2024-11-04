@@ -9,8 +9,6 @@ public class slingManager : MonoBehaviour
     public int damage;
     public int pierceFlag = 0;
 
-    public List<SkillData> allSkills;
-
     public Vector3 ballDirection;
     public int shootFlag = 0;
     public int choiceFlag = 0;
@@ -42,18 +40,6 @@ public class slingManager : MonoBehaviour
                     break;
             }
 
-            foreach (SkillData sk in allSkills)
-            {
-                if (sk.skillNo == skill.skillNo && sk.skillType == skill.skillType)
-                {
-                    if (sk.isActive == false) sk.isActive = true;
-                    else
-                    {
-                        if (sk.maxSkill > sk.nowSkill) sk.nowSkill++;
-                    }
-                }
-            }
-
             choiceFlag = 0;
         }
     }
@@ -64,12 +50,18 @@ public class slingManager : MonoBehaviour
         switch(skillNo)
         {
             case 1: //damage Up
-                damage += 100;
+                damage = 100 + 100 * SkillManager.instance.acquiredSkills[skillNo].nowSkill;
                 Debug.Log("damage Up");
                 break;
             case 2:
-                shootCoolTime *= 0.8f;
+                shootCoolTime = 1;
+                for (int i = 0; i < SkillManager.instance.acquiredSkills[skillNo].nowSkill; i++)
+                {
+                    shootCoolTime *= 0.8f;
+                }                   
                 Debug.Log("shootCoolTime down");
+                break;
+            default:
                 break;
         }
     }
@@ -78,11 +70,13 @@ public class slingManager : MonoBehaviour
     {
         switch(skillNo)
         {
-            case 1: //multiple shot?
+            case 5: //multiple shot?
                 break;
-            case 2: //pierce shot
+            case 3: //pierce shot
                 pierceFlag = 1;
                 Debug.Log("Complete");
+                break;
+            default:
                 break;
         }
     }

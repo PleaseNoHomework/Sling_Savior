@@ -9,7 +9,8 @@ public class Item : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
             // skillcanvas.enabled = true;
-
+            SkillManager.instance.flag = 1;
+            Debug.Log("skills!");
             Destroy(gameObject);
         }
 
