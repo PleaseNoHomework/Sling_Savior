@@ -3,22 +3,17 @@ using UnityEngine;
 
 public class Wave2Spawner : MonoBehaviour
 {
+    //총 21마리
     public WaveSpawner wave;
 
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
-    private int activeEnemies = 0;   // 현재 필드에 남아 있는 적의 수
 
     // GameManager에게 Wave2 종료를 알리기 위한 델리게이트와 이벤트
     public delegate void WaveCompleted();
     public event WaveCompleted OnWave2Completed;
 
-    void Start()
-    {
-        StartCoroutine(SpawnWave2());
-    }
-
-    IEnumerator SpawnWave2()
+    public IEnumerator SpawnWave2()
     {
         Debug.Log("wave2 : " + (spawnStep + 1));
         Vector3 spawnPos = new Vector3(-10, 0, 10);

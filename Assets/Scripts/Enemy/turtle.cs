@@ -31,7 +31,7 @@ public class turtle : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             Debug.Log("Collision!");
-            Destroy(gameObject);
+            enemy._state = EnemyStatus.State.Die;
         }
     }
 

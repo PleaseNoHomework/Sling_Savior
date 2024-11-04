@@ -2474,7 +2474,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768539724}
-  - component: {fileID: 768539725}
   - component: {fileID: 768539726}
   - component: {fileID: 768539727}
   - component: {fileID: 768539728}
@@ -2500,24 +2499,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 127619238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &768539725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768539723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84aa4a387b66693418ccda47aa378e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveSpawner: {fileID: 768539726}
-  wave1: {fileID: 768539727}
-  wave2: {fileID: 5456171895087795306, guid: 5dc023af788ac6e419fb394b075bf40c, type: 3}
-  bossPrefab: {fileID: 0}
-  bossSpawnPoint: {fileID: 0}
-  currentWave: 0
 --- !u!114 &768539726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2536,6 +2517,10 @@ MonoBehaviour:
   - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
   - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
   HPCoeffecient: 0
+  currentWave: 1
+  wave1: {fileID: 768539727}
+  wave2: {fileID: 768539728}
+  currentWaveEnemy: 000000000c00000015000000
   itemPrefab: {fileID: 0}
   spawnPoint: {x: 0, y: 0, z: 25}
   spawnEnemies: 0
@@ -2547,13 +2532,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768539723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wave: {fileID: 768539726}
-  itemPrefab: {fileID: 0}
+  allEnemies: 12
   spawnInterval: 5
 --- !u!114 &768539728
 MonoBehaviour:
@@ -2562,16 +2547,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768539723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9240a5ff662b0143811ce903a8bd9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave: {fileID: 0}
-  sandSpiderEnemyPrefab: {fileID: 0}
-  slimeEnemyPrefab: {fileID: 0}
-  turtleShellEnemyPrefab: {fileID: 0}
-  itemPrefab: {fileID: 0}
+  wave: {fileID: 768539726}
   spawnInterval: 5
 --- !u!1001 &772537812
 PrefabInstance:
@@ -3305,7 +3286,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3354,13 +3335,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922012342}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 120, z: -30}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 60, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &922012346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4397,8 +4378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 2.979393}
+  m_Center: {x: 0, y: 0, z: 0.9896965}
 --- !u!23 &1201661671
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4460,8 +4441,8 @@ Transform:
   m_GameObject: {fileID: 1201661669}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -49.5}
-  m_LocalScale: {x: 30, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.58, z: -45.43}
+  m_LocalScale: {x: 50, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 454982436}

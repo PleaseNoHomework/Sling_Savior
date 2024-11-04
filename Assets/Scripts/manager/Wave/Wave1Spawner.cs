@@ -5,19 +5,15 @@ public class Wave1Spawner : MonoBehaviour
 {
     public WaveSpawner wave;
 
+    public int allEnemies = 12;
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
-    private Vector3 defaultSpawnPoint = Vector3.zero;
+
     public delegate void WaveCompleted();
     public event WaveCompleted OnWave1Completed;
-    void Start()
-    {
-        
-        StartCoroutine(SpawnWave1());
-    }
 
 
-    IEnumerator SpawnWave1()
+    public IEnumerator SpawnWave1()
     {
         Vector3 spawnPos = new Vector3(-10, 0, 10);
         Debug.Log("wave1 : " + (spawnStep + 1));
@@ -38,7 +34,7 @@ public class Wave1Spawner : MonoBehaviour
                     spawnPos.x = -10;
                     for (int i = 0; i < 2; i++)
                     {
-                        wave.spawnEnemy(defaultSpawnPoint, 2);
+                        wave.spawnEnemy(spawnPos, 2);
                         spawnPos.x += 10;
                     }
                     break;

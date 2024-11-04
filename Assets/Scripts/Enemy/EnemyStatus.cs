@@ -65,7 +65,8 @@ public class EnemyStatus : MonoBehaviour
                 break;
             case EnemyStatus.State.Die:
                 OnDestroyed?.Invoke();
-                WaveSpawner.instance.activeEnemies++;
+                WaveSpawner.instance.activeEnemies--;
+                Debug.Log("enemy slained, remaining : " + WaveSpawner.instance.activeEnemies);
                 Destroy(gameObject);
                 break;
             default:

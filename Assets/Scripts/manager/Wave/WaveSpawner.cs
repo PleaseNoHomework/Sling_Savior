@@ -7,10 +7,20 @@ public class WaveSpawner : MonoBehaviour
     public static WaveSpawner instance;
     public List<GameObject> enemy;
     public float HPCoeffecient; //HP 계수
+    public int currentWave = 1;
+
+    public Wave1Spawner wave1;           // Wave1Spawner 참조
+    public Wave2Spawner wave2;           // Wave2Spawner 참조
+
+    public List<int> currentWaveEnemy;
+
 
     //적을 잡으면 WaveClear에 있는 함수가 실행된다.
     //마지막 적을 잡으면 WaveClear에 있는 함수가 실행된다.
     // 각각의 프리팹을 적 유형별로 설정
+    //wave에는 Wave1Spawner, Wave2Spawner이 들어있는 오브젝트가 있다.
+
+
     public GameObject itemPrefab;             // 아이템 프리팹
     public Vector3 spawnPoint;
 
@@ -29,7 +39,7 @@ public class WaveSpawner : MonoBehaviour
         activeEnemies++;
         spawnEnemies++;
         status.OnDestroyed += () => HandleEnemyDestroyed();
-
+        Debug.Log("now Enemy : " + activeEnemies);
     }
 
     public void spawnItemEnemy(Vector3 spawnPoint, int enemyNo)
@@ -41,6 +51,7 @@ public class WaveSpawner : MonoBehaviour
         activeEnemies++;
         spawnEnemies++;
         status.OnDestroyed += () => HandleEnemyDestroyed();
+        Debug.Log("now Enemy : " + activeEnemies);
     }
 
     public void setHP(int enemyNo, float HP)
@@ -49,23 +60,42 @@ public class WaveSpawner : MonoBehaviour
         en.setHP(HP);
     }
 
+    //currentWave 값에 따라 웨이브를 소환한다.
+    public void spawnWave(int no)
+    {
+        switch (no)
+        {
+            case 1:
+                StartCoroutine(wave1.SpawnWave1());
+                break;
+            case 2:
+                StartCoroutine(wave2.SpawnWave2());
+                break;
+            default:
+                break;
+        }
+    }
 
 
     private void Start()
     {
         if (instance == null) instance = this;
         HPCoeffecient = 1;
+        StartCoroutine(wave1.SpawnWave1());
+    }
+
+    private void Update()
+    {
+        if (spawnEnemies == currentWaveEnemy[currentWave] && activeEnemies == 0)
+        {
+            currentWave++;
+            spawnEnemies = 0;
+            spawnWave(currentWave);
+            Debug.Log("Wave 클리어");
+        }
     }
 
     void HandleEnemyDestroyed()
     {
-        activeEnemies--;
-
-        if (spawnEnemies > 5 && activeEnemies == 0)
-        {
-            WaveClear?.Invoke();
-            Debug.Log("Wave 클리어");
-        }
-        
     }
 }

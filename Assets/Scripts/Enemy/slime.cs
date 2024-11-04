@@ -12,7 +12,7 @@ public class slime : MonoBehaviour
     void slimeMove()
     {
         float time = Time.time;
-        float zigzag = Mathf.Sin(time * Mathf.PI * 0.5f) * 2; // time * Mathf.PI는 2초, *2시 1초
+        float zigzag = Mathf.Sin(time * Mathf.PI); // time * Mathf.PI는 2초, *2시 1초
         enemy.moveDirection.x = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
 
