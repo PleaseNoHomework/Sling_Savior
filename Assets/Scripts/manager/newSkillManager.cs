@@ -10,8 +10,7 @@ public class newSkillManager : MonoBehaviour
     public List<SkillData> skills;
     
     public List<SkillData> acquiredSkills;      // »πµÊ«— Ω∫≈≥ ∏Ò∑œ
-
-    public int passiveFlag = 0;
+    public int flag = 0;
     // Start is called before the first frame update
 
     private void Awake()
@@ -23,10 +22,10 @@ public class newSkillManager : MonoBehaviour
     void Update()
     {
 
-        if (passiveFlag == 1)
+        if (flag == 1)
         {
             slingManager.instance.setState();
-            passiveFlag = 0;
+            flag = 0;
         }
     }
 }

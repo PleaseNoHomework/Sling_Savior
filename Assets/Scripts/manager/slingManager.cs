@@ -20,6 +20,7 @@ public class slingManager : MonoBehaviour
     {
         damage = 100 * (1 + newSkillManager.instance.skills[0].nowSkill);
         shootCoolTime = 1 * Mathf.Pow(0.8f, newSkillManager.instance.skills[1].nowSkill);
+        Debug.Log(damage + ", " + shootCoolTime);
     }
 
 
@@ -29,8 +30,7 @@ public class slingManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
-        damage = 100;
-        shootCoolTime = 1f;
+        setState();
         //pierceFlag = 1;
     }
 

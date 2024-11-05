@@ -13,12 +13,12 @@ public class skillUiScript : MonoBehaviour
         int x = 0;
         foreach(int i in skillIndex)
         {
-            Debug.Log(i);
+            buttons[x].onClick.AddListener(() => selectSkill(i));
+            buttons[x].onClick.AddListener(() => resumeGame());
             SkillData skill = newSkillManager.instance.skills[i];
             buttons[x].transform.Find("SkillIcon").GetComponent<Image>().sprite = skill.icon;
-            buttons[x].transform.Find("SkillText").GetComponent<TMP_Text>().text = skill.skillName;
+            buttons[x].transform.Find("SkillName").GetComponent<TMP_Text>().text = skill.skillName;
             buttons[x].transform.Find("SkillDescription").GetComponent<TMP_Text>().text = skill.description;
-
             x++;
         }
 
@@ -35,9 +35,34 @@ public class skillUiScript : MonoBehaviour
                 selectSkillNo.Add(randomIndex);
                 i++;
             }
-            if (i > 3) break;
+            if (i >= 3) break;
         }
         return selectSkillNo;
+    }
+
+
+    public void selectSkill(int skillNo)
+    {
+        Debug.Log("select");
+        newSkillManager.instance.skills[skillNo].nowSkill++;
+        int index = newSkillManager.instance.acquiredSkills.FindIndex(skill => skill.skillNo == skillNo); //선택한 스킬 번호가 있는 인덱스, 없으면 -1 반환
+        if (index == -1)
+        {
+            Debug.Log("add skill");
+            newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
+        }
+        else
+        {
+            newSkillManager.instance.acquiredSkills[index].nowSkill++;
+        }
+        newSkillManager.instance.flag = 1;
+    }
+
+    public void resumeGame()
+    {
+        Debug.Log("resume Game");
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
     }
 
 
@@ -46,6 +71,7 @@ public class skillUiScript : MonoBehaviour
     void Start()
     {
         setButton(GetRandomSkillNo());
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame

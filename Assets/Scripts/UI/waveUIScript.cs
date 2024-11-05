@@ -4,11 +4,7 @@ using UnityEngine.UI;
 
 public class waveUIScript : MonoBehaviour
 {
-<<<<<<< HEAD
     /*
-=======
-    public Canvas canvas;
->>>>>>> 4f678feecd0ca6bfa4e21b15cddfa7dbcc027032
     public TextMeshProUGUI waveText;
     private Image ima;
     private float time;
