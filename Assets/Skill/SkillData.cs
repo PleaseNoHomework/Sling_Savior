@@ -15,6 +15,7 @@ public class SkillData : ScriptableObject
 {
     public int skillNo;
     public int maxSkill;
+    public int nowSkill;
     public string skillName;
     public string description;
     public Sprite icon;

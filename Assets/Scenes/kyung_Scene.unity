@@ -207,6 +207,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 144555245507384861, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
     type: 3}
   bossSpawnPoint: {fileID: 1367967269}
+  currentWave: 1
 --- !u!4 &279298535
 Transform:
   m_ObjectHideFlags: 0
@@ -234,9 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09326a40cb4965540974c4b4ee00077e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSkills: []
-  availableSkills: []
-  acquiredSkills: []
 --- !u!114 &279298537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +810,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 6643575566063146057, guid: 4033bd8d75590a14892e4e067131d0eb, type: 3}
+  pierceBall: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
+    type: 3}
   ballSpawnPoint: {x: 0, y: 0, z: -7}
   maxZ: -7
   minZ: -10
@@ -948,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380cea77fc9da84489466195140e5652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1279468252}
   waveText: {fileID: 898893173}
 --- !u!1 &1367967268
 GameObject:
@@ -1266,8 +1267,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootCoolTime: 0
   damage: 0
+  pierceFlag: 0
+  allSkills:
+  - {fileID: 11400000, guid: 3177e2421a63c164db25b4c11723867d, type: 2}
+  - {fileID: 11400000, guid: 25f650411b3e71845bd1157cb08479a9, type: 2}
+  - {fileID: 11400000, guid: 6cb10e0c4c0fd224e875dd792c7501ac, type: 2}
+  - {fileID: 11400000, guid: 8a4ad2233effb614cadc95d17affb108, type: 2}
   ballDirection: {x: 0, y: 0, z: 0}
   shootFlag: 0
+  choiceFlag: 0
+  skill: {fileID: 0}
 --- !u!4 &1689796279
 Transform:
   m_ObjectHideFlags: 0
@@ -1371,7 +1380,7 @@ MonoBehaviour:
     type: 3}
   turtleShellEnemyPrefab: {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2,
     type: 3}
-  itemPrefab: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
+  itemPrefab: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d,
     type: 3}
   spawnInterval: 5
 --- !u!4 &2095240730

@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Base
   - Item
+  - PierceBullet
+  - AttackPoint
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Base
   - Bullet
   - Enemy
-  - 
+  - Item
   - 
   - 
   - 

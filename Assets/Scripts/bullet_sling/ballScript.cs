@@ -9,11 +9,12 @@ public class ballScript : MonoBehaviour
     private Vector3 mousePos;
     private Vector3 startPos;
     private int mouseFlag = 0;
-    public float speed;
-    private int directionFlag;
-    public float spawnTime;
-    private BoxCollider coll;
-
+    public float speed; //공 속도
+    private int directionFlag; // 위치 정보 보낼 때
+    public float spawnTime; //총알 재장전
+    public float availableTime; //관통할 때 잠깐 충돌제거
+    public int availableFlag;
+    public SphereCollider pierceCollider;
     void Move()
     {
         if(directionFlag == 0)
@@ -31,11 +32,11 @@ public class ballScript : MonoBehaviour
                 mousePos.z = mousePos.y;
                 mousePos.y = 0;
 
-                if (mousePos.z < 0) mousePos.z = 0;
+                if (mousePos.z < -50) mousePos.z = -50;
                 Vector3 slingPos = startPos - mousePos;
-                if (slingPos.z < -10) slingPos.z = -10;
-                if (slingPos.x < -5) slingPos.x = -5;
-                else if (slingPos.x > 5) slingPos.x = 5;
+                if (slingPos.z < -65) slingPos.z = -65;
+                if (slingPos.x < -40) slingPos.x = -40;
+                else if (slingPos.x > 40) slingPos.x = 40;
                 transform.position = slingPos;
 
 
@@ -55,8 +56,8 @@ public class ballScript : MonoBehaviour
         ballDirection = Vector3.zero;
         directionFlag = 0;
         spawnTime = 0f;
-        coll = GetComponent<BoxCollider>();
-        coll.enabled = false;
+        availableTime = 0f;
+        availableFlag = 0;
     }
 
     // Update is called once per frame
@@ -67,7 +68,6 @@ public class ballScript : MonoBehaviour
         {
             ballDirection = slingManager.instance.ballDirection;
             directionFlag = 1;
-            coll.enabled = true;
         }
         transform.Translate(ballDirection * speed * Time.deltaTime);
 
@@ -77,26 +77,40 @@ public class ballScript : MonoBehaviour
             if (spawnTime > 5f) Destroy(gameObject);
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if (availableFlag == 1)
         {
-            slingManager.instance.passiveUp(1);
+            pierceCollider = GetComponent<SphereCollider>();
+            pierceCollider.enabled = false;
+            availableTime += Time.deltaTime;
+            if (availableTime > 0.5f)
+            {
+                pierceCollider.enabled = true;
+                availableTime = 0;
+                availableFlag = 0;
+            }
         }
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            slingManager.instance.passiveUp(2);
-        }
-
-
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Item"))
         {
             UIManager.instance.UIFlag = 1;
-                   }
-        Destroy(gameObject);
+                   }*/
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (gameObject.CompareTag("Bullet")) Destroy(gameObject);
+            else
+            {
+                availableFlag = 1;
+            }
+        }
+        
+        if(collision.gameObject.CompareTag("Wall"))
+            Destroy(gameObject);
     }
 
 
