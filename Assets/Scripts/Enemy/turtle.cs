@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class turtle : MonoBehaviour
 {
-    //º®¿¡ µ¹ÁøÇÏ¿© Æø¹ßÇÏ´Â ¿¡³Ê¹Ì
+    //ë²½ì— ëŒì§„í•˜ì—¬ í­ë°œ
 
     public EnemyStatus enemy;
     public float acc;

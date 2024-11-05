@@ -6,13 +6,13 @@ public class slime : MonoBehaviour
 {
     public EnemyStatus enemy;
 
-    public float moveX; //¾ó¸¶³ª ¹Ù²î´Â Áö
-    public float changeX; //ºóµµ
+    public float moveX; //ì–¼ë§ˆë‚˜ ë°”ë€ŒëŠ” ì§€
+    public float changeX; //ë¹ˆë„
 
     void slimeMove()
     {
         float time = Time.time;
-        float zigzag = Mathf.Sin(time * Mathf.PI); // time * Mathf.PI´Â 2ÃÊ, *2½Ã 1ÃÊ
+        float zigzag = Mathf.Sin(time * Mathf.PI); // time * Mathf.PIëŠ” 2ì´ˆ, *2ì‹œ 1ì´ˆ
         enemy.moveDirection.x = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
 
@@ -25,6 +25,14 @@ public class slime : MonoBehaviour
         if (enemy._state == EnemyStatus.State.Move)
         {
             slimeMove();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Base"))
+        {
+            enemy._state = EnemyStatus.State.Attack;
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class spider : MonoBehaviour
 {
-    //º®¿¡ °¡±îÀÌ ºÙÀ¸¸é °ø°İÇÏ´Â ¿¡³Ê¹Ì
+    //ë²½ì— ê°€ê¹Œì´ ë¶™ìœ¼ë©´ ê³µê²©
     public EnemyStatus enemy;
     // Start is called before the first frame update
 
@@ -28,7 +28,7 @@ public class spider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Base"))
         {
-            enemy._state = EnemyStatus.State.Die;
+            enemy._state = EnemyStatus.State.Attack;
         }
     }
 }

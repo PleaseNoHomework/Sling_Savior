@@ -63,7 +63,7 @@ public class EnemyStatus : MonoBehaviour
         {
             case EnemyStatus.State.Attack:
                 break;
-            case EnemyStatus.State.Die: //Á×À» ¶§ OnDestroyed ÀÌº¥Æ® È°¼ºÈ­, ¿©±â¿¡ Á×´Â ¸ð¼Ç + ÀÌÆåÆ® Ãß°¡ÇØ¾ß ÇÔ
+            case EnemyStatus.State.Die: //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ OnDestroyed ï¿½Ìºï¿½Æ® È°ï¿½ï¿½È­, ï¿½ï¿½ï¿½â¿¡ ï¿½×´ï¿½ ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½
                 OnDestroyed?.Invoke();
                 WaveManager.instance.activeEnemies--;
                 Destroy(gameObject);
