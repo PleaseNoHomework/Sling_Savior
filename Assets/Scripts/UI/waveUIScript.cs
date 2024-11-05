@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class waveUIScript : MonoBehaviour
 {
+    /*
     public TextMeshProUGUI waveText;
     private Image ima;
     private float time;
@@ -46,5 +47,5 @@ public class waveUIScript : MonoBehaviour
         }
 
     }
-    
+    */
 }
