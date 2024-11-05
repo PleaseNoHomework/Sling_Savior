@@ -23,7 +23,7 @@ public class EnemyStatus : MonoBehaviour
 
     public delegate void DestroyEvent();
     public event DestroyEvent OnDestroyed;
-
+    public float time;
     public void takeDamage(int damage)
     {
         currentHP -= damage;
@@ -33,7 +33,7 @@ public class EnemyStatus : MonoBehaviour
     {
         //animationP pay or Particle
         //finsihed, Destroy
-        if (currentHP <= 0) {
+        if (currentHP <= 0 || time >= 3f) {
             _state = State.Die;
             if (itemFlag == 1) {
                 Instantiate(item, transform.position, Quaternion.identity);
@@ -54,10 +54,13 @@ public class EnemyStatus : MonoBehaviour
     private void Start()
     {
         _state = State.Move;
+        currentHP = maxHP;
+        time = 0;
     }
 
     private void Update()
     {
+        time += Time.deltaTime;
         destroyEnemy();
         switch (_state)
         {
@@ -65,7 +68,7 @@ public class EnemyStatus : MonoBehaviour
                 break;
             case EnemyStatus.State.Die: //죽을 때 OnDestroyed 이벤트 활성화, 여기에 죽는 모션 + 이펙트 추가해야 함
                 OnDestroyed?.Invoke();
-                WaveManager.instance.activeEnemies--;
+                WaveSpawner.instance.activeEnemies--;
                 Destroy(gameObject);
                 break;
             default:

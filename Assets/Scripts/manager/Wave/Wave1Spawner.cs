@@ -4,7 +4,7 @@ using UnityEngine;
 public class Wave1Spawner : MonoBehaviour
 {
     //12마리
-    public WaveManager wave;
+    public WaveSpawner wave;
 
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
@@ -15,7 +15,7 @@ public class Wave1Spawner : MonoBehaviour
 
     public IEnumerator SpawnWave1()
     {
-        Vector3 spawnPos = new Vector3(-10, 0, 10);
+        Vector3 spawnPos = new Vector3(-10, 2, 20);
         Debug.Log("wave1 : " + (spawnStep + 1));
         while (spawnStep < 5)
         {
@@ -25,7 +25,7 @@ public class Wave1Spawner : MonoBehaviour
                     
                     for (int i = 0; i < 3; i++)
                     {
-                        wave.spawnItemEnemy(spawnPos, 1);
+                        wave.spawnEnemy(spawnPos, 1);
                         spawnPos.x += 10;
                     }
                     break;
@@ -40,27 +40,27 @@ public class Wave1Spawner : MonoBehaviour
                     break;
 
                 case 2: // 세 번째 스폰: Slime Enemy (ZigzagEnemy) 2마리(양 옆) + Turtle Shell Enemy 1마리(가운데, flag 1)
-                    wave.spawnEnemy(new Vector3(-10, 0, 10), 3);
-                    wave.spawnItemEnemy(new Vector3(0, 0, 10), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 10), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 20), 3);
+                    wave.spawnItemEnemy(new Vector3(0, 0, 20), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
                     break;
 
                 case 3: // 네 번째 스폰: Sand Spider, Turtle Shell Enemy, Slime Enemy 각각 1마리
-                    wave.spawnEnemy(new Vector3(-10, 0, 10), 1);
-                    wave.spawnEnemy(new Vector3(0, 0, 10), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 10), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 20), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 20), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
                     break;
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
                     //wave.setHP(1, 300);
-                    wave.spawnEnemy(new Vector3(0, 0, 10), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 20), 1);
                     break;
             }
 
             spawnStep++;
             if (spawnStep <= 3) yield return new WaitForSeconds(spawnInterval); // 다음 스폰 간격 대기
-            else yield return new WaitForSeconds(8f);
+            else yield return new WaitForSeconds(1f);
         }
-
+        Debug.Log(wave.spawnEnemies);
     }
 }

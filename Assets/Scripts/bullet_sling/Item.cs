@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     {
         if (Time.time >= 2f)
         {
-            skillCanvas.SetActive(true);
+            //skillCanvas.SetActive(true);
             Destroy(gameObject);
         }
     }

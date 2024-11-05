@@ -4,7 +4,7 @@ using UnityEngine;
 public class Wave2Spawner : MonoBehaviour
 {
     //총 21마리
-    public WaveManager wave;
+    public WaveSpawner wave;
 
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
@@ -78,5 +78,6 @@ public class Wave2Spawner : MonoBehaviour
             spawnStep++;
             yield return new WaitForSeconds(spawnInterval); // 다음 스폰 간격 대기
         }
+        Debug.Log(wave.spawnEnemies);
     }
 }
