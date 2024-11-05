@@ -15,6 +15,14 @@ public class slingManager : MonoBehaviour
     public SkillData skill;
 
     // Start is called before the first frame update
+
+    public void setState()
+    {
+        damage = 100 * (1 + newSkillManager.instance.skills[0].nowSkill);
+        shootCoolTime = 1 * Mathf.Pow(0.8f, newSkillManager.instance.skills[1].nowSkill);
+    }
+
+
     void Start()
     {
 
