@@ -18,6 +18,7 @@ public class IceGolem : MonoBehaviour
     private float time;
     private float attackTime = 0f;
     bool isAttackFinished = false;
+    private Collider coll;
 
     void IceGolemMove()
     {
@@ -75,6 +76,7 @@ public class IceGolem : MonoBehaviour
     {
         motion = GetComponent<Animator>();
         transform.rotation = Quaternion.Euler(0, 180, 0);
+        coll = GetComponent<Collider>();
     }
     void Update()
     {
@@ -102,7 +104,9 @@ public class IceGolem : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
+            coll.enabled = false;
         }
 
         if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {

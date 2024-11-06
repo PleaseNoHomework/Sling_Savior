@@ -10,6 +10,7 @@ public class slime : MonoBehaviour
     private float time;
     private float attackTime = 0f;
     bool isAttackFinished = false;
+    private Collider coll;
 
     void slimeMove()
     {
@@ -45,6 +46,7 @@ public class slime : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        coll = GetComponent<Collider>();
     }
 
     private void Start()
@@ -78,7 +80,9 @@ public class slime : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
+            coll.enabled = false;
             
         }
 

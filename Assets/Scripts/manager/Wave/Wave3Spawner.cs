@@ -10,8 +10,7 @@ public class Wave3Spawner : MonoBehaviour
     {
         Debug.Log("Wave 3 시작: 중간 보스 생성");
 
-        Vector3 spawnPos = new Vector3(0, 0, 20);
-        wave.spawnItemEnemy(spawnPos, 8);
+        wave.spawnItemEnemy(new Vector3(0, 0, 50), 8);
         wave.lastSpawnEnemyFlag = 1;
         yield return new WaitForSeconds(spawnInterval);  // 다음 웨이브 대기시간
         yield break;
