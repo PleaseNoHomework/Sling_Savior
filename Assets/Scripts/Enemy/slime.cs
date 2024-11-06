@@ -79,6 +79,7 @@ public class slime : MonoBehaviour
 
         if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
             WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
             Destroy(gameObject);
         } 
 

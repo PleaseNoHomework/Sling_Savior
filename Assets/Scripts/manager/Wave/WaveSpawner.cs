@@ -92,7 +92,9 @@ public class WaveSpawner : MonoBehaviour
 
     public bool checkWaveFinished() //전부 생성되고 모두 잡으면 true 반환
     {
-        return (spawnEnemies == currentWaveEnemy[currentWave] && activeEnemies == 0);
+        //return (spawnEnemies == currentWaveEnemy[currentWave] && activeEnemies == 0);
+
+        return (spawnEnemies >= 5);
     }
 
     private void Awake()

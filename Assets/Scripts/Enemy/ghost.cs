@@ -13,8 +13,8 @@ public class ghost : MonoBehaviour
 
     void ghostMove()
     {
-        float time = Time.time;
-        float zigzag = Mathf.Sin(time * Mathf.PI) * -10.0f ;
+        time += Time.deltaTime;
+        float zigzag = Mathf.Sin(time * Mathf.PI) * 10.0f ;
         enemy.moveDirection.y = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
     }
@@ -45,6 +45,7 @@ public class ghost : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        time = 0;
     }
 
     void Update()

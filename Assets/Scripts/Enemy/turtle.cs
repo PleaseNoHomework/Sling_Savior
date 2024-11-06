@@ -28,6 +28,7 @@ public class turtle : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
             Destroy(gameObject);
         }
     }
@@ -38,6 +39,7 @@ public class turtle : MonoBehaviour
         {
             Debug.Log("Collision!");
             WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
             //enemy._state = EnemyStatus.State.Die;
             //HP--;
             Destroy(gameObject);
