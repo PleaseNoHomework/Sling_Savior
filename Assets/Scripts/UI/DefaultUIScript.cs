@@ -15,13 +15,15 @@ public class DefaultUIScript : MonoBehaviour
 
     private HPManager hpManager;
     private GameManager gameManager;
-    private SkillManager skillManager;
+    private WaveSpawner waveSpawner;
+    private newSkillManager skillManager;
 
     void Start()
     {
         hpManager = HPManager.instance;
         gameManager = GameManager.instance;
-        skillManager = SkillManager.instance;
+        skillManager = newSkillManager.instance;
+        waveSpawner = WaveSpawner.instance;
 
         // UI 초기화
         UpdateHP();
@@ -47,9 +49,9 @@ public class DefaultUIScript : MonoBehaviour
     private void UpdateWave()
     {
         // GameManager에서 currentWave 값을 받아와서 텍스트에 반영
-        if (gameManager != null)
+        if (waveSpawner != null)
         {
-            waveText.text = $"Wave: {gameManager.currentWave}";
+            waveText.text = $"{waveSpawner.currentWave}";
         }
     }
 

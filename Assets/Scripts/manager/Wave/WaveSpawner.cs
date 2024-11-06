@@ -38,7 +38,6 @@ public class WaveSpawner : MonoBehaviour
         status.itemFlag = 0;
         activeEnemies++;
         spawnEnemies++;
-        Debug.Log("spawn! no item");
     }
 
     public void spawnItemEnemy(Vector3 spawnPoint, int enemyNo)
@@ -49,7 +48,6 @@ public class WaveSpawner : MonoBehaviour
         status.itemFlag = 1;
         activeEnemies++;
         spawnEnemies++;
-        Debug.Log("spawn! item");
     }
 
     public void setHP(int enemyNo, float HP)
