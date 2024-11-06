@@ -73,9 +73,15 @@ public class spider : MonoBehaviour
         {
             enemy._state = EnemyStatus.State.Die;
             motion.SetTrigger("DeathTrigger");
+            
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
+            Destroy(gameObject);
+        }
+        
 
     }
 

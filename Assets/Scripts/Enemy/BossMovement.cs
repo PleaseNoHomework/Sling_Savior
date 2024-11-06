@@ -14,6 +14,7 @@ public class BossMovement : MonoBehaviour
     private float spawnTimer = 0f;           // 적 소환 타이머
     private Animator motion;                 // 애니메이션 컨트롤러
     private float time;
+    private Collider coll;
 
     void BossMove()
     {
@@ -52,6 +53,7 @@ public class BossMovement : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        coll = GetComponent<Collider>();
     }
 
     void Update()
@@ -75,7 +77,9 @@ public class BossMovement : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
+            coll.enabled = false;
             if (IsAnimationFinished("Death"))
             {
                 Destroy(gameObject);

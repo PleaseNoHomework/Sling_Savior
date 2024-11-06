@@ -5,22 +5,48 @@ using UnityEngine;
 public class slingScript : MonoBehaviour
 {
     public GameObject ball;
+    public float speed;
     public GameObject pierceBall;
     public Vector3 ballSpawnPoint;
     public float maxZ, minZ, maxX, minX;
     private float shootTime;
+    slingManager slingmanager;
 
+    private Vector3 ballDirection;
     private Vector3 mouseDownPos;
     private Vector3 mouseUpPos;
+    private Vector3 mousePos;
     private int ready = 0;
     void shoot()
     {
-        if(Input.GetMouseButtonDown(0) && slingManager.instance.shootFlag == 0)
+        if(Input.GetMouseButtonDown(0) && slingmanager.shootFlag == 0)
         {
             mouseDownPos = Input.mousePosition;
             ready = 1;
         }
+
+        if (Input.GetMouseButton(0)) //누르고 있는 동안
+        {
+            mousePos = Input.mousePosition;
+
+            ballDirection = mousePos - mouseDownPos;
+        }
+
         if (Input.GetMouseButtonUp(0)) {
+            
+            Vector3 ballDirec = -ballDirection.normalized;
+            if (ballDirec.y >= 0.23f &&  slingmanager.shootFlag ==0) //최소 발사 조건
+            {
+                Debug.Log(ballDirec);
+                ballDirec.z = ballDirec.y;
+                ballDirec.y = 0;
+
+                slingmanager.ballDirection = ballDirec;
+
+                slingmanager.shootFlag = 1;
+
+            } 
+            /*
             mouseUpPos = Input.mousePosition;
             if (slingManager.instance.shootFlag == 0 && ready == 1)
             {
@@ -34,7 +60,7 @@ public class slingScript : MonoBehaviour
                 }
 
                 ready = 0;
-            }
+            }*/
         }
     }
 
@@ -42,6 +68,7 @@ public class slingScript : MonoBehaviour
 
     void Start()
     {
+        slingmanager = slingManager.instance;
         shootTime = 0;
         Instantiate(ball, ballSpawnPoint, Quaternion.identity);
     }
@@ -49,7 +76,7 @@ public class slingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shoot();
+        //shoot();
 
         if (slingManager.instance.shootFlag == 1)
         {

@@ -13,8 +13,8 @@ public class ghost : MonoBehaviour
 
     void ghostMove()
     {
-        float time = Time.time;
-        float zigzag = Mathf.Sin(time * Mathf.PI) * -10.0f ;
+        time += Time.deltaTime;
+        float zigzag = Mathf.Sin(time * Mathf.PI) * 10.0f ;
         enemy.moveDirection.y = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
     }
@@ -45,6 +45,8 @@ public class ghost : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        time = 0;
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void Update()
@@ -73,10 +75,15 @@ public class ghost : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+
+            Destroy(gameObject);
+        }
 
     }
 

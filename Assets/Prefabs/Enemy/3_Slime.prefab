@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 7197004048993152848}
   - component: {fileID: 1580768426848535829}
   - component: {fileID: -1036126276740151084}
+  - component: {fileID: -5573197188189577558}
   m_Layer: 11
   m_Name: 3_Slime
   m_TagString: Enemy
@@ -382,7 +383,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.072381, y: 0, z: 1.88}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1849371402993362093}
@@ -446,12 +447,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 3
-  speed: 8
+  speed: 5
   maxHP: 100
   currentHP: 100
   itemFlag: 0
-  moveDirection: {x: 0, y: 0, z: -1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  moveDirection: {x: 0, y: 0, z: 1}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
+  time: 0
 --- !u!114 &-1036126276740151084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,8 +467,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1580768426848535829}
-  moveX: 2
-  changeX: 2
+--- !u!54 &-5573197188189577558
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876875707750390345}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6408881965814664235
 GameObject:
   m_ObjectHideFlags: 0

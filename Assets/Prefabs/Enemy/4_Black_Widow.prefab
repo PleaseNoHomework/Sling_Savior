@@ -2107,12 +2107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 4
-  speed: 15
+  speed: 10
   maxHP: 200
   currentHP: 200
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   time: 0
 --- !u!114 &-1874270618279399441
 MonoBehaviour:
@@ -2152,7 +2152,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &5663904574515624213
 GameObject:

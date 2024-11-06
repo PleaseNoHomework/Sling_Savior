@@ -7,9 +7,8 @@ public class waveUIScript : MonoBehaviour
     public static waveUIScript instance;
     public TMP_Text waveText;
     public int flag = 0;
-    public int gameStartFlag = 0;
+    public int gameStartFlag;
     public int gameOverFlag = 0;
-    private Image ima;
     private float time;
     // Start is called before the first frame update
 
@@ -17,13 +16,13 @@ public class waveUIScript : MonoBehaviour
     {
         waveText.text = text;
     }
-    private void Start()
+
+    private void Awake()
     {
         if (instance == null) instance = this;
         gameObject.SetActive(false);
         time = 0;
     }
-
     private void Update()
     {
         if (gameStartFlag == 1)

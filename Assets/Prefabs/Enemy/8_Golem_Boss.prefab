@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28350446636254934}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.98862725, z: -0, w: -0.15038681}
+  m_LocalPosition: {x: 0.034951348, y: 0, z: 0.23435085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8707162205718749296}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 197.299, z: 0}
 --- !u!137 &417645937379900509
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1228,8 +1228,7 @@ GameObject:
   - component: {fileID: 7398142750761260843}
   - component: {fileID: 6826239947680546437}
   - component: {fileID: -3479536459504426553}
-  - component: {fileID: 601017061592729337}
-  - component: {fileID: 3870337096957064040}
+  - component: {fileID: -6896702170884268773}
   m_Layer: 0
   m_Name: 8_Golem_Boss
   m_TagString: Enemy
@@ -1245,15 +1244,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115586094826912928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7337057072233830353}
   - {fileID: 2185452962727281620}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7398142750761260843
 Animator:
   serializedVersion: 7
@@ -1311,32 +1310,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 8
-  speed: 3
-  maxHP: 5000
-  currentHP: 5000
+  speed: 2
+  maxHP: 2500
+  currentHP: 2500
   itemFlag: 0
-  moveDirection: {x: 0, y: 0, z: -1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  moveDirection: {x: 0, y: 0, z: 1}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   time: 0
---- !u!114 &601017061592729337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115586094826912928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b265442ffbd984143b799fe3e217a351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 3835992871850790174, guid: a3334e938b5a3334cb879c271f73eeca, type: 3}
-  - {fileID: 6422948472806022183, guid: 28c7b5eefef80cb4c930567dac07a95c, type: 3}
-  enemy: {fileID: -3479536459504426553}
-  moveRange: 5
-  spawnRate: 3
---- !u!114 &3870337096957064040
+--- !u!114 &-6896702170884268773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1345,7 +1326,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115586094826912928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf3501ee6d98be47a4c016d93b5d5ee, type: 3}
+  m_Script: {fileID: 11500000, guid: f3d0e6c580427594db49cf3a22433451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: -3479536459504426553}

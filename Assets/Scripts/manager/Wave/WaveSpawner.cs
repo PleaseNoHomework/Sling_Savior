@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
     public static WaveSpawner instance;
     public List<GameObject> enemy;
     public float HPCoeffecient; //HP 계수
-    public int currentWave = 1;
+    public int currentWave = 2;
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
     public Wave2Spawner wave2;           // Wave2Spawner 참조
@@ -28,10 +28,9 @@ public class WaveSpawner : MonoBehaviour
     public Vector3 spawnPoint;
 
     public int spawnEnemies = 0; //생성된 적 수
+    public int lastSpawnEnemyFlag = 0;
     public int activeEnemies = 0;   // 현재 필드에 남아 있는 적의 수
 
-    public delegate void WaveCompleted();
-    public event WaveCompleted WaveClear;
 
     public void spawnEnemy(Vector3 spawnPoint, int enemyNo)
     {
@@ -45,7 +44,9 @@ public class WaveSpawner : MonoBehaviour
 
     public void spawnItemEnemy(Vector3 spawnPoint, int enemyNo)
     {
+        Debug.Log("??");
         GameObject newEnemy = Instantiate(enemy[enemyNo], spawnPoint, Quaternion.identity);
+        Debug.Log("!!");
         EnemyStatus status = newEnemy.GetComponent<EnemyStatus>();
         status.setHP(status.maxHP * HPCoeffecient);
         status.itemFlag = 1;
@@ -92,13 +93,15 @@ public class WaveSpawner : MonoBehaviour
 
     public bool checkWaveFinished() //전부 생성되고 모두 잡으면 true 반환
     {
-        return (spawnEnemies == currentWaveEnemy[currentWave] && activeEnemies == 0);
+        return (lastSpawnEnemyFlag == 1 && activeEnemies == 0);
+
     }
 
     private void Awake()
     {
         if (instance == null) instance = this;
         HPCoeffecient = 1;
+        currentWave = 1;
     }
 
 }

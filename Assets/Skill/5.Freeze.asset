@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 5.Freeze
   m_EditorClassIdentifier: 
   skillNo: 5
-  maxSkill: 0
+  maxSkill: 1
   nowSkill: 0
   skillName: FrostBite
-  description: enemy get freeze
+  description: Enemy get freeze
   icon: {fileID: 21300000, guid: 9fab15d89bc64244a843f01888ad6023, type: 3}
   skillType: 0
   isActive: 0

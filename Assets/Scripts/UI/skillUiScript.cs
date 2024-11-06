@@ -5,14 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 public class skillUiScript : MonoBehaviour
 {
-
+    public static skillUiScript instance;
     public List<Button> buttons;
-
+    public int flag = 0;
     public void setButton(HashSet<int> skillIndex)
     {
         int x = 0;
         foreach(int i in skillIndex)
         {
+            Debug.Log(i);
+            buttons[x].onClick.RemoveAllListeners();
             buttons[x].onClick.AddListener(() => selectSkill(i));
             buttons[x].onClick.AddListener(() => resumeGame());
             SkillData skill = newSkillManager.instance.skills[i];
@@ -23,7 +25,7 @@ public class skillUiScript : MonoBehaviour
         }
 
     }
-
+  
     public HashSet<int> GetRandomSkillNo() {
         HashSet<int> selectSkillNo = new HashSet<int>();
         int i = 0;
@@ -43,40 +45,29 @@ public class skillUiScript : MonoBehaviour
 
     public void selectSkill(int skillNo)
     {
-        Debug.Log("select");
+        Debug.Log("select : " + skillNo);
         newSkillManager.instance.skills[skillNo].nowSkill++;
-        int index = newSkillManager.instance.acquiredSkills.FindIndex(skill => skill.skillNo == skillNo); //선택한 스킬 번호가 있는 인덱스, 없으면 -1 반환
-        if (index == -1)
-        {
-            Debug.Log("add skill");
-            newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
-        }
-        else
-        {
-            newSkillManager.instance.acquiredSkills[index].nowSkill++;
-        }
+        newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
         newSkillManager.instance.flag = 1;
     }
 
     public void resumeGame()
     {
+        newSkillManager.instance.getSkillFlag = 2;
         Debug.Log("resume Game");
         Time.timeScale = 1;
-        gameObject.SetActive(false);
+        
     }
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        setButton(GetRandomSkillNo());
-        Time.timeScale = 0;
+        if(instance == null ) instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+            setButton(GetRandomSkillNo());          
+            Time.timeScale = 0;
         
     }
 }

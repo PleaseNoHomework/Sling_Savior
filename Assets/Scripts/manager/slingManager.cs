@@ -23,13 +23,15 @@ public class slingManager : MonoBehaviour
         Debug.Log(damage + ", " + shootCoolTime);
     }
 
-
-    void Start()
+    private void Awake()
     {
-
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
         }
+    }
+    void Start()
+    {
         setState();
         //pierceFlag = 1;
     }
@@ -61,7 +63,7 @@ public class slingManager : MonoBehaviour
                 damage = 100 + 100 * SkillManager.instance.acquiredSkills[skillNo].nowSkill;
                 Debug.Log("damage Up");
                 break;
-            case 2:
+            case 2: //rateUP
                 shootCoolTime = 1;
                 for (int i = 0; i < SkillManager.instance.acquiredSkills[skillNo].nowSkill; i++)
                 {

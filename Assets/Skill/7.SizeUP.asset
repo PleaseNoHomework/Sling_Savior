@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 7.SizeUP
   m_EditorClassIdentifier: 
   skillNo: 7
-  maxSkill: 0
-  nowSkill: 0
-  skillName: 
-  description: 
+  maxSkill: 3
+  nowSkill: 2
+  skillName: SizeUP
+  description: Big Arrow Size
   icon: {fileID: 21300000, guid: e079ce5f02500ab4eb87d9f44d67b849, type: 3}
   skillType: 1
   isActive: 0

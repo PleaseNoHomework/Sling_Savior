@@ -10,6 +10,7 @@ public class slime : MonoBehaviour
     private float time;
     private float attackTime = 0f;
     bool isAttackFinished = false;
+    private Collider coll;
 
     void slimeMove()
     {
@@ -45,6 +46,12 @@ public class slime : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        coll = GetComponent<Collider>();
+    }
+
+    private void Start()
+    {
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void Update()
@@ -73,10 +80,17 @@ public class slime : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
+            coll.enabled = false;
+            
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
+            Destroy(gameObject);
+        } 
 
     }
 

@@ -6,8 +6,6 @@ public class WaveManager: MonoBehaviour
 {
     public static WaveManager instance;
     public int spawnFlag = 0; //1이면 스폰하기
-    public delegate void WaveCompleted();
-    public event WaveCompleted WaveClear;
     public GameObject waveUI;
 
     private void Awake()
@@ -22,9 +20,17 @@ public class WaveManager: MonoBehaviour
         if (WaveSpawner.instance.checkWaveFinished())
         {
             Debug.Log("finished!");
+            WaveSpawner.instance.lastSpawnEnemyFlag = 0;
             waveUI.SetActive(true);
             WaveSpawner.instance.currentWave++;
             waveUIScript.instance.flag = 1;
+
+            if (WaveSpawner.instance.currentWave > 5)
+            {
+                //GG~~~~소리 넣고싶은데
+                Time.timeScale = 0;
+            }
+
         }
 
         if(spawnFlag == 1)

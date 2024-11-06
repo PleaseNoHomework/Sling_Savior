@@ -15,45 +15,40 @@ public class Wave1Spawner : MonoBehaviour
 
     public IEnumerator SpawnWave1()
     {
-        Vector3 spawnPos = new Vector3(-10, 2, 20);
+        Vector3 spawnPos = new Vector3(-10, 2, 50);
         Debug.Log("wave1 : " + (spawnStep + 1));
         while (spawnStep < 5)
         {
             switch (spawnStep)
             {
                 case 0: // 첫 번째 스폰: Sand Spider (ForwardEnemy) 3마리
-                    
-                    for (int i = 0; i < 3; i++)
-                    {
-                        wave.spawnEnemy(spawnPos, 1);
-                        spawnPos.x += 10;
-                    }
+
+                    wave.spawnEnemy(new Vector3(-10, 0, 50), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 50), 1);
+                    wave.spawnEnemy(new Vector3(10, 0, 50), 1);
                     break;
 
                 case 1: // 두 번째 스폰: Turtle Shell Enemy (AccelerationEnemy) 2마리
-                    spawnPos.x = -10;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        wave.spawnEnemy(spawnPos, 2);
-                        spawnPos.x += 10;
-                    }
+                    wave.spawnEnemy(new Vector3(-5, 0, 50), 2);
+                    wave.spawnEnemy(new Vector3(5, 0, 50), 2);
                     break;
 
                 case 2: // 세 번째 스폰: Slime Enemy (ZigzagEnemy) 2마리(양 옆) + Turtle Shell Enemy 1마리(가운데, flag 1)
-                    wave.spawnEnemy(new Vector3(-10, 0, 20), 3);
-                    wave.spawnItemEnemy(new Vector3(0, 0, 20), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 50), 3);
+                    wave.spawnItemEnemy(new Vector3(0, 0, 50), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 50), 3);
                     break;
 
                 case 3: // 네 번째 스폰: Sand Spider, Turtle Shell Enemy, Slime Enemy 각각 1마리
-                    wave.spawnEnemy(new Vector3(-10, 0, 20), 1);
-                    wave.spawnEnemy(new Vector3(0, 0, 20), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 50), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 50), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 50), 3);
                     break;
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
                     //wave.setHP(1, 300);
-                    wave.spawnEnemy(new Vector3(0, 0, 20), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 50), 1);
+                    wave.lastSpawnEnemyFlag = 1;
                     break;
             }
 

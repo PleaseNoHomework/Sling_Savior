@@ -20,10 +20,22 @@ public class turtle : MonoBehaviour
     }
     // Start is called before the first frame update
 
+    private void Start()
+    {
+        gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
     // Update is called once per frame
     void Update()
     {
         turtleMove();
+
+        if (enemy.currentHP <= 0)
+        {
+            WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,7 +43,11 @@ public class turtle : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             Debug.Log("Collision!");
-            enemy._state = EnemyStatus.State.Die;
+            WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
+            //enemy._state = EnemyStatus.State.Die;
+            //HP--;
+            Destroy(gameObject);
         }
     }
 
