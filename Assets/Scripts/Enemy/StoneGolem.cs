@@ -12,7 +12,12 @@ public class StoneGolem : MonoBehaviour
 
     private bool isMoving = true;
     private float timer = 0f;
-    
+
+    private Animator motion;
+    private float time;
+    private float attackTime = 0f;
+    bool isAttackFinished = false;
+
     void StoneGolemMove()
     {
         timer += Time.deltaTime;
@@ -37,14 +42,69 @@ public class StoneGolem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    void StoneGolemAttack()
+    {
+        if (motion.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            attackTime += Time.deltaTime;
+        }
+
+        if (attackTime >= 1f && !isAttackFinished)
+        {
+            HPManager.instance.baseHP--;
+            Debug.Log("HP Down!");
+            isAttackFinished = true;
+        }
+
+        if (attackTime >= 2.6f)
+        {
+            motion.SetTrigger("AttackTrigger");
+            isAttackFinished = false;
+            attackTime = 0;
+        }
+    }
+
+    private void Awake()
+    {
+        motion = GetComponent<Animator>();
+    }
     void Update()
     {
+        time += Time.deltaTime;
+        if (enemy._state == EnemyStatus.State.Spawn)
+        {
+            if (time >= 1f)
+            {
+                motion.SetTrigger("WalkTrigger");
+                enemy._state = EnemyStatus.State.Move;
+            }
+
+        }
+
         if (enemy._state == EnemyStatus.State.Move)
         {
             StoneGolemMove();
         }
 
+        if (enemy._state == EnemyStatus.State.Attack)
+        {
+            StoneGolemAttack();
+        }
+
+        if (enemy.currentHP <= 0)
+        {
+            enemy._state = EnemyStatus.State.Die;
+            motion.SetTrigger("DeathTrigger");
+        }
+
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+
+    }
+
+    bool IsAnimationFinished(string animationName)
+    {
+        return motion.GetCurrentAnimatorStateInfo(0).IsName(animationName) &&
+               motion.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.5f;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,6 +112,16 @@ public class StoneGolem : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             enemy._state = EnemyStatus.State.Attack;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("AttackPoint"))
+        {
+            Debug.Log("ee");
+            enemy._state = EnemyStatus.State.Attack;
+            motion.SetTrigger("AttackTrigger");
         }
     }
 }

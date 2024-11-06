@@ -149,10 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave1: {fileID: 908102935}
-  wave2: {fileID: 188560186}
-  bossPrefab: {fileID: 2115586094826912928, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
+  wave2: {fileID: 0}
+  bossPrefab: {fileID: 144555245507384861, guid: 4d9717dbe75a65d4895fc8809c7a7d5f,
     type: 3}
   bossSpawnPoint: {fileID: 688065725}
+  currentWave: 1
 --- !u!4 &90894381
 Transform:
   m_ObjectHideFlags: 0
@@ -197,14 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
-  - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
-  startTime: 4
-  endTime: 6
-  spawnRate: 1
-  isFirstSpawnComplete: 0
+  wave: {fileID: 0}
+  spawnInterval: 5
 --- !u!4 &188560187
 Transform:
   m_ObjectHideFlags: 0
@@ -280,14 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046473ca4f7bd944cb6469e566f109bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 4876875707750390345, guid: fa01112f593cfa04789606390b77ff33, type: 3}
-  - {fileID: 4542559507835283180, guid: ff5ac2d3aea3666498fefed74570a0f2, type: 3}
-  startTime: 1
-  endTime: 3
-  spawnRate: 1
-  isFirstSpawnComplete: 0
+  wave: {fileID: 0}
+  spawnInterval: 5
 --- !u!4 &908102936
 Transform:
   m_ObjectHideFlags: 0
@@ -501,7 +490,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -551,7 +540,7 @@ Transform:
   m_GameObject: {fileID: 1821364587}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -18,6 +18,7 @@ public class ballScript : MonoBehaviour
     private int directionFlag; // 위치 정보 보낼 때
     public float spawnTime; //총알 재장전
     public float availableTime; //관통할 때 잠깐 충돌제거
+
     public int availableFlag;
     public SphereCollider pierceCollider;
 
