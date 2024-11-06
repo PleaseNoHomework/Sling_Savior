@@ -24,6 +24,12 @@ public class turtle : MonoBehaviour
     void Update()
     {
         turtleMove();
+
+        if (enemy.currentHP <= 0)
+        {
+            WaveSpawner.instance.activeEnemies--;
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,7 +37,10 @@ public class turtle : MonoBehaviour
         if (collision.gameObject.CompareTag("Base"))
         {
             Debug.Log("Collision!");
-            enemy._state = EnemyStatus.State.Die;
+            WaveSpawner.instance.activeEnemies--;
+            //enemy._state = EnemyStatus.State.Die;
+            //HP--;
+            Destroy(gameObject);
         }
     }
 

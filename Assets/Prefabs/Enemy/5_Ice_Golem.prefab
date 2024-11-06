@@ -1822,7 +1822,8 @@ MonoBehaviour:
   currentHP: 300
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: 1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
+  time: 0
 --- !u!114 &8227381009605131057
 MonoBehaviour:
   m_ObjectHideFlags: 0

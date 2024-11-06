@@ -3055,6 +3055,7 @@ GameObject:
   - component: {fileID: 755784697287306629}
   - component: {fileID: -2705477339349939809}
   - component: {fileID: 8203969030494207537}
+  - component: {fileID: -4036432574477739239}
   m_Layer: 11
   m_Name: 1_Spider
   m_TagString: Enemy
@@ -3147,7 +3148,7 @@ MonoBehaviour:
   currentHP: 200
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   time: 0
 --- !u!114 &8203969030494207537
 MonoBehaviour:
@@ -3162,6 +3163,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: -2705477339349939809}
+--- !u!54 &-4036432574477739239
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735275579975019659}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8034503482353954144
 GameObject:
   m_ObjectHideFlags: 0

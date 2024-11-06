@@ -74,6 +74,7 @@ public class EnemyStatus : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
+            Debug.Log(",,,");
             takeDamage(slingManager.instance.damage);
         }
     }

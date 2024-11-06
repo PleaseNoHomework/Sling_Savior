@@ -601,7 +601,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 10.416412, y: 0, z: 0.84}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5189599576020359436}
@@ -670,7 +670,8 @@ MonoBehaviour:
   currentHP: 100
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
-  item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
+  time: 0
 --- !u!114 &-3004298352607292144
 MonoBehaviour:
   m_ObjectHideFlags: 0
