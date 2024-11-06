@@ -5,8 +5,10 @@ using UnityEngine;
 public class ballScript : MonoBehaviour
 {
     public Camera mainCamera;
-
-    private Vector3 ballDirection;
+    private AudioSource fireAudio;
+    private AudioSource drawAudio;
+    private AudioSource hitAudio;
+    public Vector3 ballDirection;
     private Vector3 startPos;
     private Vector3 endPos;
     private Vector3 defaultPos;
@@ -15,17 +17,16 @@ public class ballScript : MonoBehaviour
 
     private int mouseFlag = 0;
     public float speed; //공 속도
-    private int directionFlag; // 위치 정보 보낼 때
+    public int directionFlag; // 위치 정보 보낼 때
     public float spawnTime; //총알 재장전
     public float availableTime; //관통할 때 잠깐 충돌제거
 
+    private int soundFlag = 0;
     public int availableFlag;
     public SphereCollider pierceCollider;
 
     public float maxX, minX, maxZ, minZ;
-    public int leftBall = 0;
-    public int rightBall = 0;
-    void MovePos()
+    void MovePos() //방향 지정해주기
     {
         if(directionFlag == 0)
         {
@@ -43,11 +44,23 @@ public class ballScript : MonoBehaviour
                 Vector3 pullPos = -(endPos - startPos) * 0.1f;
                 transform.position = (defaultPos - pullPos);
 
+                if(pullPos.magnitude >= 0.1f && soundFlag == 0)
+                {
+                    //drawAudio.enabled = true;
+                    drawAudio.Play();
+                    soundFlag = 1;
+                }
+
+
+
             }
             if(Input.GetMouseButtonUp(0) && mouseFlag == 1)
             {
+
                 ballDirection = (endPos - startPos) * 0.05f;
-                if (ballDirection.magnitude <= 0.5f)
+                Debug.Log(ballDirection);
+                Debug.Log(ballDirection.magnitude);
+                if (ballDirection.magnitude <= 0.5f && ballDirection.magnitude > 0.3f)
                 {
                     ballDirection = ballDirection.normalized * 0.5f;
                 }
@@ -57,17 +70,22 @@ public class ballScript : MonoBehaviour
                 }
                 mouseFlag = 0;
 
-                if (ballDirection.z < 0)
+                if (ballDirection.z < 0 && ballDirection.magnitude >= 0.3f)
                 {
-                    directionFlag = 1;
-                    slingManager.instance.shootFlag = 1;
+                    directionFlag = 1; //디렉션 정함
+                    slingManager.instance.shootFlag = 1; //쏘기 시작함
+                    fireAudio.Play();
+                    extraBall.instance.setDirection(-ballDirection);
+                    extraBall.instance.setDirection(-ballDirection);
                 }
                 else
                 {
                     transform.position = defaultPos;
                     transform.rotation = Quaternion.Euler(0, 180, 0);
+                    
                 }
 
+                
             }
         }
 
@@ -80,23 +98,19 @@ public class ballScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
-    /*
     public void setDirection(Vector3 direction)
     {
-        if (Input.GetMouseButtonUp(0) && mouseFlag == 1 &&  extraBall == 1)
-        {
-            // 공의 발사 방향을 설정
-            ballDirection = direction;
-            directionFlag = 1;
-
-        }
-
-    }*/
-
+        ballDirection = direction;
+        directionFlag = 1;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        fireAudio = audioSources[0];
+        drawAudio = audioSources[1];
+
         transform.rotation = Quaternion.Euler(0, 180, 0);
         float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈
         transform.localScale = new Vector3(size, size, size);
@@ -107,7 +121,6 @@ public class ballScript : MonoBehaviour
         ballDirection = Vector3.zero;
         directionFlag = 0;
         spawnTime = 0f;
-        availableTime = 0f;
     }
 
     // Update is called once per frame
@@ -130,6 +143,7 @@ public class ballScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
 
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
         {

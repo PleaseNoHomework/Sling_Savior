@@ -13,7 +13,6 @@ public class skillUiScript : MonoBehaviour
         int x = 0;
         foreach(int i in skillIndex)
         {
-            Debug.Log(i);
             buttons[x].onClick.RemoveAllListeners();
             buttons[x].onClick.AddListener(() => selectSkill(i));
             buttons[x].onClick.AddListener(() => resumeGame());

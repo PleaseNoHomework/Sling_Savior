@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 23730243837836364}
   - component: {fileID: 7924919093818889950}
   - component: {fileID: -4771859323616232116}
-  - component: {fileID: 709357411366759627}
   - component: {fileID: 6297793550366873832}
   - component: {fileID: -5624323083360833493}
   - component: {fileID: 3288406857142241704}
+  - component: {fileID: -2407750686273985730}
   m_Layer: 10
-  m_Name: DefaultBullet
+  m_Name: extraBall2
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,34 +139,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &709357411366759627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860445168790544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f484814e7ff14b40be137ac01e38790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2760933407646787068, guid: 518b415c99124b24ea5f3c2a17cda59a,
-    type: 3}
-  ballDirection: {x: 0, y: 0, z: 0}
-  rays: {x: 50, y: 0, z: 0}
-  speed: 20
-  directionFlag: 0
-  spawnTime: 0
-  availableTime: 0
-  mainBall: 1
-  extraBall: 0
-  availableFlag: 0
-  pierceCollider: {fileID: 0}
-  maxX: 5
-  minX: -5
-  maxZ: -25
-  minZ: -30
 --- !u!82 &6297793550366873832
 AudioSource:
   m_ObjectHideFlags: 0
@@ -458,3 +430,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2407750686273985730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860445168790544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8030d31ef665f9d49a25b6dbd1a85d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
+  flag: 1
+  speed: 20

@@ -20,7 +20,7 @@ public class EnemyStatus : MonoBehaviour
     public int itemFlag;
     public Vector3 moveDirection = new Vector3(0,0,-1);
     public GameObject item;
-
+    public AudioSource audios;
     public float time;
     public void takeDamage(int damage)
     {
@@ -72,6 +72,7 @@ public class EnemyStatus : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
+            audios.Play();
             Debug.Log(",,,");
             takeDamage(slingManager.instance.damage);
         }
