@@ -81,6 +81,10 @@ public class ballScript : MonoBehaviour
     void Start()
     {
         transform.rotation = Quaternion.Euler(0, 180, 0);
+        float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈
+        transform.localScale = new Vector3(size, size, size);
+
+
         defaultPos = transform.position;
 
         ballDirection = Vector3.zero;
@@ -107,11 +111,6 @@ public class ballScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-        if (collision.gameObject.CompareTag("Item"))
-        {
-            UIManager.instance.UIFlag = 1;
-                   }*/
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -128,14 +127,6 @@ public class ballScript : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
-        /*
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Ray ray = new Ray(mainCamera.transform.position, rays);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
-        {
-            return new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
-        }
-        return transform.position;  // 마우스가 xz 평면에 없으면 현재 위치 반환*/
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);  // 마우스 위치를 기준으로 광선 쏘기
         Plane xzPlane = new Plane(Vector3.up, Vector3.zero);  // xz 평면 설정 (y축이 평면의 법선 벡터)
