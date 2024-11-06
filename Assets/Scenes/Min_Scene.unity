@@ -2411,6 +2411,7 @@ MonoBehaviour:
   gamePlayUI: {fileID: 1994318743}
   initialCamera: {fileID: 84819130}
   mainCamera: {fileID: 1082233711}
+  cameraMoveDuration: 2
 --- !u!4 &401904363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4253259937740656, guid: 6e1def531c4baaf4387bc4283f7ef134,
