@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab84a7a9141ba83498a73c564f6a2a07, type: 3}
-  m_Name: AtkRate
+  m_Name: 4.stun
   m_EditorClassIdentifier: 
-  skillNo: 2
-  maxSkill: 3
-  skillName: FastShot
-  description: your attack rate get faster
-  icon: {fileID: 21300000, guid: 7b846481a0de5b447b33d962453780c5, type: 3}
-  skillType: 1
+  skillNo: 4
+  maxSkill: 1
+  nowSkill: 0
+  skillName: Stun
+  description: Active/stun All enemy
+  icon: {fileID: 21300000, guid: 3ac5c85587f886e4d973b9b55e8e0e9b, type: 3}
+  skillType: 0
   isActive: 0

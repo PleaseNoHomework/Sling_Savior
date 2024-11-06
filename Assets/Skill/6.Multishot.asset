@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab84a7a9141ba83498a73c564f6a2a07, type: 3}
-  m_Name: stun
+  m_Name: 6.Multishot
   m_EditorClassIdentifier: 
-  skillNo: 4
-  maxSkill: 1
+  skillNo: 6
+  maxSkill: 0
   nowSkill: 0
-  skillName: Stun
-  description: Active/stun All enemy
-  icon: {fileID: 21300000, guid: 3c6c0a9113a3f3444bb8bbfd857d4cbd, type: 3}
-  skillType: 0
+  skillName: 
+  description: 
+  icon: {fileID: 21300000, guid: 6167f45e622b2ce40918a08245cdc1c3, type: 3}
+  skillType: 2
   isActive: 0

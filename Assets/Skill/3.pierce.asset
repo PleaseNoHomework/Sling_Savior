@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab84a7a9141ba83498a73c564f6a2a07, type: 3}
-  m_Name: pierce
+  m_Name: 3.pierce
   m_EditorClassIdentifier: 
   skillNo: 3
   maxSkill: 1
