@@ -5,16 +5,16 @@ using UnityEngine;
 public class WaveManager: MonoBehaviour
 {
     public static WaveManager instance;
-    public int spawnFlag = 0; //1ÀÌ¸é ½ºÆùÇÏ±â
+    public int spawnFlag = 0; //1ì´ë©´ ìŠ¤í°í•˜ê¸°
     public delegate void WaveCompleted();
     public event WaveCompleted WaveClear;
     public GameObject waveUI;
 
-    private void Start()
+    private void Awake()
     {
-        if (instance == null) instance = this;
-        WaveSpawner.instance.spawnWave(WaveSpawner.instance.currentWave);
-        Debug.Log("Start!");
+        if (instance == null) {
+            instance = this;
+        }      
     }
 
     private void Update()

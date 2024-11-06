@@ -6,26 +6,26 @@ public class WaveSpawner : MonoBehaviour
 {
     public static WaveSpawner instance;
     public List<GameObject> enemy;
-    public float HPCoeffecient; //HP °è¼ö
+    public float HPCoeffecient; //HP ê³„ìˆ˜
     public int currentWave = 1;
 
-    public Wave1Spawner wave1;           // Wave1Spawner ÂüÁ¶
-    public Wave2Spawner wave2;           // Wave2Spawner ÂüÁ¶
+    public Wave1Spawner wave1;           // Wave1Spawner ì°¸ì¡°
+    public Wave2Spawner wave2;           // Wave2Spawner ì°¸ì¡°
     
     public List<int> currentWaveEnemy;
 
 
-    //ÀûÀ» ÀâÀ¸¸é WaveClear¿¡ ÀÖ´Â ÇÔ¼ö°¡ ½ÇÇàµÈ´Ù.
-    //¸¶Áö¸· ÀûÀ» ÀâÀ¸¸é WaveClear¿¡ ÀÖ´Â ÇÔ¼ö°¡ ½ÇÇàµÈ´Ù.
-    // °¢°¢ÀÇ ÇÁ¸®ÆÕÀ» Àû À¯Çüº°·Î ¼³Á¤
-    //wave¿¡´Â Wave1Spawner, Wave2SpawnerÀÌ µé¾îÀÖ´Â ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù.
+    //ì ì„ ì¡ìœ¼ë©´ WaveClearì— ìˆëŠ” í•¨ìˆ˜ê°€ ì‹¤í–‰ëœë‹¤.
+    //ë§ˆì§€ë§‰ ì ì„ ì¡ìœ¼ë©´ WaveClearì— ìˆëŠ” í•¨ìˆ˜ê°€ ì‹¤í–‰ëœë‹¤.
+    // ê°ê°ì˜ í”„ë¦¬íŒ¹ì„ ì  ìœ í˜•ë³„ë¡œ ì„¤ì •
+    //waveì—ëŠ” Wave1Spawner, Wave2Spawnerì´ ë“¤ì–´ìˆëŠ” ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤.
 
 
-    public GameObject itemPrefab;             // ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
+    public GameObject itemPrefab;             // ì•„ì´í…œ í”„ë¦¬íŒ¹
     public Vector3 spawnPoint;
 
-    public int spawnEnemies = 0; //»ı¼ºµÈ Àû ¼ö
-    public int activeEnemies = 0;   // ÇöÀç ÇÊµå¿¡ ³²¾Æ ÀÖ´Â ÀûÀÇ ¼ö
+    public int spawnEnemies = 0; //ìƒì„±ëœ ì  ìˆ˜
+    public int activeEnemies = 0;   // í˜„ì¬ í•„ë“œì— ë‚¨ì•„ ìˆëŠ” ì ì˜ ìˆ˜
 
     public delegate void WaveCompleted();
     public event WaveCompleted WaveClear;
@@ -56,7 +56,7 @@ public class WaveSpawner : MonoBehaviour
         en.setHP(HP);
     }
 
-    //currentWave °ª¿¡ µû¶ó ¿şÀÌºê¸¦ ¼ÒÈ¯ÇÑ´Ù.
+    //currentWave ê°’ì— ë”°ë¼ ì›¨ì´ë¸Œë¥¼ ì†Œí™˜í•œë‹¤.
     public void spawnWave(int no)
     {
         spawnEnemies = 0;
@@ -65,6 +65,7 @@ public class WaveSpawner : MonoBehaviour
         {
             case 1:
                 StartCoroutine(wave1.SpawnWave1());
+                Debug.Log("start!");
                 break;
             case 2:
                 StartCoroutine(wave2.SpawnWave2());
@@ -74,11 +75,12 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    public bool checkWaveFinished() //ÀüºÎ »ı¼ºµÇ°í ¸ğµÎ ÀâÀ¸¸é true ¹İÈ¯
+    public bool checkWaveFinished() //ì „ë¶€ ìƒì„±ë˜ê³  ëª¨ë‘ ì¡ìœ¼ë©´ true ë°˜í™˜
     {
         return (spawnEnemies == currentWaveEnemy[currentWave] && activeEnemies == 0);
     }
-    private void Start()
+
+    private void Awake()
     {
         if (instance == null) instance = this;
         HPCoeffecient = 1;
