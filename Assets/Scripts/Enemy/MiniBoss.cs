@@ -2,55 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceGolem : MonoBehaviour
+public class MiniBoss : MonoBehaviour
 {
     //벽에 가까이 붙으면 공격
     public EnemyStatus enemy;
-
-    public float changeInterval;                          // 방향 변경 간격
-    private float nextChangeTime = 0;                     // 다음 방향 변경 시간
-    private float[] offsets = {-1f, -0.5f, 0f, 0.5f, 1f}; // 좌우 이동 방향
-
-    private float minX = -12f;
-    private float maxX = 12f;
-
+    // Start is called before the first frame update
     private Animator motion;
     private float time;
     private float attackTime = 0f;
     bool isAttackFinished = false;
     private Collider coll;
-
-    void IceGolemMove()
+    void MiniBossMove()
     {
-        float time = Time.time;
-        // 벽에 도달했을 때마다 즉시 방향을 반전하도록 설정
-        if (transform.position.x <= minX && enemy.moveDirection.x < 0)
-        {
-            Debug.Log("Reached Left Boundary");
-            enemy.moveDirection.x = Mathf.Abs(enemy.moveDirection.x); // 오른쪽으로 이동
-            transform.position = new Vector3(minX, transform.position.y, transform.position.z); // 위치 보정
-        }
-        else if (transform.position.x >= maxX && enemy.moveDirection.x > 0)
-        {
-            Debug.Log("Reached Right Boundary");
-            enemy.moveDirection.x = -Mathf.Abs(enemy.moveDirection.x); // 왼쪽으로 이동
-            transform.position = new Vector3(maxX, transform.position.y, transform.position.z); // 위치 보정
-        }
-        // 일정 시간마다 이동 방향을 무작위로 변경 (벽에 도달하지 않은 경우)
-        else if (time >= nextChangeTime)
-        {
-            nextChangeTime = time + changeInterval;
-            enemy.moveDirection.x = offsets[Random.Range(0, offsets.Length)];
-        }
-
-        transform.Translate(new Vector3(enemy.moveDirection.x, 0, 1) * enemy.speed * Time.deltaTime);
-
-        // x 좌표가 범위를 벗어나지 않도록 제한
-        float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
-        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+        float time = Time.deltaTime;
+        transform.Translate(enemy.moveDirection * enemy.speed * time);
     }
 
-    void IceGolemAttack()
+
+    void MiniBossAttack()
     {
         if (motion.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
@@ -70,7 +39,10 @@ public class IceGolem : MonoBehaviour
             isAttackFinished = false;
             attackTime = 0;
         }
+
     }
+
+    // Update is called once per frame
 
     private void Awake()
     {
@@ -93,12 +65,12 @@ public class IceGolem : MonoBehaviour
 
         if (enemy._state == EnemyStatus.State.Move)
         {
-            IceGolemMove();
+            MiniBossMove();
         }
 
         if (enemy._state == EnemyStatus.State.Attack)
         {
-            IceGolemAttack();
+            MiniBossAttack();
         }
 
         if (enemy.currentHP <= 0)
@@ -107,13 +79,16 @@ public class IceGolem : MonoBehaviour
             motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
             coll.enabled = false;
+
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death"))
+        {
             WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
             Destroy(gameObject);
         }
-        
+
 
     }
 

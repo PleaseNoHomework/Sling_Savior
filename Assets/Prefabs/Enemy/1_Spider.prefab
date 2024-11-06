@@ -3143,7 +3143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 1
-  speed: 10
+  speed: 5
   maxHP: 200
   currentHP: 200
   itemFlag: 0

@@ -75,6 +75,7 @@ public class ghost : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
+            motion.Play("Death");
             motion.SetTrigger("DeathTrigger");
         }
 
