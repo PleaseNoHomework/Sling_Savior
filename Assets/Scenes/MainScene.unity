@@ -1730,6 +1730,7 @@ GameObject:
   - component: {fileID: 220110768}
   - component: {fileID: 220110767}
   - component: {fileID: 220110766}
+  - component: {fileID: 220110771}
   m_Layer: 5
   m_Name: DefaultUI
   m_TagString: Untagged
@@ -1843,6 +1844,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &220110771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220110765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd7c96a83ba2514a8d933fb9c7265a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHP: 0
+  waveUI: {fileID: 0}
 --- !u!1 &221979084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,6 +3719,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveText: {fileID: 1043882313}
   flag: 0
+  gameStartFlag: 0
+  gameOverFlag: 0
 --- !u!114 &499567394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8090,7 +8107,6 @@ GameObject:
   - component: {fileID: 1086367250}
   - component: {fileID: 1086367249}
   - component: {fileID: 1086367248}
-  - component: {fileID: 1086367247}
   - component: {fileID: 1086367246}
   m_Layer: 0
   m_Name: EventSystem
@@ -8111,24 +8127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe23ede1febff044b42523ce71294b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStartCanvas: {fileID: 0}
-  gamePlayUI: {fileID: 0}
+  gameStartCanvas: {fileID: 547695636}
+  gamePlayUI: {fileID: 220110765}
   initialCamera: {fileID: 285538811}
   mainCamera: {fileID: 1674026271}
   cameraMoveDuration: 2
---- !u!114 &1086367247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086367245}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd7c96a83ba2514a8d933fb9c7265a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHP: 4
+  waveUI: {fileID: 499567391}
 --- !u!114 &1086367248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9361,7 +9365,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1086367246}
         m_TargetAssemblyTypeName: GameStartManager, Assembly-CSharp
         m_MethodName: OnStartGameButtonClicked
         m_Mode: 1

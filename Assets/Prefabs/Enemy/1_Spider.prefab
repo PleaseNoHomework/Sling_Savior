@@ -3148,6 +3148,7 @@ MonoBehaviour:
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
   item: {fileID: 8057935317927651787, guid: 644f125c265a94be0896b72ec4c04e7d, type: 3}
+  time: 0
 --- !u!114 &8203969030494207537
 MonoBehaviour:
   m_ObjectHideFlags: 0

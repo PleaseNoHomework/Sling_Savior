@@ -31,17 +31,9 @@ public class EnemyStatus : MonoBehaviour
 
     public void destroyEnemy()
     {
-        //animationP pay or Particle
-        //finsihed, Destroy
-        if (currentHP <= 0 || time >= 3f) {
-            _state = State.Die;
-            if (itemFlag == 1) {
-                Instantiate(item, transform.position, Quaternion.identity);
-            }
-
-            
-        }
-        
+        if (currentHP <= 0) {
+            _state = State.Die;      
+        }      
     }
 
     public void setHP(float HP)
@@ -53,7 +45,7 @@ public class EnemyStatus : MonoBehaviour
 
     private void Start()
     {
-        _state = State.Move;
+        _state = State.Spawn;
         currentHP = maxHP;
         time = 0;
     }
@@ -66,10 +58,11 @@ public class EnemyStatus : MonoBehaviour
         {
             case EnemyStatus.State.Attack:
                 break;
-            case EnemyStatus.State.Die: //���� �� OnDestroyed �̺�Ʈ Ȱ��ȭ, ���⿡ �״� ��� + ����Ʈ �߰��ؾ� ��
-                OnDestroyed?.Invoke();
-                WaveSpawner.instance.activeEnemies--;
-                Destroy(gameObject);
+            case EnemyStatus.State.Die: //
+                if (itemFlag == 1)
+                {
+                    Instantiate(item, transform.position, Quaternion.identity);
+                }
                 break;
             default:
                 break;
