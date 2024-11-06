@@ -2728,6 +2728,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08a3d83a2192d43b8ba72cfbd6eb1bd5, type: 3}
+--- !u!1 &423588624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423588626}
+  - component: {fileID: 423588625}
+  m_Layer: 0
+  m_Name: Sling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &423588625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423588624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8eedfa532f21744920777e93e041fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 6643575566063146057, guid: 4033bd8d75590a14892e4e067131d0eb, type: 3}
+  pierceBall: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
+    type: 3}
+  ballSpawnPoint: {x: 0, y: 0, z: -25}
+  maxZ: -25
+  minZ: -30
+  maxX: 10
+  minX: -10
+--- !u!4 &423588626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423588624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.74, y: 0, z: -25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &444161181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12382,6 +12434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveText: {fileID: 1907147260}
   flag: 0
+  gameStartFlag: 0
   gameOverFlag: 0
 --- !u!114 &1885958333
 MonoBehaviour:
@@ -14057,3 +14110,4 @@ SceneRoots:
   - {fileID: 527461897}
   - {fileID: 1595340335}
   - {fileID: 175233785}
+  - {fileID: 423588626}
