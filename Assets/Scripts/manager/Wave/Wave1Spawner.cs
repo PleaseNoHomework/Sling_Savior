@@ -15,7 +15,7 @@ public class Wave1Spawner : MonoBehaviour
 
     public IEnumerator SpawnWave1()
     {
-        Vector3 spawnPos = new Vector3(-10, 2, 20);
+        Vector3 spawnPos = new Vector3(-10, 2, 30);
         Debug.Log("wave1 : " + (spawnStep + 1));
         while (spawnStep < 5)
         {
@@ -40,20 +40,20 @@ public class Wave1Spawner : MonoBehaviour
                     break;
 
                 case 2: // 세 번째 스폰: Slime Enemy (ZigzagEnemy) 2마리(양 옆) + Turtle Shell Enemy 1마리(가운데, flag 1)
-                    wave.spawnEnemy(new Vector3(-10, 0, 20), 3);
-                    wave.spawnItemEnemy(new Vector3(0, 0, 20), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 30), 3);
+                    wave.spawnItemEnemy(new Vector3(0, 0, 30), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 30), 3);
                     break;
 
                 case 3: // 네 번째 스폰: Sand Spider, Turtle Shell Enemy, Slime Enemy 각각 1마리
-                    wave.spawnEnemy(new Vector3(-10, 0, 20), 1);
-                    wave.spawnEnemy(new Vector3(0, 0, 20), 2);
-                    wave.spawnEnemy(new Vector3(10, 0, 20), 3);
+                    wave.spawnEnemy(new Vector3(-10, 0, 30), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 30), 2);
+                    wave.spawnEnemy(new Vector3(10, 0, 30), 3);
                     break;
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
                     //wave.setHP(1, 300);
-                    wave.spawnEnemy(new Vector3(0, 0, 20), 1);
+                    wave.spawnEnemy(new Vector3(0, 0, 30), 1);
                     wave.lastSpawnEnemyFlag = 1;
                     break;
             }

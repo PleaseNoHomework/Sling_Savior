@@ -101,7 +101,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (instance == null) instance = this;
         HPCoeffecient = 1;
-        currentWave = 5;
+        currentWave = 1;
     }
 
 }

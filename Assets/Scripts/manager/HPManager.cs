@@ -14,19 +14,18 @@ public class HPManager : MonoBehaviour
         {
             instance = this;
         }
-        baseHP = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (baseHP <= 0 && waveUIScript.instance.gameOverFlag == 0)
         {
             waveUIScript.instance.gameOverFlag = 1;
             waveUIScript.instance.setText("Game Over!");
             waveUI.SetActive(true);
             Time.timeScale = 0;
-        }*/
+        }
     }
 }
