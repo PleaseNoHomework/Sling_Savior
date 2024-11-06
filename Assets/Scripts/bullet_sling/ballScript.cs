@@ -76,7 +76,6 @@ public class ballScript : MonoBehaviour
                     slingManager.instance.shootFlag = 1; //쏘기 시작함
                     fireAudio.Play();
                     extraBall.instance.setDirection(-ballDirection);
-                    extraBall.instance.setDirection(-ballDirection);
                 }
                 else
                 {
@@ -144,11 +143,14 @@ public class ballScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
+        if (gameObject.CompareTag("PierceBullet"))
         {
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
+            {
+                Destroy(gameObject);
+            }
         }
+
         
         if(collision.gameObject.CompareTag("Wall"))
         {
