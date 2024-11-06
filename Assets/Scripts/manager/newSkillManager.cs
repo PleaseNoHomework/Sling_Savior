@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class newSkillManager : MonoBehaviour
 {
+    public GameObject skillSelectUI;
     public static newSkillManager instance;
 
     [Header("Skill Data")]
     public List<SkillData> skills;
     
-    public List<SkillData> acquiredSkills;      // È¹µæÇÑ ½ºÅ³ ¸ñ·Ï
+    public List<SkillData> acquiredSkills;      // íšë“í•œ ìŠ¤í‚¬ ëª©ë¡
     public int flag = 0;
+    public int getSkillFlag = 0;
     // Start is called before the first frame update
 
     private void Awake()
-    {
+    { 
         if (instance == null) instance = this;
+        acquiredSkills = new List<SkillData>();
+        resetSkill();
+        Debug.Log("ì´ˆê¸°í™”!");
+        
     }
 
     // Update is called once per frame
@@ -27,5 +33,26 @@ public class newSkillManager : MonoBehaviour
             slingManager.instance.setState();
             flag = 0;
         }
+
+        if (getSkillFlag == 1)
+        {
+            skillSelectUI.SetActive(true);
+        }
+
+        else if (getSkillFlag == 2)
+        {
+            skillSelectUI.SetActive(false);
+            getSkillFlag = 0;
+        }
+
     }
+
+    void resetSkill()
+    {
+        foreach (SkillData skill in skills)
+        {
+            skill.nowSkill = 0;
+        }
+    }
+
 }

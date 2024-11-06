@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 6.Multishot
   m_EditorClassIdentifier: 
   skillNo: 6
-  maxSkill: 0
+  maxSkill: 1
   nowSkill: 0
   skillName: 
   description: 

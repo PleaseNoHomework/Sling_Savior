@@ -62,6 +62,7 @@ public class EnemyStatus : MonoBehaviour
                 if (itemFlag == 1)
                 {
                     Instantiate(item, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
                 }
                 break;
             default:

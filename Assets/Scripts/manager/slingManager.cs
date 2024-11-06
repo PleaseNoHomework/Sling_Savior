@@ -23,13 +23,15 @@ public class slingManager : MonoBehaviour
         Debug.Log(damage + ", " + shootCoolTime);
     }
 
-
-    void Start()
+    private void Awake()
     {
-
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
         }
+    }
+    void Start()
+    {
         setState();
         //pierceFlag = 1;
     }
