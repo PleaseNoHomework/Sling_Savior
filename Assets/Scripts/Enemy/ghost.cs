@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class slime : MonoBehaviour
+public class ghost : MonoBehaviour
 {
     public EnemyStatus enemy;
 
@@ -11,15 +11,15 @@ public class slime : MonoBehaviour
     private float attackTime = 0f;
     bool isAttackFinished = false;
 
-    void slimeMove()
+    void ghostMove()
     {
         float time = Time.time;
-        float zigzag = Mathf.Sin(time * Mathf.PI);
-        enemy.moveDirection.x = zigzag;
+        float zigzag = Mathf.Sin(time * Mathf.PI) * -10.0f ;
+        enemy.moveDirection.y = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
     }
 
-    void slimeAttack()
+    void ghostAttack()
     {
         if (motion.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
@@ -62,12 +62,12 @@ public class slime : MonoBehaviour
 
         if (enemy._state == EnemyStatus.State.Move)
         {
-            slimeMove();
+            ghostMove();
         }
 
         if (enemy._state == EnemyStatus.State.Attack)
         {
-            slimeAttack();
+            ghostAttack();
         }
 
         if (enemy.currentHP <= 0)
