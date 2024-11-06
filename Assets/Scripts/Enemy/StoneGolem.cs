@@ -67,6 +67,7 @@ public class StoneGolem : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
     void Update()
     {
@@ -97,7 +98,11 @@ public class StoneGolem : MonoBehaviour
             motion.SetTrigger("DeathTrigger");
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+            Debug.Log(WaveSpawner.instance.activeEnemies + ", " + WaveSpawner.instance.lastSpawnEnemyFlag);
+            Destroy(gameObject);
+        } 
 
     }
 

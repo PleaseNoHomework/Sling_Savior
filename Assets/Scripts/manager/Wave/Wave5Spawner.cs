@@ -12,6 +12,7 @@ public class Wave5Spawner : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(0, 0, 20);
         wave.spawnEnemy(spawnPos, 9);
+        wave.lastSpawnEnemyFlag = 1;
 
         yield return new WaitForSeconds(spawnInterval);  // 다음 웨이브 대기시간
         yield break;

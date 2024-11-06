@@ -46,6 +46,7 @@ public class ghost : MonoBehaviour
     {
         motion = GetComponent<Animator>();
         time = 0;
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void Update()
@@ -77,7 +78,11 @@ public class ghost : MonoBehaviour
             motion.SetTrigger("DeathTrigger");
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+
+            Destroy(gameObject);
+        }
 
     }
 

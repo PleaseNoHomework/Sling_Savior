@@ -20,6 +20,11 @@ public class turtle : MonoBehaviour
     }
     // Start is called before the first frame update
 
+    private void Start()
+    {
+        gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -451,7 +451,7 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 100
   itemFlag: 0
-  moveDirection: {x: 0, y: 0, z: -1}
+  moveDirection: {x: 0, y: 0, z: 1}
   item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   time: 0
 --- !u!114 &-1036126276740151084

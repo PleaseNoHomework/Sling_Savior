@@ -47,6 +47,11 @@ public class slime : MonoBehaviour
         motion = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
     void Update()
     {
         time += Time.deltaTime;

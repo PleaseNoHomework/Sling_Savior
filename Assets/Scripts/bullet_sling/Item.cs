@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
             newSkillManager.instance.getSkillFlag = 1;
             Debug.Log("skills!");
             Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
-
     }
 }

@@ -92,7 +92,6 @@ public class ballScript : MonoBehaviour
         directionFlag = 0;
         spawnTime = 0f;
         availableTime = 0f;
-        availableFlag = 0;
     }
 
     // Update is called once per frame
@@ -113,17 +112,17 @@ public class ballScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
         {
-            if (gameObject.CompareTag("Bullet")) Destroy(gameObject);
-            else
-            {
-                availableFlag = 1;
-            }
+            Destroy(gameObject);
         }
         
         if(collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("wall");
             Destroy(gameObject);
+        }
+            
     }
 
     private Vector3 GetMouseWorldPosition()

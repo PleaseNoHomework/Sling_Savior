@@ -21,8 +21,6 @@ public class EnemyStatus : MonoBehaviour
     public Vector3 moveDirection = new Vector3(0,0,-1);
     public GameObject item;
 
-    public delegate void DestroyEvent();
-    public event DestroyEvent OnDestroyed;
     public float time;
     public void takeDamage(int damage)
     {
@@ -62,6 +60,7 @@ public class EnemyStatus : MonoBehaviour
                 if (itemFlag == 1)
                 {
                     Instantiate(item, transform.position, Quaternion.identity);
+                    itemFlag = 0;
                 }
                 break;
             default:

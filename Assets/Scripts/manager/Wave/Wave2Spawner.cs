@@ -62,6 +62,7 @@ public class Wave2Spawner : MonoBehaviour
                     //wave.setHP(3, 800)
                     wave.spawnEnemy(new Vector3(-5, 0, 10), 6);
                     wave.spawnEnemy(new Vector3(5, 0, 10), 6);
+                    wave.lastSpawnEnemyFlag = 1;
                     break;
             }
 

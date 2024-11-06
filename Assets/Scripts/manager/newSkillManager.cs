@@ -20,11 +20,6 @@ public class newSkillManager : MonoBehaviour
         if (instance == null) instance = this;
         acquiredSkills = new List<SkillData>();
         resetSkill();
-        Debug.Log("초기화!");
-        for(int i = 0; i < skills.Count; i++)
-        {
-            Debug.Log(skills[i].name);
-        }
     }
 
     // Update is called once per frame

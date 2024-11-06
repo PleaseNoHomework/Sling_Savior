@@ -11,8 +11,8 @@ public class IceGolem : MonoBehaviour
     private float nextChangeTime = 0;                     // 다음 방향 변경 시간
     private float[] offsets = {-1f, -0.5f, 0f, 0.5f, 1f}; // 좌우 이동 방향
 
-    private float minX = -15f;
-    private float maxX = 15f;
+    private float minX = -12f;
+    private float maxX = 12f;
 
     private Animator motion;
     private float time;
@@ -74,6 +74,7 @@ public class IceGolem : MonoBehaviour
     private void Awake()
     {
         motion = GetComponent<Animator>();
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
     void Update()
     {
@@ -104,7 +105,11 @@ public class IceGolem : MonoBehaviour
             motion.SetTrigger("DeathTrigger");
         }
 
-        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) Destroy(gameObject);
+        if (enemy._state == EnemyStatus.State.Die && IsAnimationFinished("Death")) {
+            WaveSpawner.instance.activeEnemies--;
+            Destroy(gameObject);
+        }
+        
 
     }
 
