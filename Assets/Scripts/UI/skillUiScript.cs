@@ -13,6 +13,7 @@ public class skillUiScript : MonoBehaviour
         int x = 0;
         foreach(int i in skillIndex)
         {
+            Debug.Log(i);
             buttons[x].onClick.RemoveAllListeners();
             buttons[x].onClick.AddListener(() => selectSkill(i));
             buttons[x].onClick.AddListener(() => resumeGame());
@@ -47,18 +48,6 @@ public class skillUiScript : MonoBehaviour
         Debug.Log("select : " + skillNo);
         newSkillManager.instance.skills[skillNo].nowSkill++;
         newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
-
-        /*
-        int index = newSkillManager.instance.acquiredSkills.FindIndex(skill => skill.skillNo == skillNo); //선택한 스킬 번호가 있는 인덱스, 없으면 -1 반환
-        if (index == -1)
-        {
-            newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
-        }
-        else
-        {
-            newSkillManager.instance.acquiredSkills[index].nowSkill++;
-            Debug.Log(newSkillManager.instance.acquiredSkills[index].nowSkill);
-        }*/
         newSkillManager.instance.flag = 1;
     }
 
