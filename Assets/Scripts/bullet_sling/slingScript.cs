@@ -70,7 +70,12 @@ public class slingScript : MonoBehaviour
     {
         slingmanager = slingManager.instance;
         shootTime = 0;
-        Instantiate(ball, ballSpawnPoint, Quaternion.identity);
+        if (slingmanager.pierceFlag == 0)
+            Instantiate(ball, ballSpawnPoint, Quaternion.identity);
+        else
+        {
+            Instantiate(pierceBall, ballSpawnPoint, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -81,15 +86,29 @@ public class slingScript : MonoBehaviour
         if (slingManager.instance.shootFlag == 1)
         {
             shootTime += Time.deltaTime;
-            if(shootTime > slingManager.instance.shootCoolTime)
+            if(shootTime > slingmanager.shootCoolTime)
             {
                 shootTime = 0;
-                slingManager.instance.shootFlag = 0;
-                if (slingManager.instance.pierceFlag == 0) 
+                slingmanager.shootFlag = 0;
+                if (slingmanager.pierceFlag == 1) 
+                    Instantiate(pierceBall, ballSpawnPoint, Quaternion.identity);
+                else if (slingmanager.multiFlag == 1)
+                {
+                    Vector3 newBallPos1 = ballSpawnPoint;
+                    Vector3 newBallPos2 = ballSpawnPoint;
+                    newBallPos1.x += 5f;
+                    newBallPos2.x -= 5f;
+                    GameObject leftBall = Instantiate(ball, newBallPos1, Quaternion.identity);
+                    GameObject rightBall = Instantiate(ball, newBallPos2, Quaternion.identity);
+
+                    leftBall.GetComponent<ballScript>().extraBall = 1;
+                    rightBall.GetComponent<ballScript>().extraBall = 1;
                     Instantiate(ball, ballSpawnPoint, Quaternion.identity);
+                    
+                }
                 else
                 {
-                    Instantiate(pierceBall, ballSpawnPoint, Quaternion.identity);
+                    Instantiate(ball, ballSpawnPoint, Quaternion.identity);
                 }
                     
             }

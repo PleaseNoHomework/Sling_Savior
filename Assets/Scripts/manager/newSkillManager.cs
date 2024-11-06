@@ -12,6 +12,7 @@ public class newSkillManager : MonoBehaviour
     
     public List<SkillData> acquiredSkills;      // 획득한 스킬 목록
     public int flag = 0;
+    public int specialFlag = 0;
     public int getSkillFlag = 0;
     // Start is called before the first frame update
 

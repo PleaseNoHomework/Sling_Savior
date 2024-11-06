@@ -66,6 +66,7 @@ public class Wave4Spawner : MonoBehaviour
                 case 7: // 여덟 번째 스폰: HP 800인 TurtleShell 2마리
                     wave.spawnEnemy(new Vector3(-5, 0, 10), 2);
                     wave.spawnEnemy(new Vector3(5, 0, 10), 2);
+                    wave.lastSpawnEnemyFlag = 1;
                     break;
             }
 

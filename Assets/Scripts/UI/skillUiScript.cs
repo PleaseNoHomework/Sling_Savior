@@ -34,8 +34,13 @@ public class skillUiScript : MonoBehaviour
             int randomIndex = Random.Range(0, newSkillManager.instance.skills.Count);
             if(!selectSkillNo.Contains(randomIndex) && newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
             {
-                selectSkillNo.Add(randomIndex);
-                i++;
+                bool isSpecial = newSkillManager.instance.specialFlag == 1 && (randomIndex == 2 || randomIndex == 5); //스페셜 이미 가지고 있는 경우
+                if (!isSpecial)
+                {
+                    selectSkillNo.Add(randomIndex);
+                    i++;
+                }
+
             }
             if (i >= 3) break;
         }

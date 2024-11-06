@@ -23,6 +23,8 @@ public class ballScript : MonoBehaviour
     public SphereCollider pierceCollider;
 
     public float maxX, minX, maxZ, minZ;
+    public int leftBall = 0;
+    public int rightBall = 0;
     void MovePos()
     {
         if(directionFlag == 0)
@@ -78,6 +80,20 @@ public class ballScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
+    /*
+    public void setDirection(Vector3 direction)
+    {
+        if (Input.GetMouseButtonUp(0) && mouseFlag == 1 &&  extraBall == 1)
+        {
+            // 공의 발사 방향을 설정
+            ballDirection = direction;
+            directionFlag = 1;
+
+        }
+
+    }*/
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,16 +113,19 @@ public class ballScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     { //shootFlag가 0일 때 조준 발사 가능, 발사 시 directionFlag = 1
-        if(slingManager.instance.shootFlag == 0) MovePos();
 
-        
+        if (slingManager.instance.shootFlag == 0) MovePos();
 
-        if(directionFlag == 1)
+
+
+        if (directionFlag == 1)
         {
-            transform.Translate(new Vector3(0,0,-1) * speed * Time.deltaTime);
+            transform.Translate(new Vector3(0, 0, -1) * speed * Time.deltaTime);
             spawnTime += Time.deltaTime;
             if (spawnTime > 5f) Destroy(gameObject);
         }
+
+
     }
 
     private void OnCollisionEnter(Collision collision)

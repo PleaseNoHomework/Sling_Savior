@@ -5052,6 +5052,7 @@ MonoBehaviour:
   shootCoolTime: 0
   damage: 0
   pierceFlag: 0
+  multiFlag: 0
   ballDirection: {x: 0, y: 0, z: 0}
   shootFlag: 0
   choiceFlag: 0
@@ -6571,10 +6572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8eedfa532f21744920777e93e041fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
+  ball: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
   speed: 0
-  pierceBall: {fileID: 1790242655991812945, guid: 3ea59f5fc0279ff41b245ff755bce9fb,
-    type: 3}
+  pierceBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
   ballSpawnPoint: {x: 0, y: 1, z: -25}
   maxZ: -25
   minZ: -30
@@ -27754,6 +27754,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45409ca2c864ada4ca9802e3dfec399a, type: 2}
   acquiredSkills: []
   flag: 0
+  specialFlag: 0
   getSkillFlag: 0
 --- !u!1 &2042825921
 GameObject:

@@ -7,7 +7,11 @@ public class slingManager : MonoBehaviour
     public static slingManager instance;
     public float shootCoolTime;
     public int damage;
+
+    
     public int pierceFlag = 0;
+    public int multiFlag = 0;
+
 
     public Vector3 ballDirection;
     public int shootFlag = 0;
@@ -21,6 +25,9 @@ public class slingManager : MonoBehaviour
         damage = 100 * (1 + newSkillManager.instance.skills[0].nowSkill);
         shootCoolTime = 1 * Mathf.Pow(0.8f, newSkillManager.instance.skills[1].nowSkill);
         Debug.Log(damage + ", " + shootCoolTime);
+
+        specialUp();
+
     }
 
     private void Awake()
@@ -28,30 +35,11 @@ public class slingManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        }
+        };
     }
     void Start()
     {
         setState();
-        //pierceFlag = 1;
-    }
-
-    private void Update()
-    {
-        if (choiceFlag == 1)
-        {
-            switch (skill.skillType)
-            {
-                case SkillType.Passive:
-                    passiveUp(skill.skillNo);
-                    break;
-                case SkillType.Special:
-                    specialUp(skill.skillNo);
-                    break;
-            }
-
-            choiceFlag = 0;
-        }
     }
 
 
@@ -76,19 +64,10 @@ public class slingManager : MonoBehaviour
         }
     }
 
-    public void specialUp(int skillNo)
+    public void specialUp()
     {
-        switch(skillNo)
-        {
-            case 5: //multiple shot?
-                break;
-            case 3: //pierce shot
-                pierceFlag = 1;
-                Debug.Log("Complete");
-                break;
-            default:
-                break;
-        }
+        if (newSkillManager.instance.skills[5].nowSkill == 1) { multiFlag = 1; newSkillManager.instance.specialFlag = 1; }
+        if (newSkillManager.instance.skills[2].nowSkill == 1) { pierceFlag = 1; newSkillManager.instance.specialFlag = 1; }
     }
 
 
