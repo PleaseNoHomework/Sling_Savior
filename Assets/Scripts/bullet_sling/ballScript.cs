@@ -9,10 +9,10 @@ public class ballScript : MonoBehaviour
     private Vector3 mousePos;
     private Vector3 startPos;
     private int mouseFlag = 0;
-    public float speed; //°ø ¼Óµµ
-    private int directionFlag; // À§Ä¡ Á¤º¸ º¸³¾ ¶§
-    public float spawnTime; //ÃÑ¾Ë ÀçÀåÀü
-    public float availableTime; //°üÅëÇÒ ¶§ Àá±ñ Ãæµ¹Á¦°Å
+    public float speed; //ï¿½ï¿½ ï¿½Óµï¿½
+    private int directionFlag; // ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    public float spawnTime; //ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float availableTime; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½
     public int availableFlag;
     public SphereCollider pierceCollider;
     void Move()

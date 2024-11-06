@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs; // 소환할 적 프리팹 리스트
+    public List<GameObject> enemyPrefabs;
     public int hp = 1500;
     public float speed;
-    public float moveRange;         // 좌우 이동 범위
-    public float spawnRate;          // 적 소환 주기
-
+    public float moveRange;
+    public float spawnRate;
     private Vector3 startPosition;
     private bool movingRight = true;      // 이동 방향 (좌/우)
 
@@ -75,18 +74,4 @@ public class Boss : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // 혹시 OnTrigger가 문제일까봐 OnCollision도 추가해둘게요
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Bullet")) // Bullet 태그의 발사체와 충돌 시
-    //    {
-    //        Bullet bullet = collision.gameObject.GetComponent<Bullet>(); // 발사체의 데미지 가져오기
-    //        if (bullet != null)
-    //        {
-    //            TakeDamage(bullet.damage);
-    //            Destroy(collision.gameObject); // 발사체 파괴
-    //        }
-    //    }
-    //}
 }

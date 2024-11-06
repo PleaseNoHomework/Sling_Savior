@@ -11,7 +11,10 @@ public class WaveSpawner : MonoBehaviour
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
     public Wave2Spawner wave2;           // Wave2Spawner 참조
-    
+    public Wave3Spawner wave3;           // Wave3Spawner 참조
+    public Wave4Spawner wave4;           // Wave4Spawner 참조
+    public Wave5Spawner wave5;           // Wave5Spawner 참조
+
     public List<int> currentWaveEnemy;
 
 
@@ -69,6 +72,18 @@ public class WaveSpawner : MonoBehaviour
                 break;
             case 2:
                 StartCoroutine(wave2.SpawnWave2());
+                break;
+            case 3:
+                StartCoroutine(wave3.SpawnWave3());
+                Debug.Log("Wave 3 시작");
+                break;
+            case 4:
+                StartCoroutine(wave4.SpawnWave4());
+                Debug.Log("Wave 4 시작");
+                break;
+            case 5:
+                StartCoroutine(wave5.SpawnWave5());
+                Debug.Log("Wave 5 시작");
                 break;
             default:
                 break;
