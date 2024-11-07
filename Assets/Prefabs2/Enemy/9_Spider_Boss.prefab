@@ -3144,13 +3144,14 @@ MonoBehaviour:
   _state: 1
   enemyNo: 8
   speed: 20
-  maxHP: 3000
-  currentHP: 3000
+  maxHP: 5000
+  currentHP: 5000
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
   item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   audios: {fileID: -8672360037808530376}
   time: 0
+  freezeFlag: 0
 --- !u!114 &804855277026619556
 MonoBehaviour:
   m_ObjectHideFlags: 0

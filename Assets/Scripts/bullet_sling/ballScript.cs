@@ -112,7 +112,13 @@ public class ballScript : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 180, 0);
         float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈
-        transform.localScale = new Vector3(size, size, size);
+        if (newSkillManager.instance.skills[2].nowSkill == 1)
+        {
+            transform.localScale = new Vector3(size * 3f, size * 3f, size);
+        }
+        else
+            transform.localScale = new Vector3(size, size, size);
+
 
 
         defaultPos = transform.position;
