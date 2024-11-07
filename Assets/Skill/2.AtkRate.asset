@@ -16,7 +16,7 @@ MonoBehaviour:
   maxSkill: 3
   nowSkill: 0
   skillName: FastShot
-  description: your attack rate get faster
+  description: Attack rate\nGet faster
   icon: {fileID: 21300000, guid: b513031855549ae41900ce1b0db22437, type: 3}
   skillType: 1
   isActive: 0

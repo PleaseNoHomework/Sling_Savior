@@ -14,7 +14,7 @@ public class EnemyStatus : MonoBehaviour
 
     public State _state;
     public int enemyNo;
-    public int speed;
+    public float speed;
     public float maxHP;
     public float currentHP;
     public int itemFlag;
@@ -22,6 +22,7 @@ public class EnemyStatus : MonoBehaviour
     public GameObject item;
     public AudioSource audios;
     public float time;
+    public int freezeFlag = 0;
     public void takeDamage(int damage)
     {
         currentHP -= damage;
@@ -75,6 +76,13 @@ public class EnemyStatus : MonoBehaviour
             audios.Play();
             Debug.Log(",,,");
             takeDamage(slingManager.instance.damage);
+
+            if(slingManager.instance.freezeFlag == 1 && freezeFlag ==0) //동상이 걸린다면
+            {
+                speed *= 0.7f;
+                freezeFlag = 1;
+            }
+
         }
     }
 

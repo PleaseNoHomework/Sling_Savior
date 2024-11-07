@@ -10,8 +10,7 @@ public class Wave5Spawner : MonoBehaviour
     {
         Debug.Log("Wave 5 시작: 최종 보스 생성");
 
-        wave.spawnEnemy(new Vector3(0, 0, 30), 9);
-        wave.lastSpawnEnemyFlag = 1;
+        wave.spawnEnemy(new Vector3(0, 0, 25), 9);
 
         yield return new WaitForSeconds(spawnInterval);  // 다음 웨이브 대기시간
         yield break;

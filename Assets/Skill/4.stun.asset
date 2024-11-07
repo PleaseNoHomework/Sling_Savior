@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4.stun
   m_EditorClassIdentifier: 
   skillNo: 4
-  maxSkill: 1
+  maxSkill: 0
   nowSkill: 0
   skillName: Stun
   description: Active/stun All enemy

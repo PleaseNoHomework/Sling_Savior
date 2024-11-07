@@ -143,7 +143,8 @@ public class ballScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (gameObject.CompareTag("PierceBullet"))
+
+        if (gameObject.CompareTag("Bullet"))
         {
             if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
             {

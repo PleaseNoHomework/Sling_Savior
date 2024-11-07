@@ -3,10 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public static SceneController instance;
     public string SceneName;
     // 특정 씬으로 전환하는 메서드
     public void LoadScene()
     {
+        
         SceneManager.LoadScene(SceneName);
     }
 
@@ -20,6 +22,11 @@ public class SceneController : MonoBehaviour
     public void LoadGameClearScene()
     {
         SceneManager.LoadScene("GameClearScene");
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 }
 

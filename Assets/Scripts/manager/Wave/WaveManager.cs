@@ -21,16 +21,19 @@ public class WaveManager: MonoBehaviour
         {
             Debug.Log("finished!");
             WaveSpawner.instance.lastSpawnEnemyFlag = 0;
-            waveUI.SetActive(true);
+            
             WaveSpawner.instance.currentWave++;
             waveUIScript.instance.flag = 1;
 
             if (WaveSpawner.instance.currentWave > 5)
             {
-                //GG~~~~소리 넣고싶은데
-                Time.timeScale = 0;
+                SceneController.instance.LoadGameClearScene();
             }
-
+            else
+            {
+                waveUI.SetActive(true);
+            }
+            
         }
 
         if(spawnFlag == 1)

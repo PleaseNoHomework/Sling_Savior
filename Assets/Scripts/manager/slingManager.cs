@@ -8,7 +8,7 @@ public class slingManager : MonoBehaviour
     public float shootCoolTime;
     public int damage;
 
-    
+    public int freezeFlag = 0;
     public int pierceFlag = 0;
     public int multiFlag = 0;
 
@@ -22,8 +22,10 @@ public class slingManager : MonoBehaviour
 
     public void setState()
     {
-        damage = 100 * (1 + newSkillManager.instance.skills[0].nowSkill);
-        shootCoolTime = 1 * Mathf.Pow(0.8f, newSkillManager.instance.skills[1].nowSkill);
+        damage = 100 + 75 * newSkillManager.instance.skills[0].nowSkill + 50 * newSkillManager.instance.skills[4].nowSkill;
+        shootCoolTime = 1 * Mathf.Pow(0.7f, newSkillManager.instance.skills[1].nowSkill);
+
+        freezeFlag = newSkillManager.instance.skills[4].nowSkill;
         Debug.Log(damage + ", " + shootCoolTime);
 
         specialUp();

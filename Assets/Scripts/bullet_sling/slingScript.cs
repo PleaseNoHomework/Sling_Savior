@@ -14,13 +14,6 @@ public class slingScript : MonoBehaviour
     private float shootTime;
     slingManager slingmanager;
 
-    private Vector3 ballDirection;
-    private Vector3 mouseDownPos;
-    private Vector3 mouseUpPos;
-    private Vector3 mousePos;
-    private int ready = 0;
-
-
 
     void Start()
     {

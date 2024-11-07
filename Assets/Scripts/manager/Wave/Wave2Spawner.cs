@@ -9,9 +9,7 @@ public class Wave2Spawner : MonoBehaviour
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
 
-    // GameManager에게 Wave2 종료를 알리기 위한 델리게이트와 이벤트
-    public delegate void WaveCompleted();
-    public event WaveCompleted OnWave2Completed;
+
 
     public IEnumerator SpawnWave2()
     {

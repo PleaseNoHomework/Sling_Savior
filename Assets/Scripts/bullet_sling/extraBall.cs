@@ -8,6 +8,7 @@ public class extraBall : MonoBehaviour
     public GameObject mainBall;
     public int flag;
     public float speed;
+    public float time;
     Vector3 direction;
     private AudioSource hitAudio;
     // Start is called before the first frame update
@@ -24,7 +25,8 @@ public class extraBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        time += Time.deltaTime;
+        if (time >= 5f) Destroy(gameObject);
         transform.Translate(direction * speed * Time.deltaTime);
     }
 

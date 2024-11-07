@@ -10,8 +10,8 @@ public class DefaultUIScript : MonoBehaviour
 
     public TMP_Text hpText;
     public TMP_Text waveText;
-    // Wave Á¤º¸
-    public Image[] skillIcons;       // ½ºÅ³¾ÆÀÌÄÚ¤¤
+    // Wave ì •ë³´
+    public Image[] skillIcons;       // ìŠ¤í‚¬ì•„ì´ì½”ã„´
 
     private HPManager hpManager;
     private GameManager gameManager;
@@ -25,30 +25,31 @@ public class DefaultUIScript : MonoBehaviour
         skillManager = newSkillManager.instance;
         waveSpawner = WaveSpawner.instance;
 
-        // UI ÃÊ±âÈ­
-        UpdateHP();
+        // UI ì´ˆê¸°í™”
+        //UpdateHP();
         UpdateWave();
         UpdateSkillIcons();
     }
 
     void Update()
     {
-        UpdateHP();
+        //UpdateHP();
         UpdateWave();
         UpdateSkillIcons();
     }
 
+    /*
     private void UpdateHP()
     {
         if (hpManager != null)
         {
             hpText.text = $"{hpManager.baseHP}/5";
         }
-    }
+    }*/
 
     private void UpdateWave()
     {
-        // GameManager¿¡¼­ currentWave °ªÀ» ¹Þ¾Æ¿Í¼­ ÅØ½ºÆ®¿¡ ¹Ý¿µ
+        // GameManagerì—ì„œ currentWave ê°’ì„ ë°›ì•„ì™€ì„œ í…ìŠ¤íŠ¸ì— ë°˜ì˜
         if (waveSpawner != null)
         {
             waveText.text = $"{waveSpawner.currentWave}";
@@ -57,7 +58,7 @@ public class DefaultUIScript : MonoBehaviour
 
     private void UpdateSkillIcons()
     {
-        // È¹µæÇÑ ½ºÅ³ ¾ÆÀÌÄÜÀ» SkillManager¿¡¼­ ¹Þ¾Æ¿Í UI¿¡ ¾÷µ¥ÀÌÆ®
+        // íšë“í•œ ìŠ¤í‚¬ ì•„ì´ì½˜ì„ SkillManagerì—ì„œ ë°›ì•„ì™€ UIì— ì—…ë°ì´íŠ¸
         if (skillManager != null && skillIcons.Length > 0)
         {
             List<SkillData> acquiredSkills = skillManager.acquiredSkills;
@@ -66,12 +67,12 @@ public class DefaultUIScript : MonoBehaviour
             {
                 if (i < acquiredSkills.Count && acquiredSkills[i].icon != null)
                 {
-                    skillIcons[i].sprite = acquiredSkills[i].icon;     // ½ºÅ³ ¾ÆÀÌÄÜ ¼³Á¤
-                    skillIcons[i].gameObject.SetActive(true);          // ¾ÆÀÌÄÜ È°¼ºÈ­
+                    skillIcons[i].sprite = acquiredSkills[i].icon;     // ìŠ¤í‚¬ ì•„ì´ì½˜ ì„¤ì •
+                    skillIcons[i].gameObject.SetActive(true);          // ì•„ì´ì½˜ í™œì„±í™”
                 }
                 else
                 {
-                    skillIcons[i].gameObject.SetActive(false);         // ºó ½½·ÔÀº ºñÈ°¼ºÈ­
+                    skillIcons[i].gameObject.SetActive(false);         // ë¹ˆ ìŠ¬ë¡¯ì€ ë¹„í™œì„±í™”
                 }
             }
         }

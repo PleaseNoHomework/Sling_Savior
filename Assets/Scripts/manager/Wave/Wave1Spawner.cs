@@ -9,8 +9,6 @@ public class Wave1Spawner : MonoBehaviour
     public float spawnInterval = 5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
 
-    public delegate void WaveCompleted();
-    public event WaveCompleted OnWave1Completed;
 
 
     public IEnumerator SpawnWave1()
