@@ -1,52 +1,46 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class PauseManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;         // PausePanel, 일시정지 시 표시
-    public Image[] skillIcons;            // 스킬 아이콘을 표시할 Image 배열
-    private bool isPaused = false;
+    public static bool GameIsPaused = false;
+    public GameObject pauseMenuUI;
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
-        }
-    }
-
-    private void TogglePause()
-    {
-        isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
-
-        if (isPaused)
-        {
-            Time.timeScale = 0; // 일시정지
-            DisplaySkillIcons();
-        }
-        else
-        {
-            Time.timeScale = 1; // 일시정지 해제
-        }
-    }
-
-    private void DisplaySkillIcons()
-    {
-        List<SkillData> acquiredSkills = SkillManager.instance.acquiredSkills;
-
-        for (int i = 0; i < skillIcons.Length; i++)
-        {
-            if (i < acquiredSkills.Count && acquiredSkills[i].icon != null)
+            if (GameIsPaused)
             {
-                skillIcons[i].sprite = acquiredSkills[i].icon; // 스킬 아이콘 설정
-                skillIcons[i].gameObject.SetActive(true);
+                Resume();
             }
             else
             {
-                skillIcons[i].gameObject.SetActive(false); // 빈 슬롯은 비활성화
+                Pause();
             }
         }
+    }
+
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
