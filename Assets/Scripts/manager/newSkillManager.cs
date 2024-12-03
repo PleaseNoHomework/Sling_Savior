@@ -40,6 +40,9 @@ public class newSkillManager : MonoBehaviour
 
         else if (getSkillFlag == 2)
         {
+            //튜토리얼용
+            TutorialManager.instance.itemCount = 1;
+
             skillSelectUI.SetActive(false);
             getSkillFlag = 0;
         }

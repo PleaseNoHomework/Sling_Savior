@@ -20,7 +20,6 @@ public class waveUIScript : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        gameObject.SetActive(false);
         time = 0;
     }
     private void Update()

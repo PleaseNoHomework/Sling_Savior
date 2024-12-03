@@ -7,26 +7,21 @@ public class ballScript : MonoBehaviour
     public Camera mainCamera;
     private AudioSource fireAudio;
     private AudioSource drawAudio;
-    private AudioSource hitAudio;
     public Vector3 ballDirection;
     private Vector3 startPos;
     private Vector3 endPos;
     private Vector3 defaultPos;
 
-    public Vector3 rays = new Vector3(50,0,0);
-
     private int mouseFlag = 0;
     public float speed; //공 속도
     public int directionFlag; // 위치 정보 보낼 때
     public float spawnTime; //총알 재장전
-    public float availableTime; //관통할 때 잠깐 충돌제거
 
     private int soundFlag = 0;
     public int availableFlag;
-    public SphereCollider pierceCollider;
 
     public float maxX, minX, maxZ, minZ;
-    void MovePos() //방향 지정해주기
+    public void movePos() //방향 지정해주기
     {
         if(directionFlag == 0)
         {
@@ -46,7 +41,6 @@ public class ballScript : MonoBehaviour
 
                 if(pullPos.magnitude >= 0.1f && soundFlag == 0)
                 {
-                    //drawAudio.enabled = true;
                     drawAudio.Play();
                     soundFlag = 1;
                 }
@@ -58,22 +52,23 @@ public class ballScript : MonoBehaviour
             {
 
                 ballDirection = (endPos - startPos) * 0.05f;
-                Debug.Log(ballDirection);
-                Debug.Log(ballDirection.magnitude);
                 if (ballDirection.magnitude <= 0.5f && ballDirection.magnitude > 0.3f)
                 {
                     ballDirection = ballDirection.normalized * 0.5f;
                 }
-                else if (ballDirection.magnitude >= 1f)
+                else if (ballDirection.magnitude >= 3f)
                 {
-                    ballDirection = ballDirection.normalized;
+                    ballDirection = ballDirection.normalized * 3f;
                 }
                 mouseFlag = 0;
 
                 if (ballDirection.z < 0 && ballDirection.magnitude >= 0.3f)
                 {
+                    //튜토리얼
+                    TutorialManager.instance.ballCount++;
+
                     directionFlag = 1; //디렉션 정함
-                    slingManager.instance.shootFlag = 1; //쏘기 시작함
+                    slingScript.instance.shootFlag = 1;
                     fireAudio.Play();
                     extraBall.instance.setDirection(-ballDirection);
                 }
@@ -90,7 +85,7 @@ public class ballScript : MonoBehaviour
 
     }
 
-    void rotateBullet(Vector3 start, Vector3 end)
+    void rotateBullet(Vector3 start, Vector3 end) //조준할 때 객체 회전시키기
     {
         Vector3 rotates = end - start;
         float angle = Mathf.Atan2(rotates.x, rotates.z) * Mathf.Rad2Deg;
@@ -132,7 +127,7 @@ public class ballScript : MonoBehaviour
     void Update()
     { //shootFlag가 0일 때 조준 발사 가능, 발사 시 directionFlag = 1
 
-        if (slingManager.instance.shootFlag == 0) MovePos();
+        if (slingScript.instance.shootFlag == 0 && slingScript.instance.canShoot == 1) movePos();
 
 
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class slingScript : MonoBehaviour
 {
+    public static slingScript instance;
     public GameObject ball;
     public GameObject leftBall;
     public GameObject rightBall;
@@ -12,27 +13,34 @@ public class slingScript : MonoBehaviour
     public Vector3 ballSpawnPoint;
     public float maxZ, minZ, maxX, minX;
     private float shootTime;
-    slingManager slingmanager;
 
+    public int canShoot = 0; //게임이 시작되면 1로 바꿔준다. 그 전까지는 쏠 수 없다.
+    public int shootFlag = 0;
 
+    public slingManager slingmanager;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
     void Start()
     {
-        slingmanager = slingManager.instance;
         shootTime = 0;
-        Instantiate(ball, ballSpawnPoint, Quaternion.identity);
 
+        GameObject spawnBall = Instantiate(ball, ballSpawnPoint, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(slingmanager.shootFlag == 1)
+        if(shootFlag == 1 && canShoot == 1)
         {
+
             shootTime += Time.deltaTime;
             if (shootTime > slingmanager.shootCoolTime)
             {
                 shootTime = 0;
-                slingmanager.shootFlag = 0;
+                shootFlag = 0;
                 if (slingmanager.pierceFlag == 1)
                     Instantiate(pierceBall, ballSpawnPoint, Quaternion.identity);
                 else if (slingmanager.multiFlag == 1)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class slingManager : MonoBehaviour
 {
     public static slingManager instance;
+    public TutorialManager tutorialManager;
     public float shootCoolTime;
     public int damage;
 
@@ -14,7 +15,7 @@ public class slingManager : MonoBehaviour
 
 
     public Vector3 ballDirection;
-    public int shootFlag = 0;
+    
     public int choiceFlag = 0;
     public SkillData skill;
 
