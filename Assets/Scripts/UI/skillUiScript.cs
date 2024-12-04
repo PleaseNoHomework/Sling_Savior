@@ -97,6 +97,7 @@ public class skillUiScript : MonoBehaviour
                 bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 7 || randomIndex == 8 || randomIndex == 9); //액티브 이미 가지고 있는 경우
                 if (!isSpecial && !isActive)
                 {
+                    Debug.Log(randomIndex);
                     selectSkillNo.Add(randomIndex);
                     count++;
                 }

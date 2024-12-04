@@ -15,7 +15,7 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject tutorialEnemy; //허수아비
     public GameObject tutorialItem; //아이템
-    
+    public GameObject dragUI;
     TMP_Text texts;
     private float time = 0;
     private IEnumerator dragTutorial()
@@ -81,6 +81,8 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        texts = dragUI.GetComponent<TMP_Text>();
+        dragUI.SetActive(false);
     }
 
 
@@ -92,6 +94,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator tutorial()
     {
+        dragUI.SetActive(true);
         yield return StartCoroutine(dragTutorial());
         yield return StartCoroutine(shootTarget());
         yield return StartCoroutine(getItem());

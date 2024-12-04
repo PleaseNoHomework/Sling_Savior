@@ -17,6 +17,6 @@ MonoBehaviour:
   nowSkill: 1
   skillName: Attack
   description: Huge Attack
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 185a55bdc655ff04da30e7ae5d222dc3, type: 3}
   skillType: 0
   isActive: 0

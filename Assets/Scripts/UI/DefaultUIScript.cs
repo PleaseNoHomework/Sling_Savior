@@ -28,14 +28,12 @@ public class DefaultUIScript : MonoBehaviour
         // UI 초기화
         //UpdateHP();
         UpdateWave();
-        UpdateSkillIcons();
     }
 
     void Update()
     {
         //UpdateHP();
         UpdateWave();
-        UpdateSkillIcons();
     }
 
     /*
@@ -53,28 +51,6 @@ public class DefaultUIScript : MonoBehaviour
         if (waveSpawner != null)
         {
             waveText.text = $"{waveSpawner.currentWave}";
-        }
-    }
-
-    private void UpdateSkillIcons()
-    {
-        // 획득한 스킬 아이콘을 SkillManager에서 받아와 UI에 업데이트
-        if (skillManager != null && skillIcons.Length > 0)
-        {
-            List<SkillData> acquiredSkills = skillManager.acquiredSkills;
-
-            for (int i = 0; i < skillIcons.Length; i++)
-            {
-                if (i < acquiredSkills.Count && acquiredSkills[i].icon != null)
-                {
-                    skillIcons[i].sprite = acquiredSkills[i].icon;     // 스킬 아이콘 설정
-                    skillIcons[i].gameObject.SetActive(true);          // 아이콘 활성화
-                }
-                else
-                {
-                    skillIcons[i].gameObject.SetActive(false);         // 빈 슬롯은 비활성화
-                }
-            }
         }
     }
 }

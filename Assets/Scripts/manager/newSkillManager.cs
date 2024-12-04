@@ -16,6 +16,8 @@ public class newSkillManager : MonoBehaviour
     public int getSkillFlag = 0;
     public int activeFlag = 0;
     public int activeNo = 0;
+
+    public GameObject activeButton;
     // Start is called before the first frame update
 
     private void Awake()
@@ -44,7 +46,10 @@ public class newSkillManager : MonoBehaviour
         {
             //튜토리얼용
             TutorialManager.instance.itemCount = 1;
-
+            if (activeFlag == 1)
+            {
+                activeButton.SetActive(true);
+            }
             skillSelectUI.SetActive(false);
             getSkillFlag = 0;
         }

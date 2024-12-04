@@ -14,34 +14,35 @@ public class ActiveManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    public void activeActive()
     {
         if (newSkillManager.instance.activeFlag == 1 && coolFlag == 0)
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                coolFlag = 1;
-                switch (newSkillManager.instance.activeNo)
-                {
-                    case 7: //스턴
-                        Debug.Log("Stun!!!!!!!!!!!");
-                        StartCoroutine(Stun());
-                        break;
-                    case 8: //광역 대미지
-                        Debug.Log("Attack!!!!!!!!");
-                        StartCoroutine(Attack());
-                        
-                        break;
-                    case 9: //??
-                        break;
-                }                
-            }
-        }
 
+            coolFlag = 1;
+            switch (newSkillManager.instance.activeNo)
+            {
+                case 7: //스턴
+                    Debug.Log("Stun!!!!!!!!!!!");
+                    StartCoroutine(Stun());
+                    break;
+                case 8: //광역 대미지
+                    Debug.Log("Attack!!!!!!!!");
+                    StartCoroutine(Attack());
+
+                    break;
+                case 9: //??
+                    break;
+            }
+            
+        }
     }
+
 
     public IEnumerator Stun()
     {
+
         float time = 0;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); //모든 적들을 잠깐 멈추게 한다.
 
@@ -52,9 +53,6 @@ public class ActiveManager : MonoBehaviour
         }
         foreach (GameObject enemy in enemies)
         {
-            Vector3 abd = enemy.transform.position; //지상으로 옮겨주기
-            abd.y = 0;
-            enemy.transform.Translate(abd);
             // enemyScript 가져오기
             EnemyStatus script = enemy.GetComponent<EnemyStatus>();
 

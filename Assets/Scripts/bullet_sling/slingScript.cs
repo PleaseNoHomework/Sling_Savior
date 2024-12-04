@@ -26,7 +26,7 @@ public class slingScript : MonoBehaviour
     void Start()
     {
         shootTime = 0;
-
+        slingmanager = slingManager.instance;
         GameObject spawnBall = Instantiate(ball, ballSpawnPoint, Quaternion.identity);
     }
 
