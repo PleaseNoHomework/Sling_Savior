@@ -3,12 +3,15 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    public GameObject Hpbar; // Canvas 오브젝트
+    GameObject Hpbar; // Canvas 오브젝트
     private Slider healthSlider; // 실제 체력 Slider
-    public EnemyStatus enemyStatus; // Enemy 상태 정보
+    EnemyStatus enemyStatus; // Enemy 상태 정보
 
     void Start()
     {
+        Hpbar = gameObject.transform.Find("Hpbar").gameObject;
+
+        enemyStatus = GetComponent<EnemyStatus>();
         // Hpbar 아래에서 Slider 컴포넌트를 가져옴
         if (Hpbar != null)
         {
@@ -34,7 +37,7 @@ public class EnemyHealthBar : MonoBehaviour
             // 체력바 업데이트
             healthSlider.value = enemyStatus.currentHP;
 
-            Debug.Log($"Update - Current HP: {enemyStatus.currentHP}, Slider Value: {healthSlider.value}");
+            //Debug.Log($"Update - Current HP: {enemyStatus.currentHP}, Slider Value: {healthSlider.value}");
 
             // 체력이 0 이하일 때 체력바 비활성화
             if (enemyStatus.currentHP <= 0)

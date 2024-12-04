@@ -274,7 +274,9 @@ MonoBehaviour:
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: 1}
   item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
+  audios: {fileID: 0}
   time: 0
+  freezeFlag: 0
 --- !u!114 &1483421895378674746
 MonoBehaviour:
   m_ObjectHideFlags: 0
