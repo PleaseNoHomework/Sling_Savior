@@ -45,9 +45,9 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator shootTarget() //표적을 3번 맞추세요~
     {
-        Instantiate(tutorialEnemy, new Vector3(-10, 0, 20), Quaternion.identity);
-        Instantiate(tutorialEnemy, new Vector3(0, 0, 20), Quaternion.identity);
-        Instantiate(tutorialEnemy, new Vector3(10, 0, 20), Quaternion.identity);
+        Instantiate(tutorialEnemy, new Vector3(-10, 0, 10), Quaternion.Euler(new Vector3(0,180,0)));
+        Instantiate(tutorialEnemy, new Vector3(0, 0, 10), Quaternion.Euler(new Vector3(0, 180, 0)));
+        Instantiate(tutorialEnemy, new Vector3(10, 0, 10), Quaternion.Euler(new Vector3(0, 180, 0)));
         
         //if ~~~ 다 죽으면~~
         //flag = 1;
