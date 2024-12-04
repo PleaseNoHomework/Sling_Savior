@@ -42,7 +42,7 @@ public class skillUiScript : MonoBehaviour
     {
         ClearCreatedButtons();
         int i = 0;
-        foreach (int index in skillIndices)
+        foreach (int index in skillIndex)
         {
             SkillData skill = newSkillManager.instance.skills[index];
 
@@ -71,9 +71,9 @@ public class skillUiScript : MonoBehaviour
 
             // 새 버튼 클릭 이벤트 설정
             Button buttonComponent = newButton.GetComponent<Button>();
-            if(TutorialManager.instance.isTutorial == 0)
-                buttonComponent.onClick.AddListener(() => SelectSkill(index));
-            buttonComponent.onClick.AddListener(ResumeGame);
+            if(TutorialManager.instance.isTutorial == 1)
+                buttonComponent.onClick.AddListener(() => selectSkill(index));
+            buttonComponent.onClick.AddListener(() => resumeGame());
 
             // 생성된 버튼 리스트에 추가
             createdButtons.Add(newButton);

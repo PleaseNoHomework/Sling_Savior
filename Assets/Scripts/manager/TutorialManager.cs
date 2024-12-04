@@ -15,7 +15,6 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject tutorialEnemy; //허수아비
     public GameObject tutorialItem; //아이템
-    public GameObject dragUI; // 위에 나올 UI
     
     TMP_Text texts;
     private float time = 0;
@@ -23,7 +22,6 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("dragUI active");
         
-        dragUI.SetActive(true);
         //드래그를 3번 하세요 ~
 
         while (ballCount < 3)
@@ -85,12 +83,7 @@ public class TutorialManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        dragUI.SetActive(false);
-        texts = dragUI.GetComponent<TMP_Text>();
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -109,11 +102,6 @@ public class TutorialManager : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        dragUI.SetActive(false);
-
-
-        //여기에 본게임 시작 함수 넣기
-
     }
 
 }
