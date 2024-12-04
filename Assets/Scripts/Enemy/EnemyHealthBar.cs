@@ -18,10 +18,14 @@ public class EnemyHealthBar : MonoBehaviour
         if (enemyStatus != null && healthSlider != null)
         {
             // 초기 체력 설정
-            healthSlider.maxValue = enemyStatus.maxHP;
-            healthSlider.value = enemyStatus.currentHP;
+            healthSlider.maxValue = enemyStatus.maxHP; // maxValue를 설정
+            healthSlider.value = enemyStatus.currentHP; // 현재 체력 값 설정
         }
+        Debug.Log($"Start - Max HP: {enemyStatus.maxHP}, Current HP: {enemyStatus.currentHP}, Slider Max: {healthSlider.maxValue}, Slider Value: {healthSlider.value}");
+
     }
+
+
 
     void Update()
     {
@@ -30,11 +34,15 @@ public class EnemyHealthBar : MonoBehaviour
             // 체력바 업데이트
             healthSlider.value = enemyStatus.currentHP;
 
-            // Enemy가 죽으면 체력바를 비활성화
+            Debug.Log($"Update - Current HP: {enemyStatus.currentHP}, Slider Value: {healthSlider.value}");
+
+            // 체력이 0 이하일 때 체력바 비활성화
             if (enemyStatus.currentHP <= 0)
             {
                 Hpbar.SetActive(false);
             }
         }
     }
+
+
 }
