@@ -1,13 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SkillUiScript : MonoBehaviour
+using TMPro;
+public class skillUiScript : MonoBehaviour
 {
-    public static SkillUiScript instance;
-
-    [Header("UI References")]
+    public static skillUiScript instance;
     public List<Button> buttons; // 기존 버튼 리스트
     public GameObject activePrefab; // Active 타입 버튼 Prefab
     public GameObject passivePrefab; // Passive 타입 버튼 Prefab
@@ -15,11 +13,34 @@ public class SkillUiScript : MonoBehaviour
 
     private List<GameObject> createdButtons = new List<GameObject>(); // 생성된 버튼 관리 리스트
 
-    public void SetButtons(HashSet<int> skillIndices)
+    public void ClearCreatedButtons()
     {
-        // 이전에 생성된 버튼 제거
-        ClearCreatedButtons();
+        // 기존에 생성된 버튼 삭제
+        foreach (GameObject button in createdButtons)
+        {
+            Destroy(button);
+        }
+        createdButtons.Clear();
+    }
 
+    private GameObject GetButtonPrefabBySkillType(SkillType skillType)
+    {
+        switch (skillType)
+        {
+            case SkillType.Active:
+                return activePrefab;
+            case SkillType.Passive:
+                return passivePrefab;
+            case SkillType.Special:
+                return specialPrefab;
+            default:
+                return activePrefab; // 기본값
+        }
+    }
+
+    public void setButton(HashSet<int> skillIndex)
+    {
+        ClearCreatedButtons();
         int i = 0;
         foreach (int index in skillIndices)
         {
@@ -50,7 +71,8 @@ public class SkillUiScript : MonoBehaviour
 
             // 새 버튼 클릭 이벤트 설정
             Button buttonComponent = newButton.GetComponent<Button>();
-            buttonComponent.onClick.AddListener(() => SelectSkill(index));
+            if(TutorialManager.instance.isTutorial == 0)
+                buttonComponent.onClick.AddListener(() => SelectSkill(index));
             buttonComponent.onClick.AddListener(ResumeGame);
 
             // 생성된 버튼 리스트에 추가
@@ -58,81 +80,73 @@ public class SkillUiScript : MonoBehaviour
 
             i++;
         }
-    }
 
-    private GameObject GetButtonPrefabBySkillType(SkillType skillType)
-    {
-        switch (skillType)
+    }
+  
+    //해결
+    public HashSet<int> GetRandomSkillNo() {
+        HashSet<int> selectSkillNo = new HashSet<int>();
+        int count = 0;
+        while (true)
         {
-            case SkillType.Active:
-                return activePrefab;
-            case SkillType.Passive:
-                return passivePrefab;
-            case SkillType.Special:
-                return specialPrefab;
-            default:
-                return activePrefab; // 기본값
+            int randomIndex = Random.Range(0, newSkillManager.instance.skills.Count);
+            if(!selectSkillNo.Contains(randomIndex) && 
+                newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
+            {
+                bool isSpecial = newSkillManager.instance.specialFlag == 1 && (randomIndex == 5 || randomIndex == 2); //스페셜 이미 가지고 있는 경우
+                bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 7 || randomIndex == 8 || randomIndex == 9); //액티브 이미 가지고 있는 경우
+                if (!isSpecial && !isActive)
+                {
+                    selectSkillNo.Add(randomIndex);
+                    count++;
+                }
+
+            }
+            if (count >= 3) break;
         }
+        return selectSkillNo;
     }
 
-    public void ClearCreatedButtons()
+
+    //고른 스킬을 추가해줌 해결
+    public void selectSkill(int skillNo)
     {
-        // 기존에 생성된 버튼 삭제
-        foreach (GameObject button in createdButtons)
+        if (newSkillManager.instance.skills[skillNo].skillType == SkillType.Active) //액티브를 추가하였을 경우
         {
-            Destroy(button);
+            newSkillManager.instance.activeFlag = 1;
+            newSkillManager.instance.activeNo = skillNo; //사용할 액티브 스킬 넘버 => activeManager
+            Debug.Log("Add Active");
+            //액티브 버튼 추가하는 코드
         }
-        createdButtons.Clear();
-    }
 
-    public void SelectSkill(int skillNo)
-    {
-        SkillData selectedSkill = newSkillManager.instance.skills[skillNo];
-        selectedSkill.nowSkill++;
-        newSkillManager.instance.acquiredSkills.Add(selectedSkill);
-        Debug.Log($"Selected skill: {selectedSkill.skillName}");
+        else if (newSkillManager.instance.skills[skillNo].skillType == SkillType.Special) //스페셜 추가하였을 경우
+        {
+            newSkillManager.instance.specialFlag = 1;
+        }
+
+        Debug.Log("select : " + skillNo);
+        newSkillManager.instance.skills[skillNo].nowSkill++;
+        newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
         newSkillManager.instance.flag = 1;
     }
 
-    public void ResumeGame()
+    public void resumeGame()
     {
-        Debug.Log("Resuming game...");
-        Time.timeScale = 1f;
+        newSkillManager.instance.getSkillFlag = 2;
+        Debug.Log("resume Game");
+        Time.timeScale = 1;
+        
     }
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if(instance == null ) instance = this;
     }
 
     private void OnEnable()
     {
-        SetButtons(GetRandomSkillNo());
-        Time.timeScale = 0f;
-    }
-
-    public HashSet<int> GetRandomSkillNo()
-    {
-        HashSet<int> selectedSkillNo = new HashSet<int>();
-        int count = 0;
-
-        while (count < 3)
-        {
-            int randomIndex = Random.Range(0, newSkillManager.instance.skills.Count);
-
-            if (!selectedSkillNo.Contains(randomIndex) &&
-                newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
-            {
-                bool isSpecial = newSkillManager.instance.specialFlag == 1 &&
-                                 (randomIndex == 2 || randomIndex == 5); // Special 중복 방지
-
-                if (!isSpecial)
-                {
-                    selectedSkillNo.Add(randomIndex);
-                    count++;
-                }
-            }
-        }
-        return selectedSkillNo;
+            setButton(GetRandomSkillNo());          
+            Time.timeScale = 0;
+        
     }
 }
