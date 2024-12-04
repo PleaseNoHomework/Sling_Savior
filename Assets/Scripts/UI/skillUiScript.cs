@@ -134,6 +134,7 @@ public class skillUiScript : MonoBehaviour
     public void resumeGame()
     {
         newSkillManager.instance.getSkillFlag = 2;
+        
         Debug.Log("resume Game");
         Time.timeScale = 1;
         

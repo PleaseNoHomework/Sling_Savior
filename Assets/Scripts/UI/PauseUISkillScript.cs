@@ -17,22 +17,28 @@ public class PauseUISkillScript : MonoBehaviour
     public TMP_Text uniqueName;
     public TMP_Text uniqueText;
 
-
-    public GameObject passivePanel;
     public GameObject uniquePanel;
     private newSkillManager skillManager;
     List<SkillData> acquiredSkills;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+    }
+
     void Start()
     {
         skillManager = newSkillManager.instance;
+        for (int i = 0; i < 6; i++)
+        {
+            passiveIcons[i].gameObject.SetActive(false);
+        }
 
-        activePanel.SetActive(false);
-        uniquePanel.SetActive(false);
     }
 
-    void updatePanel()
+    public void updatePanel()
     {
+        Debug.Log("check Skilll");
         acquiredSkills = skillManager.acquiredSkills;
         updateActive();
         updatePassive();
@@ -47,29 +53,32 @@ public class PauseUISkillScript : MonoBehaviour
         {
             if (skill.skillType == SkillType.Active)
             {
+                activePanel.SetActive(true);
                 activeImage.sprite = skill.icon;
                 activeName.text = skill.skillName;
                 activeText.text = skill.description;
-                activePanel.SetActive(true);
+                
             }
-            break;
         }
         
     }
 
     void updatePassive()
     {
-        for (int i = 0; i < passiveIcons.Length; i++)
+        int x = 0;
+        for (int i = 0; i < acquiredSkills.Count; i++)
         {
-            if (i < acquiredSkills.Count && acquiredSkills[i].icon != null && acquiredSkills[i].skillType == SkillType.Passive)
+            if (acquiredSkills[i].skillType == SkillType.Passive)
             {
-                passiveIcons[i].sprite = acquiredSkills[i].icon;     // 스킬 아이콘 설정
-                passiveIcons[i].gameObject.SetActive(true);          // 아이콘 활성화
+                passiveIcons[x].gameObject.SetActive(true);          // 아이콘 활성화
+                passiveIcons[x].sprite = acquiredSkills[i].icon;     // 스킬 아이콘 설정
+                
+                x++;
             }
-            else
-            {
-                passiveIcons[i].gameObject.SetActive(false);         // 빈 슬롯은 비활성화
-            }
+        }
+        for (int i = x; i < passiveIcons.Length; i++)
+        {
+            passiveIcons[i].gameObject.SetActive(false);
         }
     }
 
@@ -77,14 +86,14 @@ public class PauseUISkillScript : MonoBehaviour
     {
         foreach (SkillData skill in acquiredSkills)
         {
-            if (skill.skillType == SkillType.Active)
+            if (skill.skillType == SkillType.Special)
             {
+                uniquePanel.SetActive(true);
                 uniqueImage.sprite = skill.icon;
                 uniqueName.text = skill.skillName;
                 uniqueText.text = skill.description;
-                uniquePanel.SetActive(true);
+                
             }
-            break;
         }
     }
 }
