@@ -14,7 +14,8 @@ public class skillUiScript : MonoBehaviour
         foreach(int i in skillIndex)
         {
             buttons[x].onClick.RemoveAllListeners();
-            buttons[x].onClick.AddListener(() => selectSkill(i));
+            if (TutorialManager.instance.isTutorial == 1) //튜토리얼일 때만 추가하기
+                buttons[x].onClick.AddListener(() => selectSkill(i));
             buttons[x].onClick.AddListener(() => resumeGame());
             SkillData skill = newSkillManager.instance.skills[i];
             buttons[x].transform.Find("SkillIcon").GetComponent<Image>().sprite = skill.icon;

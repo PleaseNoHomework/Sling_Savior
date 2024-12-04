@@ -155,13 +155,10 @@ MonoBehaviour:
   mainCamera: {fileID: 2760933407646787068, guid: 518b415c99124b24ea5f3c2a17cda59a,
     type: 3}
   ballDirection: {x: 0, y: 0, z: 0}
-  rays: {x: 50, y: 0, z: 0}
-  speed: 20
+  speed: 40
   directionFlag: 0
   spawnTime: 0
-  availableTime: 0
   availableFlag: 0
-  pierceCollider: {fileID: 0}
   maxX: 5
   minX: -5
   maxZ: -25

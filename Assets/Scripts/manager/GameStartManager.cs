@@ -12,6 +12,8 @@ public class GameStartManager : MonoBehaviour
     public float cameraMoveDuration = 2.0f; // 카메라 이동 시간
     public GameObject waveUI;
 
+    public BGMManager bgmManager;
+
     public TutorialManager tutorialManager;
     private void Start()
     {
@@ -38,6 +40,11 @@ public class GameStartManager : MonoBehaviour
         yield return moveCamera();
 
         yield return tutorialManager.tutorial();
+        defaultUI.SetActive(true);                 // 게임 플레이 UI 활성화              
+        waveUI.SetActive(true);
+        bgmManager.playInGameBGM();
+        Debug.Log("Camera transition completed");
+
     }
 
 
@@ -72,8 +79,7 @@ public class GameStartManager : MonoBehaviour
         defaultUI.SetActive(true);                 // 게임 플레이 UI 활성화              
         waveUI.SetActive(true);
         Debug.Log("Camera transition completed");
-
-        yield return null;
+        bgmManager.playInGameBGM();
     }
 
 }

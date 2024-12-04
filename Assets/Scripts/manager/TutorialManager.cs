@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     public int ballCount = 0; //첫번째 튜토리얼 3번 쏘면 다음(허수아비소환)으로 넘어감
     public int targetCount = 0; //두번째 튜토리얼 3명 죽이면 다음(아이템 소환, 아이템 획득)으로 넘어감
     public int itemCount = 0; //세번째 튜토리얼 아이템 먹으면 본게임 시작
+    public int isTutorial = 0;
 
     public GameObject tutorialEnemy; //허수아비
     public GameObject tutorialItem; //아이템
@@ -20,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     private float time = 0;
     private IEnumerator dragTutorial()
     {
+        isTutorial = 1;
         Debug.Log("dragUI active");
         
         dragUI.SetActive(true);

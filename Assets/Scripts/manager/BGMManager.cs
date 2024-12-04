@@ -4,6 +4,7 @@ public class BGMManager : MonoBehaviour
 {
     public AudioSource startingBGM; // 스타팅 브금 오디오 소스
     public AudioSource inGameBGM;   // 인게임 브금 오디오 소스
+
     private void Start()
     {
         startingBGM.loop = true;
@@ -13,7 +14,8 @@ public class BGMManager : MonoBehaviour
         inGameBGM.Stop();
     }
 
-    public void OnGameStartButtonClicked()
+
+    public void playInGameBGM()
     {
         if (startingBGM.isPlaying)
         {
