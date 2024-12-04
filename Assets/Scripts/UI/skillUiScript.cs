@@ -13,8 +13,13 @@ public class SkillUiScript : MonoBehaviour
     public GameObject passivePrefab; // Passive 타입 버튼 Prefab
     public GameObject specialPrefab; // Special 타입 버튼 Prefab
 
+    private List<GameObject> createdButtons = new List<GameObject>(); // 생성된 버튼 관리 리스트
+
     public void SetButtons(HashSet<int> skillIndices)
     {
+        // 이전에 생성된 버튼 제거
+        ClearCreatedButtons();
+
         int i = 0;
         foreach (int index in skillIndices)
         {
@@ -48,6 +53,9 @@ public class SkillUiScript : MonoBehaviour
             buttonComponent.onClick.AddListener(() => SelectSkill(index));
             buttonComponent.onClick.AddListener(ResumeGame);
 
+            // 생성된 버튼 리스트에 추가
+            createdButtons.Add(newButton);
+
             i++;
         }
     }
@@ -65,6 +73,16 @@ public class SkillUiScript : MonoBehaviour
             default:
                 return activePrefab; // 기본값
         }
+    }
+
+    public void ClearCreatedButtons()
+    {
+        // 기존에 생성된 버튼 삭제
+        foreach (GameObject button in createdButtons)
+        {
+            Destroy(button);
+        }
+        createdButtons.Clear();
     }
 
     public void SelectSkill(int skillNo)
@@ -101,25 +119,20 @@ public class SkillUiScript : MonoBehaviour
         while (count < 3)
         {
             int randomIndex = Random.Range(0, newSkillManager.instance.skills.Count);
-            SkillData skill = newSkillManager.instance.skills[randomIndex];
 
-            // 이미 선택된 스킬인지 확인
-            if (!selectedSkillNo.Contains(randomIndex) && skill.nowSkill < skill.maxSkill)
+            if (!selectedSkillNo.Contains(randomIndex) &&
+                newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
             {
-                bool isSpecial = newSkillManager.instance.specialFlag == 1 && skill.skillType == SkillType.Special;
-                bool isActive = newSkillManager.instance.acquiredSkills.Exists(s => s.skillType == SkillType.Active);
+                bool isSpecial = newSkillManager.instance.specialFlag == 1 &&
+                                 (randomIndex == 2 || randomIndex == 5); // Special 중복 방지
 
-                // Special이나 Active 중복 방지
-                if (!isSpecial && !isActive)
+                if (!isSpecial)
                 {
                     selectedSkillNo.Add(randomIndex);
                     count++;
                 }
             }
         }
-
-
         return selectedSkillNo;
     }
-
 }
