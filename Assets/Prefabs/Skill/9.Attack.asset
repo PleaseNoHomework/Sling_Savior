@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab84a7a9141ba83498a73c564f6a2a07, type: 3}
-  m_Name: New Skill
+  m_Name: 9.Attack
   m_EditorClassIdentifier: 
   skillNo: 8
-  maxSkill: 0
-  nowSkill: 0
-  skillName: 
-  description: 
+  maxSkill: 1
+  nowSkill: 1
+  skillName: Attack
+  description: Huge Attack
   icon: {fileID: 0}
   skillType: 0
   isActive: 0

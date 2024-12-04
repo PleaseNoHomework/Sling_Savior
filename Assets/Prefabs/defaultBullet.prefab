@@ -154,6 +154,7 @@ MonoBehaviour:
   mainCamera: {fileID: 2760933407646787068, guid: 518b415c99124b24ea5f3c2a17cda59a,
     type: 3}
   ballDirection: {x: 0, y: 0, z: 0}
+  hit: {fileID: 3254359130768213589, guid: 2dda410a6e4f7144a90ec42e670fb2c0, type: 3}
   speed: 40
   directionFlag: 0
   spawnTime: 0

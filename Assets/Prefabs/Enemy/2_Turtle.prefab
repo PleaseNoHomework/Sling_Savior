@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 2
-  speed: 8
+  speed: 4
   maxHP: 100
   currentHP: 100
   itemFlag: 0
@@ -674,6 +674,7 @@ MonoBehaviour:
   item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
   audios: {fileID: -1491493361217088380}
   time: 0
+  freezeFlag: 0
 --- !u!114 &-3004298352607292144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5c46cce60ae5e4e860177c98f0cb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAudio: {fileID: 0}
   enemy: {fileID: 5125234833651712308}
   acc: 5
   nowSpeed: 5

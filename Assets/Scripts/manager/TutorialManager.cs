@@ -21,7 +21,6 @@ public class TutorialManager : MonoBehaviour
     private float time = 0;
     private IEnumerator dragTutorial()
     {
-        isTutorial = 1;
         Debug.Log("dragUI active");
         
         dragUI.SetActive(true);

@@ -34,8 +34,9 @@ public class skillUiScript : MonoBehaviour
             int randomIndex = Random.Range(0, newSkillManager.instance.skills.Count);
             if(!selectSkillNo.Contains(randomIndex) && newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
             {
-                bool isSpecial = newSkillManager.instance.specialFlag == 1 && (randomIndex == 2 || randomIndex == 5); //스페셜 이미 가지고 있는 경우
-                if (!isSpecial)
+                bool isSpecial = newSkillManager.instance.specialFlag == 1 && (randomIndex == 5 || randomIndex == 2); //스페셜 이미 가지고 있는 경우
+                bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 7 || randomIndex == 8 || randomIndex == 9); //액티브 이미 가지고 있는 경우
+                if (!isSpecial && !isActive)
                 {
                     selectSkillNo.Add(randomIndex);
                     i++;
@@ -50,6 +51,19 @@ public class skillUiScript : MonoBehaviour
 
     public void selectSkill(int skillNo)
     {
+        if (newSkillManager.instance.skills[skillNo].skillType == SkillType.Active) //액티브를 추가하였을 경우
+        {
+            newSkillManager.instance.activeFlag = 1;
+            newSkillManager.instance.activeNo = skillNo; //사용할 액티브 스킬 넘버 => activeManager
+            Debug.Log("Add Active");
+            //액티브 버튼 추가하는 코드
+        }
+
+        else if (newSkillManager.instance.skills[skillNo].skillType == SkillType.Special) //스페셜 추가하였을 경우
+        {
+            newSkillManager.instance.specialFlag = 1;
+        }
+
         Debug.Log("select : " + skillNo);
         newSkillManager.instance.skills[skillNo].nowSkill++;
         newSkillManager.instance.acquiredSkills.Add(newSkillManager.instance.skills[skillNo]);
