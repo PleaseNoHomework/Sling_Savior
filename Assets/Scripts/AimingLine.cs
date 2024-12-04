@@ -2,31 +2,21 @@ using UnityEngine;
 
 public class AimingLine : MonoBehaviour
 {
-    public Transform slingshot;  // 새총의 위치
-    public Transform targetPoint;  // 조준 끝 지점 (예: 마우스 위치)
-
     private LineRenderer lineRenderer;
 
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-    }
+        // LineRenderer 컴포넌트 추가
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
 
-    void Update()
-    {
-        if (Input.GetMouseButton(0))  // 마우스 왼쪽 버튼 클릭 중
-        {
-            Vector3 start = slingshot.position;
-            Vector3 end = targetPoint.position;
-
-            // LineRenderer의 시작점과 끝점 설정
-            lineRenderer.SetPosition(0, start);  // 시작점
-            lineRenderer.SetPosition(1, end);   // 끝점
-        }
-        else
-        {
-            // 마우스를 떼면 조준선을 숨김
-            lineRenderer.enabled = false;
-        }
+        // LineRenderer 설정
+        lineRenderer.positionCount = 2; // 시작점과 끝점 설정
+        lineRenderer.startWidth = 0.1f; // 선의 시작 두께
+        lineRenderer.endWidth = 0.1f;   // 선의 끝 두께
+        lineRenderer.useWorldSpace = true; // 월드 좌표계 기준 사용
+        lineRenderer.material = new Material(Shader.Find("Unlit/Color")); // 색깔 설정
+        lineRenderer.startColor = Color.green; // 시작 색상
+        lineRenderer.endColor = Color.green;   // 끝 색상
+        lineRenderer.enabled = false;          // 기본적으로 비활성화
     }
 }
