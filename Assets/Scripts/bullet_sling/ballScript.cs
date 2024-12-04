@@ -11,25 +11,29 @@ public class ballScript : MonoBehaviour
     private Vector3 startPos;
     private Vector3 endPos;
     private Vector3 defaultPos;
+
     private int mouseFlag = 0;
-    public float speed; //공 속도
+    public float speed; // 공 속도
     public int directionFlag; // 위치 정보 보낼 때
-    public float spawnTime; //총알 재장전
+    public float spawnTime; // 총알 재장전
 
     private int soundFlag = 0;
     public int availableFlag;
 
     public float maxX, minX, maxZ, minZ;
-    public void movePos() //방향 지정해주기
+
+    // LineRenderer 추가
+    private LineRenderer aimingLine;
+
+    public void movePos() // 방향 지정해주기
     {
-        if(directionFlag == 0)
+        if (directionFlag == 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 startPos = GetMouseWorldPosition();
                 mouseFlag = 1;
             }
-
 
             if (mouseFlag == 1 && Input.GetMouseButton(0))
             {
@@ -38,19 +42,21 @@ public class ballScript : MonoBehaviour
                 Vector3 pullPos = -(endPos - startPos) * 0.1f;
                 transform.position = (defaultPos - pullPos);
 
-                if(pullPos.magnitude >= 0.1f && soundFlag == 0)
+                // 조준선 업데이트
+                UpdateAimingLine(defaultPos, defaultPos - ballDirection.normalized * 25f); // 방향을 반대로 설정
+                ballDirection = (endPos - startPos).normalized; // 방향 갱신
+
+                if (pullPos.magnitude >= 0.1f && soundFlag == 0)
                 {
                     drawAudio.Play();
                     soundFlag = 1;
                 }
-
-
-
             }
-            if(Input.GetMouseButtonUp(0) && mouseFlag == 1)
-            {
 
+            if (Input.GetMouseButtonUp(0) && mouseFlag == 1)
+            {
                 ballDirection = (endPos - startPos) * 0.05f;
+
                 if (ballDirection.magnitude <= 0.5f && ballDirection.magnitude > 0.3f)
                 {
                     ballDirection = ballDirection.normalized * 0.5f;
@@ -59,14 +65,18 @@ public class ballScript : MonoBehaviour
                 {
                     ballDirection = ballDirection.normalized * 3f;
                 }
+
                 mouseFlag = 0;
+
+                // 조준선 숨기기
+                aimingLine.enabled = false;
 
                 if (ballDirection.z < 0 && ballDirection.magnitude >= 0.3f)
                 {
                     //튜토리얼
                     TutorialManager.instance.ballCount++;
 
-                    directionFlag = 1; //디렉션 정함
+                    directionFlag = 1; // 방향 설정
                     slingScript.instance.shootFlag = 1;
                     fireAudio.Play();
                     extraBall.instance.setDirection(-ballDirection);
@@ -75,16 +85,12 @@ public class ballScript : MonoBehaviour
                 {
                     transform.position = defaultPos;
                     transform.rotation = Quaternion.Euler(0, 180, 0);
-                    
                 }
-
-                
             }
         }
-
     }
 
-    void rotateBullet(Vector3 start, Vector3 end) //조준할 때 객체 회전시키기
+    void rotateBullet(Vector3 start, Vector3 end) // 조준할 때 객체 회전시키기
     {
         Vector3 rotates = end - start;
         float angle = Mathf.Atan2(rotates.x, rotates.z) * Mathf.Rad2Deg;
@@ -97,7 +103,17 @@ public class ballScript : MonoBehaviour
         directionFlag = 1;
     }
 
-    // Start is called before the first frame update
+    // 조준선을 업데이트하는 함수
+    void UpdateAimingLine(Vector3 start, Vector3 end)
+    {
+        if (aimingLine != null)
+        {
+            aimingLine.enabled = true;
+            aimingLine.SetPosition(0, start); // 시작점
+            aimingLine.SetPosition(1, end);   // 끝점
+        }
+    }
+
     void Start()
     {
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -113,22 +129,32 @@ public class ballScript : MonoBehaviour
         else
             transform.localScale = new Vector3(size, size, size);
 
-
-
         defaultPos = transform.position;
 
         ballDirection = Vector3.zero;
         directionFlag = 0;
         spawnTime = 0f;
+
+        // LineRenderer 초기화
+        aimingLine = GetComponent<LineRenderer>();
+        if (aimingLine == null)
+        {
+            aimingLine = gameObject.AddComponent<LineRenderer>();
+        }
+
+        // LineRenderer 설정
+        aimingLine.positionCount = 2;
+        aimingLine.startWidth = 0.05f;
+        aimingLine.endWidth = 0.05f;
+        aimingLine.useWorldSpace = true;
+        aimingLine.material = new Material(Shader.Find("Unlit/Color"));
+        aimingLine.material.color = Color.green;
+        aimingLine.enabled = false; // 초기 상태에서 비활성화
     }
 
-    // Update is called once per frame
     void Update()
-    { //shootFlag가 0일 때 조준 발사 가능, 발사 시 directionFlag = 1
-
+    {//shootFlag가 0일 때 조준 발사 가능, 발사 시 directionFlag = 1
         if (slingScript.instance.shootFlag == 0 && slingScript.instance.canShoot == 1) movePos();
-
-
 
         if (directionFlag == 1)
         {
@@ -136,13 +162,10 @@ public class ballScript : MonoBehaviour
             spawnTime += Time.deltaTime;
             if (spawnTime > 5f) Destroy(gameObject);
         }
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (gameObject.CompareTag("Bullet"))
         {
             if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
@@ -151,18 +174,15 @@ public class ballScript : MonoBehaviour
             }
         }
 
-        
-        if(collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("wall");
             Destroy(gameObject);
         }
-            
     }
 
     private Vector3 GetMouseWorldPosition()
     {
-
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);  // 마우스 위치를 기준으로 광선 쏘기
         Plane xzPlane = new Plane(Vector3.up, Vector3.zero);  // xz 평면 설정 (y축이 평면의 법선 벡터)
 
