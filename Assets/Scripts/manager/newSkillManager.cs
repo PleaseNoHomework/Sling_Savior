@@ -14,6 +14,8 @@ public class newSkillManager : MonoBehaviour
     public int flag = 0;
     public int specialFlag = 0;
     public int getSkillFlag = 0;
+    public int activeFlag = 0;
+    public int activeNo = 0;
     // Start is called before the first frame update
 
     private void Awake()

@@ -44,7 +44,7 @@ public class GameStartManager : MonoBehaviour
         waveUI.SetActive(true);
         bgmManager.playInGameBGM();
         Debug.Log("Camera transition completed");
-
+        TutorialManager.instance.isTutorial = 1;
     }
 
 
@@ -80,6 +80,7 @@ public class GameStartManager : MonoBehaviour
         waveUI.SetActive(true);
         Debug.Log("Camera transition completed");
         bgmManager.playInGameBGM();
+        TutorialManager.instance.isTutorial = 1;
     }
 
 }
