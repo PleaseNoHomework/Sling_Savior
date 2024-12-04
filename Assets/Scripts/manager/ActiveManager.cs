@@ -52,6 +52,9 @@ public class ActiveManager : MonoBehaviour
         }
         foreach (GameObject enemy in enemies)
         {
+            Vector3 abd = enemy.transform.position; //지상으로 옮겨주기
+            abd.y = 0;
+            enemy.transform.Translate(abd);
             // enemyScript 가져오기
             EnemyStatus script = enemy.GetComponent<EnemyStatus>();
 
