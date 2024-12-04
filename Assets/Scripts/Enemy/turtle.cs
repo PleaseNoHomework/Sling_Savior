@@ -6,6 +6,7 @@ public class turtle : MonoBehaviour
 {
     //벽에 돌진하여 폭발
 
+    public AudioSource hitAudio;
     public EnemyStatus enemy;
     public float acc;
     public float nowSpeed;
@@ -42,11 +43,9 @@ public class turtle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Base"))
         {
-            Debug.Log("Collision!");
+            hitAudio.Play();
             WaveSpawner.instance.activeEnemies--;
-            Debug.Log(WaveSpawner.instance.activeEnemies + " , " + WaveSpawner.instance.spawnEnemies);
-            //enemy._state = EnemyStatus.State.Die;
-            //HP--;
+            HPManager.instance.baseHP -= 2;
             Destroy(gameObject);
         }
     }

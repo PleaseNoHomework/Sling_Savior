@@ -10,6 +10,7 @@ public class spider : MonoBehaviour
     private Animator motion;
     private float time;
     private float attackTime = 0f;
+    private BoxCollider colls;
     bool isAttackFinished = false;
     void spiderMove()
     {
@@ -45,6 +46,7 @@ public class spider : MonoBehaviour
 
     private void Awake()
     {
+        colls = GetComponent<BoxCollider>();
         motion = GetComponent<Animator>();
     }
     void Update()
@@ -72,7 +74,8 @@ public class spider : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy._state = EnemyStatus.State.Die;
-            motion.SetTrigger("DeathTrigger");
+            motion.Play("Death");
+            colls.enabled = false;
             
         }
 
@@ -103,7 +106,6 @@ public class spider : MonoBehaviour
     {
         if(other.CompareTag("AttackPoint"))
         {
-            Debug.Log("ee");
             enemy._state = EnemyStatus.State.Attack;
             motion.SetTrigger("AttackTrigger");
         }

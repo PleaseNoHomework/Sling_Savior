@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: edf92e08fbab517449067fd9cddc8a66
-timeCreated: 1500052620
+guid: 56c471fa60a91ff47aad2dc54e7d196a
+timeCreated: 1500052760
 licenseType: Store
 NativeFormatImporter:
   mainObjectFileID: 100100000
@@ -12,5 +12,5 @@ AssetOrigin:
   productId: 95557
   packageName: Stones and buried treasure
   packageVersion: 1.0
-  assetPath: Assets/Stones_and_buried_treasure/Prefabs/Arrow.prefab
+  assetPath: Assets/Stones_and_buried_treasure/Prefabs/Stone_17.prefab
   uploadId: 189974

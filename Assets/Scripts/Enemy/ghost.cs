@@ -105,7 +105,8 @@ public class ghost : MonoBehaviour
     {
         if (other.CompareTag("AttackPoint"))
         {
-            Debug.Log("ee");
+            Debug.Log("change position");
+            transform.position = new Vector3(transform.position.x, 1, transform.position.z);
             enemy._state = EnemyStatus.State.Attack;
             motion.SetTrigger("AttackTrigger");
         }

@@ -14,7 +14,8 @@ public class BGMManager : MonoBehaviour
         inGameBGM.Stop();
     }
 
-    public void OnGameStartButtonClicked()
+
+    public void playInGameBGM()
     {
         if (startingBGM.isPlaying)
         {

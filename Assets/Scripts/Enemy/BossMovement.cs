@@ -7,7 +7,7 @@ public class BossMovement : MonoBehaviour
     public List<GameObject> enemyPrefabs;    // 소환할 적 프리팹 리스트
     public EnemyStatus enemy;
     public float moveRange = 5.0f;           // 좌우 이동 범위
-    public float spawnRate = 3.0f;           // 적 소환 주기
+    public float spawnRate = 1.7f;           // 적 소환 주기
 
     private Vector3 startPosition;           // 보스의 시작 위치
     private bool movingRight = true;         // 이동 방향 제어
@@ -82,6 +82,7 @@ public class BossMovement : MonoBehaviour
             coll.enabled = false;
             if (IsAnimationFinished("Death"))
             {
+                { WaveSpawner.instance.lastSpawnEnemyFlag = 1; WaveSpawner.instance.activeEnemies = 0; }
                 Destroy(gameObject);
             }
         }

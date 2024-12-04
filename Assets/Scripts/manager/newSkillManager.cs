@@ -12,6 +12,7 @@ public class newSkillManager : MonoBehaviour
     
     public List<SkillData> acquiredSkills;      // 획득한 스킬 목록
     public int flag = 0;
+    public int specialFlag = 0;
     public int getSkillFlag = 0;
     // Start is called before the first frame update
 
@@ -39,6 +40,9 @@ public class newSkillManager : MonoBehaviour
 
         else if (getSkillFlag == 2)
         {
+            //튜토리얼용
+            TutorialManager.instance.itemCount = 1;
+
             skillSelectUI.SetActive(false);
             getSkillFlag = 0;
         }
