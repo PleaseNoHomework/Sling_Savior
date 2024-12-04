@@ -98,7 +98,7 @@ public class ActiveManager : MonoBehaviour
 
             if (script != null) // script가 존재하는 경우만 접근
             {
-                script.currentHP -= 800;
+                script.currentHP -= 100;
             }
         }
 
