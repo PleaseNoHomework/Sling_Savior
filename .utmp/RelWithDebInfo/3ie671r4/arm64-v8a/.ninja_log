@@ -1,0 +1,9 @@
+# ninja log v5
+71	2499	7550678460523552	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	a9105e8f78ecd7cf
+1	2572	7550678461302609	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	a1c290853782209
+130	2612	7550678462188877	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8414cee376bab62c
+196	2786	7550678463907750	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	99e08ff27e0dd4bd
+25	2828	7550678464368911	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	4b20f7396c0a835a
+154	3124	7550678467323608	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	15cbce8ecf59ebc4
+51	3252	7550678468612833	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2a3335963549025a
+3254	3596	7550678471285223	C:/Users/82104/Desktop/adsaf11/Slingsav/Sling_Savior/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3ie671r4/obj/arm64-v8a/libgame.so	7576cca11c7afc7e
