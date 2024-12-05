@@ -52,7 +52,6 @@ public class PauseUISkillScript : MonoBehaviour
                 activeText.text = skill.description;
                 activePanel.SetActive(true);
             }
-            break;
         }
         
     }
@@ -84,7 +83,6 @@ public class PauseUISkillScript : MonoBehaviour
                 uniqueText.text = skill.description;
                 uniquePanel.SetActive(true);
             }
-            break;
         }
     }
 }
