@@ -31,7 +31,7 @@ public class PauseUISkillScript : MonoBehaviour
         uniquePanel.SetActive(false);
     }
 
-    void updatePanel()
+    public void updatePanel()
     {
         acquiredSkills = skillManager.acquiredSkills;
         updateActive();
@@ -76,7 +76,7 @@ public class PauseUISkillScript : MonoBehaviour
     {
         foreach (SkillData skill in acquiredSkills)
         {
-            if (skill.skillType == SkillType.Active)
+            if (skill.skillType == SkillType.Special)
             {
                 uniqueImage.sprite = skill.icon;
                 uniqueName.text = skill.skillName;
