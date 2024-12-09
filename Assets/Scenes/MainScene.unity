@@ -4276,6 +4276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunAudio: {fileID: 296265138}
   activeButtonText: {fileID: 2133361956}
+  duration: 0.5
+  magnitude: 0.1
+  mainCamera: {fileID: 1674026268}
 --- !u!82 &296265138
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4825,11 +4828,13 @@ MonoBehaviour:
   freezeFlag: 0
   pierceFlag: 0
   multiFlag: 0
-  defaultBall: {fileID: 0}
-  normalBall: {fileID: 0}
-  multiBall: {fileID: 0}
-  pierceBall: {fileID: 0}
-  snowBall: {fileID: 0}
+  defaultBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a,
+    type: 3}
+  normalBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
+  multiBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
+  pierceBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
+  snowBall: {fileID: 9024261327476094048, guid: b50cc5aff020a00438620aa1fedeecfd,
+    type: 3}
   lazerBall: {fileID: 0}
   ballDirection: {x: 0, y: 0, z: 0}
   choiceFlag: 0
@@ -6362,7 +6367,7 @@ MonoBehaviour:
   minX: -10
   canShoot: 0
   shootFlag: 0
-  slingmanager: {fileID: 0}
+  slingmanager: {fileID: 361211919}
 --- !u!4 &490607872
 Transform:
   m_ObjectHideFlags: 0
