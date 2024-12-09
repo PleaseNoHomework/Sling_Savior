@@ -7,18 +7,26 @@ public class ghost : MonoBehaviour
     public EnemyStatus enemy;
 
     private Animator motion;
-    private float time;
+    public float time;
+    public float stunTime = 0f;
     private float attackTime = 0f;
     bool isAttackFinished = false;
 
     void ghostMove()
     {
-        time += Time.deltaTime;
-        float zigzag = Mathf.Sin(time * Mathf.PI * 0.3f) * 10f;
-        if (zigzag >= 1f) zigzag = 1f;
-        else if (zigzag <= -1f) zigzag = -1f;
-        enemy.moveDirection.y = zigzag;
-        transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
+
+        if (enemy.isStuned != 1)
+        {
+            time += Time.deltaTime;
+            time -= stunTime;
+            stunTime = 0;
+            float zigzag = Mathf.Sin(time * Mathf.PI * 0.3f) * 10f;
+            if (zigzag >= 1f) zigzag = 1f;
+            else if (zigzag <= -1f) zigzag = -1f;
+            enemy.moveDirection.y = zigzag;
+            transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
+        }
+
     }
 
     void ghostAttack()
@@ -54,6 +62,8 @@ public class ghost : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        if (enemy.isStuned == 1) stunTime += Time.deltaTime;
+
         if (enemy._state == EnemyStatus.State.Spawn)
         {
             if (time >= 1f)

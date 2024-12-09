@@ -3885,11 +3885,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuned: 0
   hitEffect: {fileID: 9105349781445387127, guid: f0a9a38ece0d8474a8de68d31af551fc,
     type: 3}
   _state: 0
   enemyNo: 6
-  speed: 4
+  speed: 6
   maxHP: 300
   currentHP: 300
   itemFlag: 0

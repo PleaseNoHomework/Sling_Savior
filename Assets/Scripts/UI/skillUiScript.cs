@@ -94,10 +94,17 @@ public class skillUiScript : MonoBehaviour
                 newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
             {
                 bool isSpecial = newSkillManager.instance.specialFlag == 1 && 
-                    (randomIndex == 5 || randomIndex == 2 || randomIndex == 9 || randomIndex == 11); //스페셜 이미 가지고 있는 경우
+                    (randomIndex == 2 || randomIndex == 9 || randomIndex == 11); //스페셜 이미 가지고 있는 경우
                 bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 3 || 
-                    randomIndex == 7 || randomIndex == 8 || randomIndex == 11); //액티브 이미 가지고 있는 경우
-                if (!isSpecial && !isActive)
+                    randomIndex == 7 || randomIndex == 8 || randomIndex == 10); //액티브 이미 가지고 있는 경우
+
+                int x = 0;
+                for (int i = 0; i < newSkillManager.instance.acquiredSkills.Count; i++)
+                {
+                    if (newSkillManager.instance.acquiredSkills[i].skillType == SkillType.Passive) x++;
+                }
+                bool isPassive = (x != 6) || ((x == 6) &&newSkillManager.instance.skills[randomIndex].skillType != SkillType.Passive);//패시브 6개 가지고 있는데 패시브 나온 경우
+                if (!isSpecial && !isActive && isPassive)
                 {
                     Debug.Log(randomIndex);
                     selectSkillNo.Add(randomIndex);

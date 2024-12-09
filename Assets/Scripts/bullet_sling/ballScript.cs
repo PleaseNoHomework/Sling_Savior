@@ -90,6 +90,8 @@ public class ballScript : MonoBehaviour
         Vector3 rotates = end - start;
         float angle = Mathf.Atan2(rotates.x, rotates.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, angle, 0);
+
+
     }
 
     public void setDirection(Vector3 direction)
@@ -118,15 +120,23 @@ public class ballScript : MonoBehaviour
 
         //대미지 가져오기
         damage = slingManager.instance.damage;
+        float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈
+
+
 
         transform.rotation = Quaternion.Euler(0, 180, 0);
-        float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈
+           
         if (newSkillManager.instance.skills[2].nowSkill == 1)
         {
             transform.localScale = new Vector3(size * 3f, size * 3f, size);
         }
         else
+        {
             transform.localScale = new Vector3(size, size, size);
+        }
+
+        
+            
 
         defaultPos = transform.position;
 
@@ -177,6 +187,27 @@ public class ballScript : MonoBehaviour
             Debug.Log("wall");
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Enemy") && newSkillManager.instance.skills[11].nowSkill == 1) //해머상태라면
+        {
+            EnemyStatus enemy = collision.gameObject.GetComponent<EnemyStatus>();
+            Animator animator = collision.gameObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("WalkTrigger");
+            }
+            if (enemy != null && enemy.enemyNo != 11) //보스는 넉백 무시
+            {
+                if (enemy._state != EnemyStatus.State.Die)
+                {
+                    enemy._state = EnemyStatus.State.Knock;
+                }
+
+            }
+
+        }
+
+
     }
 
     private Vector3 GetMouseWorldPosition()

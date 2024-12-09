@@ -13,6 +13,7 @@ public class EnemyStatus : MonoBehaviour
 
     }
 
+    public int isStuned = 0;
     public GameObject hitEffect;
     public State _state;
     public int enemyNo;
@@ -46,8 +47,8 @@ public class EnemyStatus : MonoBehaviour
     public void knockBack()
     {
         knockTime += Time.deltaTime;
-        moveDirection = new Vector3(0, 0, 5);
-        transform.Translate(moveDirection * speed * Time.deltaTime);
+        if (transform.position.z <= 22f)
+            transform.Translate(new Vector3(0, 0, 5) * speed * Time.deltaTime, Space.World);
     }
 
 
@@ -68,7 +69,6 @@ public class EnemyStatus : MonoBehaviour
                 knockBack();
                 if(knockTime >= 0.5f)
                 {
-                    moveDirection = new Vector3(0, 0, -1);
                     _state = State.Move;
                     knockTime = 0;                    
                 }

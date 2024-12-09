@@ -157,7 +157,7 @@ MonoBehaviour:
   damage: 0
   ballDirection: {x: 0, y: 0, z: 0}
   mouseFlag: 0
-  speed: 60
+  speed: 40
   directionFlag: 0
   spawnTime: 0
   availableFlag: 0

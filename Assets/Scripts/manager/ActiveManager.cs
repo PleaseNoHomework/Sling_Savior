@@ -79,7 +79,8 @@ public class ActiveManager : MonoBehaviour
                 }
 
                 // 밀쳐내기 구현
-                StartCoroutine(PushEnemy(enemy, pushDistance, pushDuration));
+                if (status.enemyNo != 9) //보스가 아닐 때에만
+                    StartCoroutine(PushEnemy(enemy, pushDistance, pushDuration));
             }
         }
 
@@ -135,6 +136,7 @@ public class ActiveManager : MonoBehaviour
             {
                 enemySpeeds[enemy] = script.speed; // 적의 현재 속도를 저장
                 script.speed = 0; // 적의 속도를 0으로 설정
+                script.isStuned = 1; //스턴됨 표시
             }
         }
 
@@ -217,6 +219,7 @@ public class ActiveManager : MonoBehaviour
                 if (script != null)
                 {
                     script.speed = entry.Value; // 원래 속도로 복원
+                    script.isStuned = 0;
                 }
             }
         }

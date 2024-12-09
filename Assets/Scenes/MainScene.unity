@@ -4845,7 +4845,7 @@ MonoBehaviour:
   pierceBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
   snowBall: {fileID: 9024261327476094048, guid: b50cc5aff020a00438620aa1fedeecfd,
     type: 3}
-  lazerBall: {fileID: 0}
+  hamBall: {fileID: 3542980148151323491, guid: 5f37b4aa6cccaf041a8f6ae0454a81ff, type: 3}
   ballDirection: {x: 0, y: 0, z: 0}
   choiceFlag: 0
 --- !u!4 &362413859 stripped
@@ -6378,6 +6378,7 @@ MonoBehaviour:
   canShoot: 0
   shootFlag: 0
   slingmanager: {fileID: 361211919}
+  knockBackEnemy: {fileID: 0}
 --- !u!4 &490607872
 Transform:
   m_ObjectHideFlags: 0
@@ -18690,7 +18691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: {fileID: 1575790220}
-  spawnInterval: 1
+  spawnInterval: 3
 --- !u!4 &1511923197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7875147069290265187, guid: e5d1109b48f8e4c7ea53c0dbdd988565,
@@ -19194,7 +19195,7 @@ Transform:
   m_GameObject: {fileID: 1542112228}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53736836, y: 14.265425, z: -28.924364}
+  m_LocalPosition: {x: 0.4, y: 14.265425, z: 17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19904,7 +19905,7 @@ MonoBehaviour:
   - {fileID: 2115586094826912928, guid: d6d30957de6c4db46b8d68314b4e7d07, type: 3}
   - {fileID: 7735275579975019659, guid: 736806bb2ab012b4daf3e7b5ed4c3d27, type: 3}
   HPCoeffecient: 0
-  currentWave: 1
+  currentWave: 2
   wave1: {fileID: 1690377817}
   wave2: {fileID: 120025127}
   wave3: {fileID: 1532947860}
@@ -27385,6 +27386,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1a7421adef9260408b8edaaef2595c0, type: 2}
   - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
   - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
+  - {fileID: 11400000, guid: 0d7aa031678c7a146b1b6916c0a29e82, type: 2}
   acquiredSkills: []
   flag: 0
   specialFlag: 0
@@ -27519,6 +27521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuned: 0
+  hitEffect: {fileID: 0}
   _state: 0
   enemyNo: 0
   speed: 0

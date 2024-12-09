@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuned: 0
   hitEffect: {fileID: 9105349781445387127, guid: f0a9a38ece0d8474a8de68d31af551fc,
     type: 3}
   _state: 0
@@ -692,8 +693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitAudio: {fileID: 4754981582899795809}
   enemy: {fileID: 5125234833651712308}
-  acc: 5
-  nowSpeed: 5
+  acc: 2
+  nowSpeed: 0
 --- !u!54 &8310390998406531369
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -49,7 +49,11 @@ public class slingScript : MonoBehaviour
                 }
 
                 else
+                {
                     Instantiate(slingmanager.defaultBall, ballSpawnPoint, Quaternion.identity);
+
+                }
+                    
             }
                
         }

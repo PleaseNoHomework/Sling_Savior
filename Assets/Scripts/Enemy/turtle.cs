@@ -12,18 +12,18 @@ public class turtle : MonoBehaviour
     public float nowSpeed;
     void turtleMove()
     {
-        float time = Time.deltaTime;
-        if (nowSpeed <= enemy.speed)
+        if (nowSpeed <= 1)
         {
-            nowSpeed += acc * time;
+            nowSpeed += acc * Time.deltaTime;
         }
-        transform.Translate(enemy.moveDirection * nowSpeed * time);
+        transform.Translate(enemy.moveDirection * nowSpeed * enemy.speed * Time.deltaTime);
     }
     // Start is called before the first frame update
 
     private void Start()
     {
         gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+        nowSpeed = 0;
     }
 
     // Update is called once per frame

@@ -34,8 +34,8 @@ public class Wave2Spawner : MonoBehaviour
                     break;
 
                 case 2: // 세 번째 스폰: ghost 2마리
-                    wave.spawnEnemy(new Vector3(-5, 0, 50), 7);
-                    wave.spawnEnemy(new Vector3(5, 0, 50), 7);
+                    wave.spawnEnemy(new Vector3(-5, -3, 50), 7);
+                    wave.spawnEnemy(new Vector3(5, -3, 50), 7);
                     break;
 
                 case 3: // 네 번째 스폰: 양쪽에 Black Widow, 가운데 TurtleShell 1마리
@@ -51,9 +51,9 @@ public class Wave2Spawner : MonoBehaviour
                     break;
 
                 case 5: // 여섯 번째 스폰: ghost 3마리
-                    wave.spawnEnemy(new Vector3(-10, 0, 50), 7);
-                    wave.spawnEnemy(new Vector3(0, 0, 50), 7);
-                    wave.spawnEnemy(new Vector3(10, 0, 50), 7);
+                    wave.spawnEnemy(new Vector3(-10, -3, 50), 7);
+                    wave.spawnEnemy(new Vector3(0, -3, 50), 7);
+                    wave.spawnEnemy(new Vector3(10, -3, 50), 7);
                     break;
 
                 case 6: // 일곱 번째 스폰: HP 800인 StoneGolem 2마리

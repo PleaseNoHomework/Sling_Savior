@@ -43,9 +43,9 @@ public class Wave4Spawner : MonoBehaviour
                     break;
 
                 case 4: // 다섯 번째 스폰: 양쪽에 ghost, 가운데 slime
-                    wave.spawnEnemy(new Vector3(-10, 0, 50), 7);
+                    wave.spawnEnemy(new Vector3(-10, -3, 50), 7);
                     wave.spawnEnemy(new Vector3(0, 0, 50), 3);
-                    wave.spawnEnemy(new Vector3(10, 0, 50), 7);
+                    wave.spawnEnemy(new Vector3(10, -3, 50), 7);
                     break;
 
                 case 5: // 여섯 번째 스폰: TurtleShell 3마리 (가운데는 flag 1)
@@ -62,8 +62,12 @@ public class Wave4Spawner : MonoBehaviour
                     break;
 
                 case 7: // 여덟 번째 스폰: HP 800인 TurtleShell 2마리
-                    wave.spawnEnemy(new Vector3(-5, 0, 10), 2);
-                    wave.spawnEnemy(new Vector3(5, 0, 10), 2);
+                    wave.spawnEnemy(new Vector3(-5, 0, 50), 2);
+                    float rn = Random.Range(0, 1);
+                    if (rn < 0.5f)
+                        wave.spawnItemEnemy(new Vector3(5, 0, 50), 2);
+                    else
+                        wave.spawnEnemy(new Vector3(5, 0, 50), 2);
                     wave.lastSpawnEnemyFlag = 1;
 
                     break;

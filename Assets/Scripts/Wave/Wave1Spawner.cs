@@ -45,7 +45,11 @@ public class Wave1Spawner : MonoBehaviour
 
                 case 4: // 다섯 번째 스폰: 높은 HP의 Sand Spider 한 마리
                     //wave.setHP(1, 300);
-                    wave.spawnEnemy(new Vector3(0, 0, 50), 1);
+                    float rn = Random.Range(0, 1);
+                    if (rn < 0.7f)
+                        wave.spawnItemEnemy(new Vector3(0, 0, 50), 1);
+                    else
+                        wave.spawnEnemy(new Vector3(0, 0, 50), 1);
                     wave.lastSpawnEnemyFlag = 1;
                     break;
             }

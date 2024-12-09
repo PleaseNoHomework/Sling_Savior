@@ -3143,10 +3143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuned: 0
   hitEffect: {fileID: 9105349781445387127, guid: f0a9a38ece0d8474a8de68d31af551fc,
     type: 3}
   _state: 1
-  enemyNo: 8
+  enemyNo: 9
   speed: 20
   maxHP: 5000
   currentHP: 5000
@@ -3169,11 +3170,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
-  - {fileID: 5613264080574311683, guid: 5cf0d07b2fe19ee48870ea255d811097, type: 3}
+  - {fileID: 7735275579975019659, guid: 1759be0cf2305f8419ddc8d1bb09a295, type: 3}
+  - {fileID: 5613264080574311683, guid: 08343ffaf28bc0b42b6e3314031e2ec2, type: 3}
+  - {fileID: 4542559507835283180, guid: 9cf0f20051f6a2040bfe4400a612bb25, type: 3}
+  - {fileID: 4876875707750390345, guid: 4453021ed4745434195fbf0315f1b08b, type: 3}
+  - {fileID: 5613264080574311683, guid: 08343ffaf28bc0b42b6e3314031e2ec2, type: 3}
   enemy: {fileID: -2705477339349939809}
   moveRange: 10
-  spawnRate: 3
+  spawnRate: 1.3
 --- !u!82 &-8672360037808530376
 AudioSource:
   m_ObjectHideFlags: 0

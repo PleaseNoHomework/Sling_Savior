@@ -39,7 +39,7 @@ public class newSkillManager : MonoBehaviour
 
         if (skillSelectUI != null)
         {
-            if (getSkillFlag == 1)
+            if (getSkillFlag == 1 && acquiredSkills.Count < 8)
             {
                 skillSelectUI.SetActive(true);
             }

@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
     public static WaveSpawner instance;
     public List<GameObject> enemy;
     public float HPCoeffecient; //HP 계수
-    public int currentWave = 2;
+    public int currentWave = 1;
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
     public Wave2Spawner wave2;           // Wave2Spawner 참조

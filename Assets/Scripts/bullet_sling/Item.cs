@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    private void Start()
+    {
+        if (transform.position.z >= 25f)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 25f);
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -2925,6 +2925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStuned: 0
+  hitEffect: {fileID: 0}
   _state: 1
   enemyNo: 8
   speed: 20
@@ -2933,7 +2935,9 @@ MonoBehaviour:
   itemFlag: 0
   moveDirection: {x: 0, y: 0, z: -1}
   item: {fileID: 6891100073019751515, guid: 99298d7904f89ab439a1ff9a4374896a, type: 3}
+  audios: {fileID: 0}
   time: 0
+  freezeFlag: 0
 --- !u!114 &6146950588489117790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,6 +2952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 7735275579975019659, guid: 39d982a736b39bf4c918e5efa7d1a06c, type: 3}
+  - {fileID: 5613264080574311683, guid: 5cf0d07b2fe19ee48870ea255d811097, type: 3}
   - {fileID: 5613264080574311683, guid: 5cf0d07b2fe19ee48870ea255d811097, type: 3}
   enemy: {fileID: 4046803314173880866}
   moveRange: 10
@@ -2964,8 +2969,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea72277ccd42ea4b8d496ac7f537891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hpbar: {fileID: 556874798602567553}
-  enemyStatus: {fileID: 4046803314173880866}
 --- !u!1 &6795967996347672694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,12 +3775,6 @@ PrefabInstance:
 --- !u!224 &416273038368848925 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6739252148286681321, guid: b177596d55bd2dc42b7870c82eeff3c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6359157441105906932}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &556874798602567553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6915891501850751861, guid: b177596d55bd2dc42b7870c82eeff3c5,
     type: 3}
   m_PrefabInstance: {fileID: 6359157441105906932}
   m_PrefabAsset: {fileID: 0}
