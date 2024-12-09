@@ -39,32 +39,37 @@ public class ballScript : MonoBehaviour
             {
                 endPos = GetMouseWorldPosition();
                 rotateBullet(startPos, endPos);
-                Vector3 pullPos = -(endPos - startPos) * 0.1f;
+                Vector3 pullPos = -(endPos - startPos) * 0.25f; //공이 당겨진 위치
                 transform.position = (defaultPos - pullPos);
 
                 // 조준선 업데이트
                 UpdateAimingLine(defaultPos, defaultPos - ballDirection.normalized * 25f); // 방향을 반대로 설정
                 ballDirection = (endPos - startPos).normalized; // 방향 갱신
 
+                if (pullPos.magnitude < 0.1f) aimingLine.material.color = Color.red;
+
                 if (pullPos.magnitude >= 0.1f && soundFlag == 0)
                 {
                     drawAudio.Play();
                     soundFlag = 1;
+                    aimingLine.material.color = Color.green;
                 }
             }
 
             if (Input.GetMouseButtonUp(0) && mouseFlag == 1)
             {
-                ballDirection = (endPos - startPos) * 0.05f;
-
+                ballDirection = (endPos - startPos) * 0.01f; //볼 벡터
+                ballDirection = ballDirection.normalized * 0.5f;
+                /*
                 if (ballDirection.magnitude <= 0.5f && ballDirection.magnitude > 0.3f)
                 {
                     ballDirection = ballDirection.normalized * 0.5f;
-                }
+                }*/
+                /*
                 else if (ballDirection.magnitude >= 3f)
                 {
                     ballDirection = ballDirection.normalized * 3f;
-                }
+                }*/
 
                 mouseFlag = 0;
 
@@ -148,7 +153,7 @@ public class ballScript : MonoBehaviour
         aimingLine.endWidth = 0.05f;
         aimingLine.useWorldSpace = true;
         aimingLine.material = new Material(Shader.Find("Unlit/Color"));
-        aimingLine.material.color = Color.green;
+        aimingLine.material.color = Color.red;
         aimingLine.enabled = false; // 초기 상태에서 비활성화
     }
 

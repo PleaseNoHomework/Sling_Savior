@@ -105,6 +105,7 @@ public class TutorialManager : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        dragUI.SetActive(false);
     }
-
+    
 }

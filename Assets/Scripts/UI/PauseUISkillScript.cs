@@ -58,16 +58,18 @@ public class PauseUISkillScript : MonoBehaviour
 
     void updatePassive()
     {
-        for (int i = 0; i < passiveIcons.Length; i++)
+        int x = 0;
+        for (int i = 0; i < acquiredSkills.Count; i++) //현재 있는 것중
         {
             if (i < acquiredSkills.Count && acquiredSkills[i].icon != null && acquiredSkills[i].skillType == SkillType.Passive)
             {
-                passiveIcons[i].sprite = acquiredSkills[i].icon;     // 스킬 아이콘 설정
-                passiveIcons[i].gameObject.SetActive(true);          // 아이콘 활성화
+                passiveIcons[x].sprite = acquiredSkills[i].icon;     // 스킬 아이콘 설정
+                passiveIcons[x].gameObject.SetActive(true);          // 아이콘 활성화
+                x++;
             }
             else
             {
-                passiveIcons[i].gameObject.SetActive(false);         // 빈 슬롯은 비활성화
+                passiveIcons[x].gameObject.SetActive(false);         // 빈 슬롯은 비활성화
             }
         }
     }
