@@ -9,6 +9,8 @@ public class ActiveManager : MonoBehaviour
     public AudioSource stunAudio;
     public AudioSource GustAudio;
     public AudioSource AttackAudio;
+    public GameObject stunEffectPrefab;
+    public GameObject attackEffectPrefab;
     public TMP_Text activeButtonText; // 버튼 위에 표시될 텍스트
     private bool isCooldown = false; // 쿨타임 상태 확인
 
@@ -116,6 +118,8 @@ public class ActiveManager : MonoBehaviour
         isCooldown = true;
         UpdateCooldownText(cooldownTime);
 
+        EffectSpawner.instance.SpawnEffect(stunEffectPrefab);
+
         Dictionary<GameObject, float> enemySpeeds = new Dictionary<GameObject, float>();
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -147,6 +151,7 @@ public class ActiveManager : MonoBehaviour
         isCooldown = true;
         UpdateCooldownText(cooldownTime);
 
+        EffectSpawner.instance.SpawnEffect(attackEffectPrefab);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         if (AttackAudio != null) // 오디오
