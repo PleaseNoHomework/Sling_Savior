@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ActiveManager : MonoBehaviour
 {
     public AudioSource stunAudio;
+    public AudioSource GustAudio;
+    public AudioSource AttackAudio;
     public TMP_Text activeButtonText; // 버튼 위에 표시될 텍스트
     private bool isCooldown = false; // 쿨타임 상태 확인
 
@@ -43,6 +45,10 @@ public class ActiveManager : MonoBehaviour
     private IEnumerator Gust()
     {
         Debug.Log("Gust skill activated!");
+        if (GustAudio != null) // 오디오
+        {
+            GustAudio.Play();
+        }
 
         float pushDistance = 30f; // 총 밀쳐내는 거리
         float pushDuration = 0.1f; // 바람 지속 시간
@@ -143,9 +149,9 @@ public class ActiveManager : MonoBehaviour
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if (stunAudio != null) // 오디오
+        if (AttackAudio != null) // 오디오
         {
-            stunAudio.Play();
+            AttackAudio.Play();
         }
 
         foreach (GameObject enemy in enemies)
