@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class IceGolem : MonoBehaviour
 {
-    //벽에 가까이 붙으면 공격
     public EnemyStatus enemy;
 
-    public float changeInterval;                          // 방향 변경 간격
-    private float nextChangeTime = 0;                     // 다음 방향 변경 시간
-    private float[] offsets = {-1f, -0.5f, 0f, 0.5f, 1f}; // 좌우 이동 방향
+    public float forwardMoveInterval = 6f; // 직선 이동 시간
+    public float sideMoveInterval = 2f;   // X축 이동 시간
+    private float elapsedMoveTime = 0f;   // 경과 시간
+    private bool isMovingForward = true;  // 현재 직선으로 이동 중인지 여부
+    private float[] xDirections = { -1f, 1f }; // X축 방향 배열
 
     private float minX = -12f;
     private float maxX = 12f;
@@ -17,13 +18,16 @@ public class IceGolem : MonoBehaviour
     private Animator motion;
     private float time;
     private float attackTime = 0f;
-    bool isAttackFinished = false;
+    private bool isAttackFinished = false;
     private Collider coll;
+
+    private Vector3 initialDirection = new Vector3(0, 0, 1); // Z축 직선 이동 방향
 
     void IceGolemMove()
     {
-        float time = Time.time;
-        // 벽에 도달했을 때마다 즉시 방향을 반전하도록 설정
+        elapsedMoveTime += Time.deltaTime;
+
+        // X축 경계 처리
         if (transform.position.x <= minX && enemy.moveDirection.x < 0)
         {
             Debug.Log("Reached Left Boundary");
@@ -36,19 +40,35 @@ public class IceGolem : MonoBehaviour
             enemy.moveDirection.x = -Mathf.Abs(enemy.moveDirection.x); // 왼쪽으로 이동
             transform.position = new Vector3(maxX, transform.position.y, transform.position.z); // 위치 보정
         }
-        // 일정 시간마다 이동 방향을 무작위로 변경 (벽에 도달하지 않은 경우)
-        else if (time >= nextChangeTime)
+
+        // 이동 방향 전환
+        if (isMovingForward && elapsedMoveTime >= forwardMoveInterval)
         {
-            nextChangeTime = time + changeInterval;
-            enemy.moveDirection.x = offsets[Random.Range(0, offsets.Length)];
+            isMovingForward = false;
+            elapsedMoveTime = 0f;
+
+            // X축 이동 방향 설정
+            enemy.moveDirection.x = xDirections[Random.Range(0, xDirections.Length)]*2f;
+            enemy.moveDirection.z = 0; // Z축 이동 중지
+        }
+        else if (!isMovingForward && elapsedMoveTime >= sideMoveInterval)
+        {
+            isMovingForward = true;
+            elapsedMoveTime = 0f;
+
+            // Z축 직선 이동 방향 설정
+            enemy.moveDirection.x = 0; // X축 이동 중지
+            enemy.moveDirection.z = initialDirection.z; // Z축 앞으로 이동
         }
 
-        transform.Translate(new Vector3(enemy.moveDirection.x, 0, 1) * enemy.speed * Time.deltaTime);
+        // 이동
+        transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
 
-        // x 좌표가 범위를 벗어나지 않도록 제한
+        // X축 경계를 벗어나지 않도록 제한
         float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
+
 
     void IceGolemAttack()
     {
