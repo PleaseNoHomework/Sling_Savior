@@ -93,8 +93,10 @@ public class skillUiScript : MonoBehaviour
             if(!selectSkillNo.Contains(randomIndex) && 
                 newSkillManager.instance.skills[randomIndex].nowSkill < newSkillManager.instance.skills[randomIndex].maxSkill)
             {
-                bool isSpecial = newSkillManager.instance.specialFlag == 1 && (randomIndex == 5 || randomIndex == 2 || randomIndex == 9); //스페셜 이미 가지고 있는 경우
-                bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 7 || randomIndex == 8 ); //액티브 이미 가지고 있는 경우
+                bool isSpecial = newSkillManager.instance.specialFlag == 1 && 
+                    (randomIndex == 5 || randomIndex == 2 || randomIndex == 9 || randomIndex == 11); //스페셜 이미 가지고 있는 경우
+                bool isActive = newSkillManager.instance.activeFlag == 1 && (randomIndex == 3 || 
+                    randomIndex == 7 || randomIndex == 8 || randomIndex == 11); //액티브 이미 가지고 있는 경우
                 if (!isSpecial && !isActive)
                 {
                     Debug.Log(randomIndex);

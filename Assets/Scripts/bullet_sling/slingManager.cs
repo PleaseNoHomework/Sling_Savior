@@ -18,7 +18,7 @@ public class slingManager : MonoBehaviour
     public GameObject multiBall;
     public GameObject pierceBall;
     public GameObject snowBall;
-    public GameObject lazerBall;
+    public GameObject hamBall;
 
 
     public Vector3 ballDirection;
@@ -93,6 +93,11 @@ public class slingManager : MonoBehaviour
         if (newSkillManager.instance.skills[9].nowSkill == 1)
         {
             defaultBall = snowBall;
+        }
+
+        if (newSkillManager.instance.skills[11].nowSkill == 1)
+        {
+            defaultBall = hamBall;
         }
     }
 

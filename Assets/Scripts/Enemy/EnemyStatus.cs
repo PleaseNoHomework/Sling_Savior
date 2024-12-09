@@ -13,6 +13,7 @@ public class EnemyStatus : MonoBehaviour
 
     }
 
+    public GameObject hitEffect;
     public State _state;
     public int enemyNo;
     public float speed;
@@ -91,6 +92,7 @@ public class EnemyStatus : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("PierceBullet"))
         {
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
             audios.Play();
             Debug.Log(",,,");
             ballScript sc = collision.gameObject.GetComponent<ballScript>();

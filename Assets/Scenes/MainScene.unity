@@ -4378,6 +4378,8 @@ MonoBehaviour:
   stunAudio: {fileID: 296265136}
   GustAudio: {fileID: 900776910}
   AttackAudio: {fileID: 1086237838}
+  stunEffectPrefab: {fileID: 0}
+  attackEffectPrefab: {fileID: 0}
   activeButtonText: {fileID: 2133361956}
   duration: 0.5
   magnitude: 0.1
@@ -6374,6 +6376,7 @@ MonoBehaviour:
   canShoot: 0
   shootFlag: 0
   slingmanager: {fileID: 361211919}
+  knockBackEnemy: {fileID: 0}
 --- !u!4 &490607872
 Transform:
   m_ObjectHideFlags: 0
@@ -27335,6 +27338,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1a7421adef9260408b8edaaef2595c0, type: 2}
   - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
   - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
+  - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
   acquiredSkills: []
   flag: 0
   specialFlag: 0
@@ -27469,6 +27473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 0}
   _state: 0
   enemyNo: 0
   speed: 0
