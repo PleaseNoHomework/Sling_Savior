@@ -4260,7 +4260,7 @@ Transform:
   m_GameObject: {fileID: 296265134}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -14.18, z: 25.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4276,10 +4276,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 471679156169ef84e841e09a02fefa61, type: 3}
-  m_Resource: {fileID: 8300000, guid: 471679156169ef84e841e09a02fefa61, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 53c36b3a3e005b94880de2aae1f24f20, type: 3}
+  m_Resource: {fileID: 8300000, guid: 53c36b3a3e005b94880de2aae1f24f20, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.502
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4378,8 +4378,10 @@ MonoBehaviour:
   stunAudio: {fileID: 296265136}
   GustAudio: {fileID: 900776910}
   AttackAudio: {fileID: 1086237838}
-  stunEffectPrefab: {fileID: 0}
-  attackEffectPrefab: {fileID: 0}
+  stunEffectPrefab: {fileID: 6592636206869142121, guid: 30eccf4b242e47740ad08fceb5464198,
+    type: 3}
+  attackEffectPrefab: {fileID: 6897559991276829148, guid: 20e49ddd81832d04fa34e1212ec3fd6c,
+    type: 3}
   activeButtonText: {fileID: 2133361956}
   duration: 0.5
   magnitude: 0.1
@@ -6376,7 +6378,6 @@ MonoBehaviour:
   canShoot: 0
   shootFlag: 0
   slingmanager: {fileID: 361211919}
-  knockBackEnemy: {fileID: 0}
 --- !u!4 &490607872
 Transform:
   m_ObjectHideFlags: 0
@@ -7378,6 +7379,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1622680281}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &575583971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575583972}
+  - component: {fileID: 575583973}
+  m_Layer: 0
+  m_Name: EffectSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575583972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575583971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 953785231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &575583973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575583971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc2c7ba589fc524dbcbd8c9fa9b72a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerTransform: {fileID: 296265135}
 --- !u!4 &587347411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5140589243378351430, guid: 808df41b7c1f44a2f8e1c3756a95f0b8,
@@ -12798,6 +12844,7 @@ Transform:
   - {fileID: 689783636}
   - {fileID: 1575326263}
   - {fileID: 296265135}
+  - {fileID: 575583972}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &968133426 stripped
@@ -27338,7 +27385,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1a7421adef9260408b8edaaef2595c0, type: 2}
   - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
   - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
-  - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
   acquiredSkills: []
   flag: 0
   specialFlag: 0
@@ -27473,7 +27519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedf1d1ac266554ba7ecf0a5c334cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 0}
   _state: 0
   enemyNo: 0
   speed: 0

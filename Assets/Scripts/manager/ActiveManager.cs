@@ -84,7 +84,7 @@ public class ActiveManager : MonoBehaviour
         }
 
         // 쿨다운 처리
-        float cooldownTime = 5f; // 스킬 쿨타임
+        float cooldownTime = 17f; // 스킬 쿨타임
         isCooldown = true;
         UpdateCooldownText(cooldownTime);
         yield return StartCoroutine(CooldownTimer(cooldownTime));
@@ -112,7 +112,7 @@ public class ActiveManager : MonoBehaviour
 
     private IEnumerator Stun()
     {
-        float cooldownTime = 5f; // 스킬 기본 쿨타임
+        float cooldownTime = 6f; // 스킬 기본 쿨타임
         float stunDuration = 1f; // 스턴 지속 시간
 
         isCooldown = true;
@@ -147,7 +147,7 @@ public class ActiveManager : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        float cooldownTime = 3f; // 스킬 기본 쿨타임
+        float cooldownTime = 8f; // 스킬 기본 쿨타임
         isCooldown = true;
         UpdateCooldownText(cooldownTime);
 
@@ -200,7 +200,7 @@ public class ActiveManager : MonoBehaviour
         }
         else
         {
-            activeButtonText.text = $"Cooldown: {timeLeft:0.0}s";
+            activeButtonText.text = $"{timeLeft:0.0}";
         }
     }
 
