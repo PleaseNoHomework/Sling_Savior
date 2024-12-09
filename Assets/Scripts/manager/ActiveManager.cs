@@ -1,117 +1,141 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ActiveManager : MonoBehaviour
 {
     public AudioSource stunAudio;
-    // Start is called before the first frame update
-    int coolFlag = 0;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public TMP_Text activeButtonText; // 버튼 위에 표시될 텍스트
+    private bool isCooldown = false; // 쿨타임 상태 확인
 
     public void activeActive()
     {
-        if (newSkillManager.instance.activeFlag == 1 && coolFlag == 0)
+        if (newSkillManager.instance.activeFlag == 1 && !isCooldown)
         {
-
-            coolFlag = 1;
             switch (newSkillManager.instance.activeNo)
             {
-                case 7: //스턴
+                case 7: // 스턴
                     Debug.Log("Stun!!!!!!!!!!!");
                     StartCoroutine(Stun());
                     break;
-                case 8: //광역 대미지
+                case 8: // 광역 대미지
                     Debug.Log("Attack!!!!!!!!");
                     StartCoroutine(Attack());
-
                     break;
-                case 9: //??
+                case 9: // ?? 스킬
                     break;
             }
-            
         }
     }
 
-
-    public IEnumerator Stun()
+    private IEnumerator Stun()
     {
+        float cooldownTime = 5f; // 스킬 기본 쿨타임
+        float stunDuration = 1f; // 스턴 지속 시간
 
-        float time = 0;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); //모든 적들을 잠깐 멈추게 한다.
+        isCooldown = true;
+        UpdateCooldownText(cooldownTime);
 
-        List<float> enemySpeeds = new List<float>();
-        if (stunAudio != null) //오디오
+        Dictionary<GameObject, float> enemySpeeds = new Dictionary<GameObject, float>();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (stunAudio != null) // 오디오
         {
             stunAudio.Play();
         }
+
         foreach (GameObject enemy in enemies)
         {
-            // enemyScript 가져오기
             EnemyStatus script = enemy.GetComponent<EnemyStatus>();
-
-            if (script != null) // script가 존재하는 경우만 접근
+            if (script != null && !enemySpeeds.ContainsKey(enemy))
             {
-                enemySpeeds.Add(script.speed); // speed 값을 저장
-                script.speed = 0;
+                enemySpeeds[enemy] = script.speed; // 적의 현재 속도를 저장
+                script.speed = 0; // 적의 속도를 0으로 설정
             }
         }
 
+        // 스턴 지속 시간 동안 대기 (독립적으로 처리)
+        StartCoroutine(HandleStunEnd(stunDuration, enemySpeeds));
 
+        // 쿨타임 실행
+        yield return StartCoroutine(CooldownTimer(cooldownTime));
+    }
 
-        while (time < 1f)
+    private IEnumerator Attack()
+    {
+        float cooldownTime = 3f; // 스킬 기본 쿨타임
+        isCooldown = true;
+        UpdateCooldownText(cooldownTime);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (stunAudio != null) // 오디오
         {
-            time += Time.deltaTime;
-            yield return null;
+            stunAudio.Play();
         }
-        
-        coolFlag = 0;
-        int i = 0;
-        foreach (GameObject enemy in enemies) {
+
+        foreach (GameObject enemy in enemies)
+        {
             EnemyStatus script = enemy.GetComponent<EnemyStatus>();
-            script.speed = enemySpeeds[i];
-            i++;
+            if (script != null)
+            {
+                script.currentHP -= 100; // 적 체력 감소
+            }
         }
 
+        yield return StartCoroutine(CooldownTimer(cooldownTime));
+    }
 
+    private IEnumerator CooldownTimer(float cooldownTime)
+    {
+        float timeLeft = cooldownTime;
+
+        // 즉시 남은 시간을 반영
+        UpdateCooldownText(timeLeft);
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime; // 남은 시간 즉시 감소
+            UpdateCooldownText(timeLeft);
+            yield return null; // 다음 프레임으로 넘어감
+        }
+
+        // 쿨타임 종료
+        isCooldown = false;
+        UpdateCooldownText(0);
     }
 
 
-    public IEnumerator Attack()
+
+    private void UpdateCooldownText(float timeLeft)
     {
-        float time = 0;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); //모든 적들의 피를 깎는다
-
-        if (stunAudio != null) //오디오
+        if (timeLeft <= 0)
         {
-            stunAudio.Play();
+            activeButtonText.text = "Ready";
         }
-        foreach (GameObject enemy in enemies)
+        else
         {
-            // enemyScript 가져오기
-            EnemyStatus script = enemy.GetComponent<EnemyStatus>();
+            activeButtonText.text = $"Cooldown: {timeLeft:0.0}s";
+        }
+    }
 
-            if (script != null) // script가 존재하는 경우만 접근
+    private IEnumerator HandleStunEnd(float stunDuration, Dictionary<GameObject, float> enemySpeeds)
+    {
+        yield return new WaitForSeconds(stunDuration);
+
+        // 스턴 해제
+        foreach (var entry in enemySpeeds)
+        {
+            if (entry.Key != null) // 적 오브젝트가 존재할 경우
             {
-                script.currentHP -= 100;
+                EnemyStatus script = entry.Key.GetComponent<EnemyStatus>();
+                if (script != null)
+                {
+                    script.speed = entry.Value; // 원래 속도로 복원
+                }
             }
         }
-
-
-
-        while (time < 1f)
-        {
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        coolFlag = 0;
-        int i = 0;
     }
 }
