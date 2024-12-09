@@ -37,22 +37,26 @@ public class newSkillManager : MonoBehaviour
             flag = 0;
         }
 
-        if (getSkillFlag == 1)
+        if (skillSelectUI != null)
         {
-            skillSelectUI.SetActive(true);
+            if (getSkillFlag == 1)
+            {
+                skillSelectUI.SetActive(true);
+            }
+
+            else if (getSkillFlag == 2)
+            {
+                //튜토리얼용
+                TutorialManager.instance.itemCount = 1;
+                if (activeFlag == 1)
+                {
+                    activeButton.SetActive(true);
+                }
+                skillSelectUI.SetActive(false);
+                getSkillFlag = 0;
+            }
         }
 
-        else if (getSkillFlag == 2)
-        {
-            //튜토리얼용
-            TutorialManager.instance.itemCount = 1;
-            if (activeFlag == 1)
-            {
-                activeButton.SetActive(true);
-            }
-            skillSelectUI.SetActive(false);
-            getSkillFlag = 0;
-        }
 
     }
 

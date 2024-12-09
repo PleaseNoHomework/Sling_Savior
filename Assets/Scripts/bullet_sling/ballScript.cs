@@ -12,7 +12,7 @@ public class ballScript : MonoBehaviour
     private Vector3 endPos;
     private Vector3 defaultPos;
 
-    private int mouseFlag = 0;
+    public int mouseFlag = 0;
     public float speed; // 공 속도
     public int directionFlag; // 위치 정보 보낼 때
     public float spawnTime; // 총알 재장전
@@ -60,16 +60,6 @@ public class ballScript : MonoBehaviour
             {
                 ballDirection = (endPos - startPos) * 0.01f; //볼 벡터
                 ballDirection = ballDirection.normalized * 0.5f;
-                /*
-                if (ballDirection.magnitude <= 0.5f && ballDirection.magnitude > 0.3f)
-                {
-                    ballDirection = ballDirection.normalized * 0.5f;
-                }*/
-                /*
-                else if (ballDirection.magnitude >= 3f)
-                {
-                    ballDirection = ballDirection.normalized * 3f;
-                }*/
 
                 mouseFlag = 0;
 
@@ -84,7 +74,6 @@ public class ballScript : MonoBehaviour
                     directionFlag = 1; // 방향 설정
                     slingScript.instance.shootFlag = 1;
                     fireAudio.Play();
-                    extraBall.instance.setDirection(-ballDirection);
                 }
                 else
                 {

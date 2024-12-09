@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class snowBall : MonoBehaviour
 {
-    ballScript ball;
+    public ballScript ball;
+    public float scaleSpeed = 1f;
+    Vector3 sizeUp = Vector3.zero;
+    public Vector3 maxScale;
+    public Vector3 initialScale;
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialScale = transform.localScale;
+        maxScale = transform.localScale * 2;
     }
 
     // Update is called once per frame
@@ -16,9 +21,17 @@ public class snowBall : MonoBehaviour
     {
         ball.movePos();
 
-        if (ball.directionFlag == 1)
+        //조준하고 있는 동안
+        if (ball.mouseFlag == 1)
         {
-            transform.Translate(new Vector3(0, 0, -1) * ball.speed * Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, maxScale, scaleSpeed);
         }
+
+        else
+        {
+            if(ball.directionFlag != 1)
+                transform.localScale = initialScale;
+        }
+
     }
 }

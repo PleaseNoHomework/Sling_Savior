@@ -5,7 +5,6 @@ using UnityEngine;
 public class slingManager : MonoBehaviour
 {
     public static slingManager instance;
-    public TutorialManager tutorialManager;
     public float shootCoolTime;
     public int damage;
 
@@ -13,11 +12,18 @@ public class slingManager : MonoBehaviour
     public int pierceFlag = 0;
     public int multiFlag = 0;
 
+    public GameObject defaultBall; //소환되는 공
+
+    public GameObject normalBall;
+    public GameObject multiBall;
+    public GameObject pierceBall;
+    public GameObject snowBall;
+    public GameObject lazerBall;
+
 
     public Vector3 ballDirection;
     
     public int choiceFlag = 0;
-    public SkillData skill;
 
     // Start is called before the first frame update
 
@@ -26,7 +32,7 @@ public class slingManager : MonoBehaviour
         damage = 100 + 75 * newSkillManager.instance.skills[0].nowSkill + 50 * newSkillManager.instance.skills[4].nowSkill;
         shootCoolTime = 1 * Mathf.Pow(0.7f, newSkillManager.instance.skills[1].nowSkill);
 
-        freezeFlag = newSkillManager.instance.skills[4].nowSkill;
+        //freezeFlag = newSkillManager.instance.skills[4].nowSkill;
         Debug.Log(damage + ", " + shootCoolTime);
 
         specialUp();
@@ -38,6 +44,7 @@ public class slingManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            defaultBall = normalBall;
         };
     }
     void Start()
@@ -69,8 +76,24 @@ public class slingManager : MonoBehaviour
 
     public void specialUp()
     {
-        if (newSkillManager.instance.skills[5].nowSkill == 1) { multiFlag = 1; newSkillManager.instance.specialFlag = 1; }
-        if (newSkillManager.instance.skills[2].nowSkill == 1) { pierceFlag = 1; newSkillManager.instance.specialFlag = 1; }
+        
+
+        //멀티샷
+        if (newSkillManager.instance.skills[5].nowSkill == 1) {
+            //multiFlag = 1; newSkillManager.instance.specialFlag = 1;
+            defaultBall = multiBall;
+        }
+        //관통샷
+        if (newSkillManager.instance.skills[2].nowSkill == 1) {
+            //pierceFlag = 1; newSkillManager.instance.specialFlag = 1; 
+            defaultBall = pierceBall;
+        }
+
+        //눈덩이
+        if (newSkillManager.instance.skills[9].nowSkill == 1)
+        {
+            defaultBall = snowBall;
+        }
     }
 
 
