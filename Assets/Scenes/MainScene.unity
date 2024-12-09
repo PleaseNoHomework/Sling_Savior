@@ -4260,7 +4260,7 @@ Transform:
   m_GameObject: {fileID: 296265134}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15.8, z: 28.15}
+  m_LocalPosition: {x: 0, y: -14.18, z: 25.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4276,10 +4276,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 471679156169ef84e841e09a02fefa61, type: 3}
-  m_Resource: {fileID: 8300000, guid: 471679156169ef84e841e09a02fefa61, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 53c36b3a3e005b94880de2aae1f24f20, type: 3}
+  m_Resource: {fileID: 8300000, guid: 53c36b3a3e005b94880de2aae1f24f20, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.502
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4378,7 +4378,7 @@ MonoBehaviour:
   stunAudio: {fileID: 296265136}
   GustAudio: {fileID: 900776910}
   AttackAudio: {fileID: 1086237838}
-  stunEffectPrefab: {fileID: 1398486156334532151, guid: 9803d80a30640c94a8646dd7713498e7,
+  stunEffectPrefab: {fileID: 6592636206869142121, guid: 30eccf4b242e47740ad08fceb5464198,
     type: 3}
   attackEffectPrefab: {fileID: 6897559991276829148, guid: 20e49ddd81832d04fa34e1212ec3fd6c,
     type: 3}
