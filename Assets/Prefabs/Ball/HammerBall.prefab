@@ -18,8 +18,9 @@ GameObject:
   - component: {fileID: -5624323083360833493}
   - component: {fileID: 3288406857142241704}
   - component: {fileID: -2563145512447663854}
+  - component: {fileID: -2829161515395142866}
   m_Layer: 10
-  m_Name: defaultBullet
+  m_Name: HammerBall
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,3 +563,15 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-2829161515395142866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860445168790544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9d242c66902ea45bcca3e9dc9a4c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
