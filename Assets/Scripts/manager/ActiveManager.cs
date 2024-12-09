@@ -33,9 +33,74 @@ public class ActiveManager : MonoBehaviour
                     break;
                 case 9: // ?? 스킬
                     break;
+                case 10:
+                    Debug.Log("typooon!!!!!");
+                    StartCoroutine(Gust());
+                    break;
             }
         }
     }
+    private IEnumerator Gust()
+    {
+        Debug.Log("Gust skill activated!");
+
+        float pushDistance = 30f; // 총 밀쳐내는 거리
+        float pushDuration = 0.1f; // 바람 지속 시간
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                // EnemyStatus 가져오기
+                EnemyStatus status = enemy.GetComponent<EnemyStatus>();
+                if (status != null)
+                {
+                    // 상태를 강제로 Move로 변경
+                    if (status._state != EnemyStatus.State.Die)
+                    {
+                        status._state = EnemyStatus.State.Move;
+
+                        // 애니메이션 트리거를 Walk로 변경 (애니메이터가 있을 경우)
+                        Animator animator = enemy.GetComponent<Animator>();
+                        if (animator != null)
+                        {
+                            animator.SetTrigger("WalkTrigger");
+                        }
+                    }
+                }
+
+                // 밀쳐내기 구현
+                StartCoroutine(PushEnemy(enemy, pushDistance, pushDuration));
+            }
+        }
+
+        // 쿨다운 처리
+        float cooldownTime = 5f; // 스킬 쿨타임
+        isCooldown = true;
+        UpdateCooldownText(cooldownTime);
+        yield return StartCoroutine(CooldownTimer(cooldownTime));
+    }
+
+
+    private IEnumerator PushEnemy(GameObject enemy, float totalDistance, float duration)
+    {
+        float elapsedTime = 0f;
+        Vector3 initialPosition = enemy.transform.position; // 초기 위치 저장
+        Vector3 targetPosition = initialPosition + new Vector3(0, 0, totalDistance); // 목표 위치 계산
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration; // 진행 비율 계산
+            enemy.transform.position = Vector3.Lerp(initialPosition, targetPosition, t); // 위치 보간
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 최종 위치 보정
+        enemy.transform.position = targetPosition;
+    }
+
 
     private IEnumerator Stun()
     {

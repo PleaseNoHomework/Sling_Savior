@@ -4820,15 +4820,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb2ff3423ea04a42b4aa546ced43c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManager: {fileID: 0}
   shootCoolTime: 0
   damage: 0
   freezeFlag: 0
   pierceFlag: 0
   multiFlag: 0
+  defaultBall: {fileID: 0}
+  normalBall: {fileID: 0}
+  multiBall: {fileID: 0}
+  pierceBall: {fileID: 0}
+  snowBall: {fileID: 0}
+  lazerBall: {fileID: 0}
   ballDirection: {x: 0, y: 0, z: 0}
   choiceFlag: 0
-  skill: {fileID: 0}
 --- !u!4 &362413859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1539805915325457089, guid: 08a3d83a2192d43b8ba72cfbd6eb1bd5,
@@ -6349,9 +6353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8eedfa532f21744920777e93e041fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
-  leftBall: {fileID: 1860445168790544, guid: be035817d42e3484c880f6e303c4011f, type: 3}
-  rightBall: {fileID: 1860445168790544, guid: 11ca11f2ff6c3a24282d76d7f58fb903, type: 3}
   speed: 0
   pierceBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
   ballSpawnPoint: {x: 0, y: 1, z: -25}
@@ -26982,6 +26983,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45409ca2c864ada4ca9802e3dfec399a, type: 2}
   - {fileID: 11400000, guid: 42058036588de8049b8cbb6defd7f960, type: 2}
   - {fileID: 11400000, guid: b1a7421adef9260408b8edaaef2595c0, type: 2}
+  - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
+  - {fileID: 11400000, guid: 8ee146ceb3422d5429d7c70d87c7b0c3, type: 2}
   acquiredSkills: []
   flag: 0
   specialFlag: 0
