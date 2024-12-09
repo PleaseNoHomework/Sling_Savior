@@ -14,7 +14,9 @@ public class ghost : MonoBehaviour
     void ghostMove()
     {
         time += Time.deltaTime;
-        float zigzag = Mathf.Sin(time * Mathf.PI) * 10.0f ;
+        float zigzag = Mathf.Sin(time * Mathf.PI * 0.3f) * 10f;
+        if (zigzag >= 1f) zigzag = 1f;
+        else if (zigzag <= -1f) zigzag = -1f;
         enemy.moveDirection.y = zigzag;
         transform.Translate(enemy.moveDirection * enemy.speed * Time.deltaTime);
     }
