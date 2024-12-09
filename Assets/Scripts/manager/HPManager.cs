@@ -35,4 +35,11 @@ public class HPManager : MonoBehaviour
 
 
     }
+
+    public void getBloodEffect()
+    {
+
+    }
+
+
 }

@@ -4275,6 +4275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunAudio: {fileID: 296265138}
+  activeButtonText: {fileID: 2133361956}
 --- !u!82 &296265138
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4829,7 +4830,8 @@ MonoBehaviour:
   normalBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
   multiBall: {fileID: 1860445168790544, guid: 56c471fa60a91ff47aad2dc54e7d196a, type: 3}
   pierceBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
-  snowBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
+  snowBall: {fileID: 9024261327476094048, guid: b50cc5aff020a00438620aa1fedeecfd,
+    type: 3}
   lazerBall: {fileID: 1509049477220822, guid: edf92e08fbab517449067fd9cddc8a66, type: 3}
   ballDirection: {x: 0, y: 0, z: 0}
   choiceFlag: 0

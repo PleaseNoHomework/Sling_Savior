@@ -5,6 +5,7 @@ using UnityEngine;
 public class ballScript : MonoBehaviour
 {
     public Camera mainCamera;
+    public float damage;
     private AudioSource fireAudio;
     private AudioSource drawAudio;
     public Vector3 ballDirection;
@@ -113,6 +114,10 @@ public class ballScript : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         fireAudio = audioSources[0];
         drawAudio = audioSources[1];
+
+
+        //대미지 가져오기
+        damage = slingManager.instance.damage;
 
         transform.rotation = Quaternion.Euler(0, 180, 0);
         float size = 1f * (2 + newSkillManager.instance.skills[6].nowSkill); //사이즈

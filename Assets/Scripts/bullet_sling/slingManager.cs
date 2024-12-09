@@ -6,7 +6,7 @@ public class slingManager : MonoBehaviour
 {
     public static slingManager instance;
     public float shootCoolTime;
-    public int damage;
+    public float damage;
 
     public int freezeFlag = 0;
     public int pierceFlag = 0;

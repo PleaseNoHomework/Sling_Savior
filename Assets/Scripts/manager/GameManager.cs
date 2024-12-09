@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public Wave1Spawner wave1;           // Wave1Spawner 참조
     public Wave2Spawner wave2;           // Wave2Spawner 참조
-    public Boss bossPrefab;              // Boss 프리팹 참조
+    //public Boss bossPrefab;              // Boss 프리팹 참조
     public Transform bossSpawnPoint;     // Boss 스폰 위치
     public static int finishFlag;
     public int currentWave = 1;

@@ -23,7 +23,7 @@ public class EnemyStatus : MonoBehaviour
     public AudioSource audios;
     public float time;
     public int freezeFlag = 0;
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
         currentHP -= damage;
     }
@@ -75,7 +75,11 @@ public class EnemyStatus : MonoBehaviour
         {
             audios.Play();
             Debug.Log(",,,");
-            takeDamage(slingManager.instance.damage);
+            ballScript sc = collision.gameObject.GetComponent<ballScript>();
+            if (sc != null)
+            {
+                takeDamage(sc.damage);
+            }
 
             if(slingManager.instance.freezeFlag == 1 && freezeFlag ==0) //동상이 걸린다면
             {
