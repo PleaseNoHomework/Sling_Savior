@@ -6,7 +6,7 @@ public class Wave4Spawner : MonoBehaviour
     //총 23마리
     public WaveSpawner wave;
 
-    public float spawnInterval = 7f; // 각 스폰 사이의 간격
+    public float spawnInterval = 1.5f; // 각 스폰 사이의 간격
     private int spawnStep = 0;       // 현재 스폰 단계
 
 

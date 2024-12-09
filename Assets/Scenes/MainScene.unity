@@ -18691,7 +18691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: {fileID: 1575790220}
-  spawnInterval: 3
+  spawnInterval: 1.5
 --- !u!4 &1511923197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7875147069290265187, guid: e5d1109b48f8e4c7ea53c0dbdd988565,
