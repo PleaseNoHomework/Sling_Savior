@@ -16,6 +16,8 @@ public class slingScript : MonoBehaviour
 
     public slingManager slingmanager;
 
+    public GameObject knockBackEnemy;
+
     private void Awake()
     {
         if (instance == null) instance = this;

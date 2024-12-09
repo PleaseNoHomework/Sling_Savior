@@ -8,6 +8,7 @@ public class EnemyStatus : MonoBehaviour
         Spawn,
         Move,
         Attack,
+        Knock,
         Die
 
     }
@@ -22,6 +23,7 @@ public class EnemyStatus : MonoBehaviour
     public GameObject item;
     public AudioSource audios;
     public float time;
+    float knockTime = 0f;
     public int freezeFlag = 0;
     public void takeDamage(float damage)
     {
@@ -40,6 +42,12 @@ public class EnemyStatus : MonoBehaviour
         maxHP = HP;
         currentHP = maxHP;
     }
+    public void knockBack()
+    {
+        knockTime += Time.deltaTime;
+        moveDirection = new Vector3(0, 0, 5);
+        transform.Translate(moveDirection * speed * Time.deltaTime);
+    }
 
 
     private void Start()
@@ -55,9 +63,19 @@ public class EnemyStatus : MonoBehaviour
         destroyEnemy();
         switch (_state)
         {
-            case EnemyStatus.State.Attack:
+            case State.Knock:
+                knockBack();
+                if(knockTime >= 0.5f)
+                {
+                    moveDirection = new Vector3(0, 0, -1);
+                    _state = State.Move;
+                    knockTime = 0;                    
+                }
+                
                 break;
-            case EnemyStatus.State.Die: //
+            case State.Attack:
+                break;
+            case State.Die: //
                 if (itemFlag == 1)
                 {
                     Instantiate(item, transform.position, Quaternion.identity);
