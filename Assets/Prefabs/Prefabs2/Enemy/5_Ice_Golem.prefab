@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 5
-  speed: 6
+  speed: 4
   maxHP: 300
   currentHP: 300
   itemFlag: 0
@@ -1842,7 +1842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 428143456438937896}
-  changeInterval: 2
+  forwardMoveInterval: 1
+  sideMoveInterval: 0.5
 --- !u!82 &8131801193655070673
 AudioSource:
   m_ObjectHideFlags: 0
