@@ -4276,6 +4276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunAudio: {fileID: 296265138}
   activeButtonText: {fileID: 2133361956}
+  duration: 0.5
+  magnitude: 0.1
+  mainCamera: {fileID: 1674026268}
 --- !u!82 &296265138
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26985,7 +26988,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45409ca2c864ada4ca9802e3dfec399a, type: 2}
   - {fileID: 11400000, guid: 42058036588de8049b8cbb6defd7f960, type: 2}
   - {fileID: 11400000, guid: b1a7421adef9260408b8edaaef2595c0, type: 2}
-  - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
   - {fileID: 11400000, guid: 98b5477cf6298664c9ef82ae18ab7c25, type: 2}
   acquiredSkills: []
   flag: 0

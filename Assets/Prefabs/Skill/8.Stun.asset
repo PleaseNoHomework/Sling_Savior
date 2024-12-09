@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillNo: 8
   maxSkill: 1
-  nowSkill: 0
-  skillName: 11
-  description: Active 1
+  nowSkill: 1
+  skillName: Stun
+  description: stop enemy????
   icon: {fileID: 21300000, guid: 3ac5c85587f886e4d973b9b55e8e0e9b, type: 3}
   skillType: 0
   isActive: 0

@@ -153,8 +153,7 @@ public class ballScript : MonoBehaviour
 
     void Update()
     {//shootFlag가 0일 때 조준 발사 가능, 발사 시 directionFlag = 1
-        if (slingScript.instance.shootFlag == 0 && slingScript.instance.canShoot == 1) movePos();
-
+        if (slingScript.instance.canShoot == 1) movePos();
         if (directionFlag == 1)
         {
             transform.Translate(new Vector3(0, 0, -1) * speed * Time.deltaTime);

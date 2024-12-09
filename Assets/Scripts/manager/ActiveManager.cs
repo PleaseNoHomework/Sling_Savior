@@ -10,6 +10,12 @@ public class ActiveManager : MonoBehaviour
     public TMP_Text activeButtonText; // 버튼 위에 표시될 텍스트
     private bool isCooldown = false; // 쿨타임 상태 확인
 
+    public float duration = 0.5f; // 흔들림 지속 시간
+    public float magnitude = 0.1f; // 흔들림 강도
+    private Vector3 originalPosition; // 카메라의 원래 위치
+
+    public GameObject mainCamera;
+
     public void activeActive()
     {
         if (newSkillManager.instance.activeFlag == 1 && !isCooldown)
@@ -18,6 +24,7 @@ public class ActiveManager : MonoBehaviour
             {
                 case 7: // 스턴
                     Debug.Log("Stun!!!!!!!!!!!");
+                    StartCoroutine(ShakeCoroutine());
                     StartCoroutine(Stun());
                     break;
                 case 8: // 광역 대미지
@@ -138,4 +145,38 @@ public class ActiveManager : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator ShakeCoroutine()
+    {
+        originalPosition = mainCamera.transform.localPosition;
+        float elapsed = 0.0f;
+        Debug.Log("camera moved");
+        while (elapsed < duration)
+        {
+            // 임의의 흔들림 위치 계산
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            mainCamera.transform.localPosition = originalPosition + new Vector3(x, y, 0);
+
+            elapsed += Time.deltaTime;
+            yield return null; // 한 프레임 대기
+        }
+
+        mainCamera.transform.localPosition = originalPosition; // 원래 위치로 복구
+    }
+
+    public void Shake()
+    {
+        StartCoroutine(ShakeCoroutine());
+    }
+
+
+
+
+
+
+
+
+
 }
