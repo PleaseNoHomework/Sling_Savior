@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 0
   enemyNo: 5
-  speed: 4
+  speed: 6
   maxHP: 300
   currentHP: 300
   itemFlag: 0
@@ -5843,7 +5843,7 @@ PrefabInstance:
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
@@ -5868,7 +5868,7 @@ PrefabInstance:
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
@@ -5898,7 +5898,7 @@ PrefabInstance:
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6739252148286681321, guid: b3d8348524799e34e81f8f36aecb56bd,
         type: 3}
@@ -5924,6 +5924,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561966705250855000, guid: b3d8348524799e34e81f8f36aecb56bd,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561966705250855000, guid: b3d8348524799e34e81f8f36aecb56bd,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
