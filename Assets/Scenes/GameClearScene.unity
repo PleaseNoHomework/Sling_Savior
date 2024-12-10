@@ -178,9 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back To Battle!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da9f73ed89f64c44392039ef0ce66b69, type: 2}
-  m_sharedMaterial: {fileID: -3441202687283627132, guid: da9f73ed89f64c44392039ef0ce66b69,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -401,7 +400,7 @@ RectTransform:
   m_GameObject: {fileID: 81689056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 60778884}
@@ -409,8 +408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -130}
-  m_SizeDelta: {x: 325.2872, y: 132.3134}
+  m_AnchoredPosition: {x: 0, y: -347}
+  m_SizeDelta: {x: 201.4427, y: 108.2185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81689058
 MonoBehaviour:
@@ -601,16 +600,16 @@ RectTransform:
   m_GameObject: {fileID: 1036026705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1386389512}
   m_Father: {fileID: 1280218325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1536, y: 2048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036026707
 MonoBehaviour:
@@ -782,7 +781,7 @@ RectTransform:
   m_GameObject: {fileID: 1386389511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.77775, y: 0.77775, z: 0.77775}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1036026706}
@@ -790,7 +789,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 973.6255, y: 563.5959}
+  m_SizeDelta: {x: 961.21, y: 1435.8855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386389513
 MonoBehaviour:
@@ -999,15 +998,15 @@ RectTransform:
   m_GameObject: {fileID: 1726436865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1280218325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 61}
-  m_SizeDelta: {x: 605.667, y: 214.97}
+  m_AnchoredPosition: {x: 0, y: -184}
+  m_SizeDelta: {x: 302.83, y: 319.6643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726436867
 MonoBehaviour:
@@ -1034,14 +1033,10 @@ MonoBehaviour:
     You saved your town!
 
 
-    However, the remnants
-    of the enemy attack once again...
-
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e4decb5720ab0294384ea652e9fb6d7c, type: 2}
-  m_sharedMaterial: {fileID: -8462524322649553317, guid: e4decb5720ab0294384ea652e9fb6d7c,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1154,7 +1149,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
