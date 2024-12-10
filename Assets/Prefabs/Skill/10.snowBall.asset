@@ -16,7 +16,7 @@ MonoBehaviour:
   maxSkill: 1
   nowSkill: 0
   skillName: Snow Ball
-  description: super Strong
-  icon: {fileID: 0}
+  description: Chargable Snowball \n More Charge = More Damage
+  icon: {fileID: 21300000, guid: 782c310b10d34d74693f89ae14723d58, type: 3}
   skillType: 2
   isActive: 0

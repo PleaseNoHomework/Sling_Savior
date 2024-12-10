@@ -16,7 +16,7 @@ MonoBehaviour:
   maxSkill: 3
   nowSkill: 0
   skillName: SizeUP
-  description: Big Bullet Size
+  description: Make bullet bigger!
   icon: {fileID: 21300000, guid: e079ce5f02500ab4eb87d9f44d67b849, type: 3}
   skillType: 1
   isActive: 0

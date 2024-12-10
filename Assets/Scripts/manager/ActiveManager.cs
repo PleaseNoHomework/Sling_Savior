@@ -85,7 +85,7 @@ public class ActiveManager : MonoBehaviour
         }
 
         // 쿨다운 처리
-        float cooldownTime = 17f; // 스킬 쿨타임
+        float cooldownTime = 25f; // 스킬 쿨타임
         isCooldown = true;
         UpdateCooldownText(cooldownTime);
         yield return StartCoroutine(CooldownTimer(cooldownTime));

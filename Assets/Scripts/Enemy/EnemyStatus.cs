@@ -48,7 +48,7 @@ public class EnemyStatus : MonoBehaviour
     {
         knockTime += Time.deltaTime;
         if (transform.position.z <= 22f)
-            transform.Translate(new Vector3(0, 0, 5) * speed * Time.deltaTime, Space.World);
+            transform.Translate(new Vector3(0, 0, 3) * speed * Time.deltaTime, Space.World);
     }
 
 

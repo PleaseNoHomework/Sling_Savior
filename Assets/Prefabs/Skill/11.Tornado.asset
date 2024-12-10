@@ -15,8 +15,8 @@ MonoBehaviour:
   skillNo: 10
   maxSkill: 1
   nowSkill: 0
-  skillName: Tornado
-  description: Push Them Back!!!!
-  icon: {fileID: 21300000, guid: 3c6c0a9113a3f3444bb8bbfd857d4cbd, type: 3}
+  skillName: Gust
+  description: Push All Enemy!
+  icon: {fileID: 21300000, guid: 0e7a5204945f7e540bb05ab55ad31ce5, type: 3}
   skillType: 0
   isActive: 0

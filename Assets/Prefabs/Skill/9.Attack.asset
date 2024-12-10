@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillNo: 8
   maxSkill: 1
-  nowSkill: 1
+  nowSkill: 0
   skillName: Attack
-  description: Huge Attack
+  description: Attack All Enemy!
   icon: {fileID: 21300000, guid: 185a55bdc655ff04da30e7ae5d222dc3, type: 3}
   skillType: 0
   isActive: 0

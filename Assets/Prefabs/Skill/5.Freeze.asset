@@ -16,7 +16,7 @@ MonoBehaviour:
   maxSkill: 1
   nowSkill: 0
   skillName: FrostBite
-  description: Enemy get freeze
+  description: Normal Attack causes slow effect
   icon: {fileID: 21300000, guid: 9fab15d89bc64244a843f01888ad6023, type: 3}
   skillType: 1
   isActive: 0

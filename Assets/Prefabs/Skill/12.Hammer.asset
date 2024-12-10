@@ -15,8 +15,8 @@ MonoBehaviour:
   skillNo: 11
   maxSkill: 1
   nowSkill: 0
-  skillName: 
-  description: 
-  icon: {fileID: 0}
+  skillName: Hammer
+  description: Throw Hammer \n Which Knockback Enemy
+  icon: {fileID: 21300000, guid: 35380f9094b76024ca7896f9f12cd20a, type: 3}
   skillType: 2
   isActive: 0
